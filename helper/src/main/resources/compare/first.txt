@@ -1,0 +1,11 @@
+main start.
+CustomThreadA start.
+CustomThreadA loop at 0
+CustomThreadA loop at 1
+CustomThreadA loop at 2
+CustomThreadB start.
+CustomThreadA loop at 3
+CustomThreadA loop at 4
+CustomThreadA end.
+CustomThreadB end.
+main end!

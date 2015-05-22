@@ -1,0 +1,203 @@
+<ivy-module version="1.0">
+    <info organisation="org.talend" module="administrator" />
+    <configurations>
+        <conf name="common"  description="common libraries" />
+        <conf name="tac_build" extends="common" description="jars required to build TAC" />
+        <conf name="integrationtest" extends="common" description="jars only required to build Integration tests" />
+    </configurations>
+    
+    
+    <dependencies>
+        <dependency name="gwttoolkit" rev="1.5.+"  conf="tac_build->default" />
+        <dependency name="gwt-user" rev="2.5.0"  conf="common->default" />
+        <dependency name="gwt-dev" rev="2.5.0"  conf="common->default" />
+        <dependency name="gwt-servlet" rev="2.5.0"  conf="tac_build->default" />
+        <dependency name="requestfactory-server" rev="2.5.0"  conf="tac_build->default" />
+
+        <dependency name="gwtent" rev="2.0.0-gwt2.3"  conf="tac_build->default" />
+        <dependency name="gwt-fx" rev="4.0.0"  conf="tac_build->default" />
+        <dependency name="gwt-crypto" rev="1.0.3"  conf="tac_build->default" />
+
+        <dependency name="gxt" rev="2.2.5-gwt22"  conf="tac_build->default" />
+        <dependency name="gwttk" rev="0.2.3"  conf="tac_build->default" />
+        <dependency name="yuicompressor" rev="2.4.2"  conf="tac_build->default" />
+        <dependency name="jboss-seam" rev="2.1.0.GA"  conf="tac_build->default" />
+
+        <dependency name="org.json" rev="20120509"  conf="tac_build->default" />
+        <dependency name="jettison" rev="1.1"  conf="tac_build->default" />
+
+        <dependency name="org.talend.camel.model" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.model" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.model.tac" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.monitoring" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.monitoring.client" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.utils" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.teneo.model" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.commandline.client" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.soamanager.commons" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.commons.runtime" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.common.ui.runtime" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.remote.client" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.remote.commons" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.remote.jobserver.client" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.remote.jobserver.commons" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.core" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.core.runtime" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.repository.databaseprovider" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.repository.remoteprovider" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.repository.services" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.repository.svnprovider" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.amc" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.amc.charts" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.amc.data" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.cwm.mip" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.amc.commons" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.eclipse.rap.jface" rev="1.4.0.20110614-2335"  conf="tac_build->default" /> <!-- Used by AMC -->
+        <dependency name="org.talend.repository.localprovider" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.core.repository" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.remote.runtime.client" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.commons.model" rev="5.3.+"  conf="tac_build->default" />
+        <!-- only to use data model -->
+        <dependency name="org.talend.designer.mapper" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.designer.xmlmap" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.designer.mapreduce" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.designer.gefabstractmap" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.designer.pigmap" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.designer.dbmap" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.repository.hadoopcluster" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.repository.hcatalog" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.repository.hdfs" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.repository.oozie" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="org.talend.repository.json" rev="5.4.+"  conf="tac_build->default" />
+
+        <dependency name="jmxremote_optional" rev="1.0.1.04-b58"  conf="tac_build->default" />
+
+        <dependency name="pax-url-mvn" rev="1.2.8"  conf="tac_build->default" />
+        <!-- Talend Runtime Client -->
+        <dependency name="org.apache.aries.jmx" rev="0.3"  conf="tac_build->default" />
+        <dependency name="org.apache.karaf.features.core" rev="2.2.6"  conf="tac_build->default" />
+        <dependency name="org.apache.karaf.features.management" rev="2.2.6"  conf="tac_build->default" />
+        <dependency name="org.apache.karaf.management.mbeans.bundles" rev="2.2.6"  conf="tac_build->default" />
+        <dependency name="org.apache.karaf.management.mbeans.config" rev="2.2.6"  conf="tac_build->default" />
+        <dependency name="org.apache.karaf.cellar.management" rev="2.2.+" conf="tac_build->default" />
+        <dependency name="osgi" rev="3.6.2.R36x_v20110210"  conf="tac_build->default" />
+
+        <dependency name="xstream" rev="1.2.2"  conf="tac_build->default" />
+        <dependency name="hibernate" rev="3.2-patched1.7"  conf="tac_build->default" />
+        <dependency name="mysql-connector-java" rev="5.1.22-bin"  conf="tac_build->default" />
+        <dependency name="postgresql" rev="9.2-1002.jdbc4"  conf="tac_build->default" />
+        <dependency name="dom4j" rev="1.6.1"  conf="tac_build->default" />
+        <dependency name="c3p0" rev="0.9.1.2"  conf="tac_build->default" />
+        <dependency name="ehcache" rev="1.2"  conf="tac_build->default" />
+        <dependency name="jaxen" rev="1.1.1"  conf="tac_build->default" />
+        <dependency name="jta" rev="20120509"  conf="tac_build->default" />
+        <dependency name="commons-beanutils" rev="1.6"  conf="tac_build->default" />
+        <dependency name="commons-codec" rev="1.6"  conf="tac_build->default" />
+        <dependency name="naming-factory-dbcp" rev="5.5.23"  conf="tac_build->default" />
+        <dependency name="commons-dbcp" rev="1.2.2"  conf="tac_build->default" /> <!-- used by Quartz -->
+        <dependency name="commons-pool" rev="1.3"  conf="tac_build->default" /> <!-- used by Quartz -->
+
+        <dependency name="org.eclipse.equinox.common" rev="3.6.0.v20100503"  conf="tac_build->default" />
+        <dependency name="org.eclipse.gmf.runtime.emf.core" rev="1.2.0.v20090422-1925"  conf="tac_build->default" />
+        <dependency name="org.eclipse.emf.common" rev="2.5.0.v200906151043"  conf="tac_build->default" />
+        <dependency name="org.eclipse.emf.ecore" rev="2.5.0.v200906151043"  conf="tac_build->default" />
+        <dependency name="org.eclipse.emf.ecore.xmi" rev="2.5.0.v200906151043"  conf="tac_build->default" />
+        <dependency name="org.eclipse.emf.teneo" rev="0.7.5.v200704222357-patch+"  conf="tac_build->default" />
+        <dependency name="org.eclipse.emf.teneo.annotations" rev="0.7.5.v200704222357-patch+"  conf="tac_build->default" />
+        <dependency name="org.eclipse.emf.teneo.hibernate" rev="0.7.6.v200704222358-patch+"  conf="tac_build->default" />
+        <dependency name="org.eclipse.emf.teneo.hibernate.mapper" rev="0.7.5.v200704222357-patch+"  conf="tac_build->default" />
+        <dependency name="org.eclipse.gmf.runtime.notation" rev="1.2.0.v20090521-1925"  conf="tac_build->default" />
+        <dependency name="org.eclipse.swt.RGB_for_resuming" rev="3.4.0.v3448f"  conf="tac_build->default" />
+
+        <dependency name="quartz-all" rev="1.7.3"  conf="tac_build->default" />
+        <dependency name="org.talend.administrator.quartz" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="h2" rev="1.3.160"  conf="tac_build->default" />
+
+        <dependency name="commons-lang" rev="2.4"  conf="tac_build->default" />
+        <dependency name="commons-collections" rev="3.2"  conf="tac_build->default" />
+        <dependency name="commons-cli" rev="1.2"  conf="tac_build->default" />
+        <dependency name="commons-logging" rev="1.1.1"  conf="tac_build->default" />
+        <dependency name="commons-fileupload" rev="1.2.1"  conf="tac_build->default" />
+        <dependency name="guava" rev="14.0"  conf="tac_build->default" />
+        <dependency name="guava-gwt" rev="14.0"  conf="tac_build->default" /> <!-- necessary in the ant build: transitive dependencies are not resolved -->
+
+        <dependency name="jfreechart" rev="1.0.13"  conf="tac_build->default" />
+        <dependency name="jcommon" rev="1.0.12"  conf="tac_build->default" />
+
+        <dependency name="mail" rev="1.4.6"  conf="tac_build->default" />
+        <dependency name="netscape-ldap" rev="20120509"  conf="tac_build->default" />
+        <dependency name="jakarta-oro" rev="2.0.8"  conf="tac_build->default" />
+        <dependency name="opencsv" rev="1.8_patched"  conf="tac_build->default" />
+
+        <!-- SVNKit -->
+        <dependency name="svnkit" rev="1.3.7"  conf="tac_build->default" />
+        <dependency name="svnkit-javahl" rev="1.3.7" conf="tac_build->default" />
+        <dependency name="trilead-ssh2" rev="1.0.0-build214" conf="tac_build->default" />
+        <dependency name="sequence-library" rev="1.0.0" conf="tac_build->default" />
+
+        <dependency name="axis" rev="1.3-2444" conf="tac_build->default" />
+        <dependency name="commons-discovery" rev="0.2" conf="tac_build->default" />
+
+        <dependency name="jaxrpc" rev="1.1" conf="tac_build->default" />
+        <dependency name="wsdl4j" rev="1.5.1" conf="tac_build->default" />
+        <dependency name="antlr" rev="2.7.6" conf="tac_build->default" />
+
+        <dependency name="commons-io" rev="1.3.2" conf="tac_build->default" />
+        <dependency name="log4j" rev="1.2.15" conf="tac_build->default" />
+
+        <dependency name="locator" rev="5.2+"  conf="tac_build->default" />
+        <dependency name="gson" rev="2.2"  conf="tac_build->default" />
+        <dependency name="zookeeper" rev="3.3.4"  conf="tac_build->default" />
+
+        <dependency name="archiva-repository-admin-api" rev="1.4-M1-SNAPSHOT"  conf="tac_build->default" />
+        <dependency name="archiva-rest-api" rev="1.4-M2-SNAPSHOT-20111129"  conf="tac_build->default" />
+        <dependency name="cxf-bundle-jaxrs" rev="2.6.2"  conf="tac_build->default" />
+        <dependency name="jsr311-api" rev="1.1.1"  conf="tac_build->default" />
+        <dependency name="neethi" rev="2.0.5"  conf="tac_build->default" />
+
+
+        <!-- service / authentication registries (+ cxf-bundle-jaxrs, jsr311-api, slf4j-api, wsdl4j) -->
+        <dependency name="jdom" rev="1.1"  conf="tac_build->default" />
+        <dependency name="rome" rev="1.0"  conf="tac_build->default" />
+        <dependency name="atom-rest-client" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="registry-common" rev="5.4.+"  conf="tac_build->default" />
+        <dependency name="joda-time" rev="2.1"  conf="tac_build->default" />
+        <dependency name="jackson-core-asl" rev="1.9.0"  conf="tac_build->default" />
+        <dependency name="jackson-mapper-asl" rev="1.9.0"  conf="tac_build->default" />
+        <dependency name="jackson-jaxrs" rev="1.9.0"  conf="tac_build->default" />
+        <dependency name="syncope-common" rev="1.1.+"  conf="tac_build->default" />
+        <dependency name="syncope-client" rev="1.1.+"  conf="tac_build->default" />
+        <dependency name="herasaf-xacml-core" rev="1.0.0.RELEASE"  conf="tac_build->default" />
+        <dependency name="authorization-client" rev="5.4.+"  conf="tac_build->default" />
+
+        <dependency name="jamon" rev="2.74"  conf="tac_build->default" />
+
+        <dependency name="tempus-fugit" rev="1.1"  conf="integrationtest->default" />
+        <!-- timeline       -->
+        <dependency name ="gwttimeline"  rev="0.1+" conf="tac_build->default" />
+        <dependency name ="gwt-visualization" rev="1.0.2" conf="tac_build->default" />
+        
+        <!-- Amazon EC2 instance -->
+		<dependency name="aopalliance" rev="1.0"  conf="tac_build->default" />
+		<dependency name="aws-common" rev="1.5.7"  conf="tac_build->default" />
+		<dependency name="aws-ec2" rev="1.5.7"  conf="tac_build->default" />
+		<dependency name="bcprov-jdk16" rev="1.46"  conf="tac_build->default" />
+		<dependency name="ec2" rev="1.5.7"  conf="tac_build->default" />
+		<dependency name="guice" rev="3.0"  conf="tac_build->default" />
+		<dependency name="guice-assistedinject" rev="3.0"  conf="tac_build->default" />
+		<dependency name="javax.inject" rev="1"  conf="tac_build->default" />
+		<dependency name="jclouds-bouncycastle" rev="1.5.7"  conf="tac_build->default" />
+		<dependency name="jclouds-compute" rev="1.5.7"  conf="tac_build->default" />
+		<dependency name="jclouds-core" rev="1.5.7"  conf="tac_build->default" />
+		<dependency name="jclouds-log4j" rev="1.5.7"  conf="tac_build->default" />
+		<dependency name="jclouds-scriptbuilder" rev="1.5.7"  conf="tac_build->default" />
+		<dependency name="jclouds-slf4j" rev="1.5.7"  conf="tac_build->default" />
+		<dependency name="jclouds-sshj" rev="1.5.7"  conf="tac_build->default" />
+		<dependency name="jsr250-api" rev="1.0"  conf="tac_build->default" />
+		<dependency name="logback-classic" rev="1.0.9"  conf="tac_build->default" />
+		<dependency name="logback-core" rev="1.0.9"  conf="tac_build->default" />
+		<dependency name="rocoto" rev="6.1"  conf="tac_build->default" />
+		<dependency name="slf4j-api" rev="1.7.2"  conf="tac_build->default" />
+		<dependency name="sshj" rev="0.8.1"  conf="tac_build->default" />
+    </dependencies>
+</ivy-module>
