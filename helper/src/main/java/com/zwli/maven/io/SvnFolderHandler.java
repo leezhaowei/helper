@@ -5,9 +5,6 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 
-/**
- * DOC zwli class global comment. Detailled comment
- */
 public class SvnFolderHandler {
 
     private static String TARGET = ".svn";

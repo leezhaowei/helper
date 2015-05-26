@@ -1,15 +1,3 @@
-// ============================================================================
-//
-// Copyright (C) 2006-2013 Talend Inc. - www.talend.com
-//
-// This source code is available under agreement available at
-// %InstallDIR%\features\org.talend.rcp.branding.%PRODUCTNAME%\%PRODUCTNAME%license.txt
-//
-// You should have received a copy of the agreement
-// along with this program; if not, write to Talend SA
-// 9 rue Pages 92150 Suresnes, France
-//
-// ============================================================================
 package com.zwli.aws;
 
 import java.io.UnsupportedEncodingException;
@@ -24,9 +12,6 @@ import java.util.SortedMap;
 import java.util.TimeZone;
 import java.util.TreeMap;
 
-/**
- * DOC zwli class global comment. Detailed comment
- */
 public class SignedHandler {
 
     private static final String TIMESTAMP = "Timestamp";

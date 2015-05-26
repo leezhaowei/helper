@@ -4,9 +4,6 @@ import java.io.File;
 
 import org.apache.commons.io.FileUtils;
 
-/**
- * created by zwli on Aug 22, 2014 Detailled comment
- */
 public class Do56MavenRepoBuilder {
 
     public static void main(String[] args) {

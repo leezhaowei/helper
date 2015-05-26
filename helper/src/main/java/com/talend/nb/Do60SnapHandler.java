@@ -14,7 +14,7 @@ public class Do60SnapHandler {
 
     private static void do60() {
         String version = "V6.0.0SNAPSHOT";
-        String revision = "20150520_1932";
+        String revision = "20150525_1933";
         String sourceDir = "E:/Download";
         String licenceTag = "licenses_600_30days";
         String nbArchive = "E:/TUP/60";
