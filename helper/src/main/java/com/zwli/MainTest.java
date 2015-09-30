@@ -6,9 +6,15 @@ import java.io.FileFilter;
 import java.io.FileReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 public class MainTest {
@@ -25,15 +31,33 @@ public class MainTest {
         // i();
         // j();
         // k();
-        l();
+        // l();
+        m();
+    }
+
+    static void m() {
+        List<String> emptyList = Collections.emptyList();
+        System.out.println("Create an empty immutable list: " + emptyList);
+        
+        emptyList = new ArrayList<String>();
+        emptyList.add("Hello");
+        emptyList.add("world!");
+        
+        System.out.println(emptyList);
     }
 
     static void l() {
-        String a = "aaa" + "bbb";
-        String c = "ccc";
-        System.out.println(a);
-        String b = c + a;
-        System.out.println(b);
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("a", 1);
+        params.put("b", "String");
+        params.put("c", new Date());
+        params.put("d", 23.5D);
+        System.out.println(params);
+        Collection<?> col = params.values();
+        System.out.println(col);
+        System.out.println(Arrays.toString(col.toArray()));
+        Object[] arr = params.entrySet().toArray();
+        System.out.println(Arrays.toString(arr));
     }
 
     static void k() {
