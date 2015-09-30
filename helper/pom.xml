@@ -90,6 +90,12 @@
       <groupId>org.tmatesoft.svnkit</groupId>
       <artifactId>svnkit-javahl16</artifactId>
       <version>1.8.9</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>svn-javahl-api</artifactId>
+          <groupId>org.apache.subversion</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.trilead</groupId>
@@ -97,17 +103,6 @@
       <version>1.0.0-build217</version>
     </dependency>
     <!-- SVNKit -->
-    
-    <dependency>
-      <groupId>com.talend</groupId>
-      <artifactId>commons-model</artifactId>
-      <version>5.3.0</version>
-      <scope>system</scope>
-      <!-- commons.model-5.3.0.jar in folder lib -->
-      <systemPath>E:/Disk_F/helper/lib/commons.model-5.3.0.jar</systemPath>
-    </dependency>
-    
-
   </dependencies>
 
 </project>
