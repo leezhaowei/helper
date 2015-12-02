@@ -41,6 +41,7 @@ public class LinkedList {
     }
 
     public void printList() {
+        System.out.println();
         Node n = head;
         while (null != n) {
             System.out.print(n.data + " ");
@@ -55,14 +56,113 @@ public class LinkedList {
         return last;
     }
 
+    public void deleteNode(int key) {
+        Node temp = head;
+        if (temp != null && temp.data == key) {
+            head = temp.next;
+            return;
+        }
+        while (temp.next != null && temp.next.data != key) {
+            temp = temp.next;
+        }
+        if (temp == null || temp.next == null) {
+            return;
+        }
+        temp.next = temp.next.next;
+    }
+
+    public void deleteNodeByPosition(int position) {
+        if (head == null) {
+            return;
+        }
+        Node temp = head;
+        if (position == 0) {
+            head = temp.next;
+            return;
+        }
+        for (int i = 0; temp != null && i < position - 1; i++) {
+            temp = temp.next;
+        }
+        if (temp == null || temp.next == null) {
+            return;
+        }
+        temp.next = temp.next.next;
+    }
+
+    public void swapNodes(int x, int y) {
+        if (x == y) {
+            return;
+        }
+
+        Node prevX = null, currX = head;
+        while (currX != null && currX.data != x) {
+            prevX = currX;
+            currX = currX.next;
+        }
+
+        Node prevY = null, currY = head;
+        while (currY != null && currY.data != y) {
+            prevY = currY;
+            currY = currY.next;
+        }
+
+        if (currX == null || currY == null) {
+            return;
+        }
+
+        if (prevX != null) {
+            prevX.next = currY;
+        } else {
+            head = currY;
+        }
+
+        if (prevY != null) {
+            prevY.next = currX;
+        } else {
+            head = currX;
+        }
+
+        Node temp = currX.next;
+        currX.next = currY.next;
+        currY.next = temp;
+    }
+
     public static void main(String[] args) {
+        // LinkedList llist = new LinkedList();
+        // llist.append(6);
+        // llist.push(7);
+        // llist.push(1);
+        // llist.append(4);
+        // llist.insertAfter(llist.head.next, 8);
+        // System.out.println("\nCreated Linked list is: ");
+        // llist.printList();
+        //
+        // llist.deleteNode(8);
+        // llist.printList();
+
+        testSwapNodes();
+    }
+
+    static void testSwapNodes() {
         LinkedList llist = new LinkedList();
-        llist.append(6);
+
+        /*
+         * The constructed linked list is: 1->2->3->4->5->6->7
+         */
         llist.push(7);
+        llist.push(6);
+        llist.push(5);
+        llist.push(4);
+        llist.push(3);
+        llist.push(2);
         llist.push(1);
-        llist.append(4);
-        llist.insertAfter(llist.head.next, 8);
-        System.out.println("\nCreated Linked list is: ");
+
+        System.out.print("\n Linked list before calling swapNodes() ");
+        llist.printList();
+
+        llist.swapNodes(4, 3);
+
+        System.out.print("\n Linked list after calling swapNodes() ");
         llist.printList();
     }
 }
