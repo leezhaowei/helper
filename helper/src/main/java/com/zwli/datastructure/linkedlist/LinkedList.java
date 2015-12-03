@@ -3,6 +3,7 @@ package com.zwli.datastructure.linkedlist;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.Stack;
 
 public class LinkedList {
     Node head;
@@ -321,6 +322,61 @@ public class LinkedList {
         head = last;
     }
 
+    public Node getTail() {
+        return traverse(head);
+    }
+
+    public void partitionByKey(int key) {
+        if (head == null) { return; }
+
+        Node current = head;
+        LinkedList beforeList = new LinkedList();
+        LinkedList afterList = new LinkedList();
+
+        while (current != null && current.next != null) {
+            if (current.data > key) {
+                afterList.push(current.data);
+            } else {
+                beforeList.push(current.data);
+            }
+            current = current.next;
+        }
+
+        if (current.data > key) {
+            if (current.data > key) {
+                afterList.push(current.data);
+            } else {
+                beforeList.push(current.data);
+            }
+        }
+
+        // afterList.printList();
+        beforeList.printList();
+
+        beforeList.getTail().next = afterList.head;
+        beforeList.printList();
+    }
+
+    public boolean isPalindrome() {
+        Node slow = head;
+        Node fast = head;
+        Stack<Integer> stack = new Stack<Integer>();
+        while (fast != null && fast.next != null) {
+            stack.push(slow.data);
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        if (fast != null) {
+            slow = slow.next;
+        }
+        while (slow != null) {
+            int top = stack.pop().intValue();
+            if (top != slow.data) { return false; }
+            slow = slow.next;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         // testDeleteNode();
         // testSwapNodes();
@@ -332,7 +388,25 @@ public class LinkedList {
         // testSortedInsert();
         // testRemoveDuplicatesFromUnsortedList();
         // testMoveToFront();
-        testFindByIndex();
+        // testFindByIndex();
+        // testPartitionByKey();
+        testIsPalindrome();
+    }
+
+    static void testIsPalindrome() {
+        LinkedList list = new LinkedList();
+        list.push(1);
+        list.push(2);
+        list.push(3);
+        list.push(2);
+        list.push(1);
+        list.printList();
+        System.out.println(list.isPalindrome());
+    }
+
+    static void testPartitionByKey() {
+        LinkedList list = initList(Type.UNSORTED);
+        list.partitionByKey(50);
     }
 
     static void testFindByIndex() {
