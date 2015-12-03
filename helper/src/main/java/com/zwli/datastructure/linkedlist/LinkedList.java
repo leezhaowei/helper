@@ -1,5 +1,9 @@
 package com.zwli.datastructure.linkedlist;
 
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+
 public class LinkedList {
     Node head;
 
@@ -41,12 +45,12 @@ public class LinkedList {
     }
 
     public void printList() {
-        System.out.println();
         Node n = head;
         while (null != n) {
-            System.out.print(n.data + " ");
+            System.out.print(n.data + "->");
             n = n.next;
         }
+        System.out.println();
     }
 
     private Node traverse(Node last) {
@@ -65,16 +69,12 @@ public class LinkedList {
         while (temp.next != null && temp.next.data != key) {
             temp = temp.next;
         }
-        if (temp == null || temp.next == null) {
-            return;
-        }
+        if (temp == null || temp.next == null) { return; }
         temp.next = temp.next.next;
     }
 
     public void deleteNodeByPosition(int position) {
-        if (head == null) {
-            return;
-        }
+        if (head == null) { return; }
         Node temp = head;
         if (position == 0) {
             head = temp.next;
@@ -83,16 +83,19 @@ public class LinkedList {
         for (int i = 0; temp != null && i < position - 1; i++) {
             temp = temp.next;
         }
-        if (temp == null || temp.next == null) {
-            return;
-        }
+        if (temp == null || temp.next == null) { return; }
         temp.next = temp.next.next;
     }
 
+    public void deleteNodeByNode(Node target) {
+        Node temp = target.next;
+        target.data = temp.data;
+        target.next = temp.next;
+        temp = null;
+    }
+
     public void swapNodes(int x, int y) {
-        if (x == y) {
-            return;
-        }
+        if (x == y) { return; }
 
         Node prevX = null, currX = head;
         while (currX != null && currX.data != x) {
@@ -106,9 +109,7 @@ public class LinkedList {
             currY = currY.next;
         }
 
-        if (currX == null || currY == null) {
-            return;
-        }
+        if (currX == null || currY == null) { return; }
 
         if (prevX != null) {
             prevX.next = currY;
@@ -127,42 +128,300 @@ public class LinkedList {
         currY.next = temp;
     }
 
-    public static void main(String[] args) {
-        // LinkedList llist = new LinkedList();
-        // llist.append(6);
-        // llist.push(7);
-        // llist.push(1);
-        // llist.append(4);
-        // llist.insertAfter(llist.head.next, 8);
-        // System.out.println("\nCreated Linked list is: ");
-        // llist.printList();
-        //
-        // llist.deleteNode(8);
-        // llist.printList();
+    public int getNth(int index) {
+        Node current = head;
+        int count = 0;
 
-        testSwapNodes();
+        while (current != null) {
+            if (count == index) { return current.data; }
+            count++;
+            current = current.next;
+        }
+        System.out.println("Access failed");
+        return -1;
+    }
+
+    public void printMiddle() {
+        Node slowPointer = head;
+        Node fastPointer = head;
+        if (head != null) {
+            while (fastPointer != null && fastPointer.next != null) {
+                fastPointer = fastPointer.next.next;
+                slowPointer = slowPointer.next;
+            }
+            System.out.println("The middle element is [" + slowPointer.data + "]");
+        }
+    }
+
+    /**
+     * Given a Linked List and a number n, write a function that returns the value at the n’th node from end of the
+     * Linked List.<br/>
+     * <b>Method 1 (Use length of linked list)</b><br/>
+     * 1) Calculate the length of Linked List. Let the length be len.<br/>
+     * 2) Print the (len – n + 1)th node from the begining of the Linked List.
+     */
+    public void printNthFromLast(int n) {
+        int len = 0;
+        Node temp = head;
+        while (temp != null) {
+            temp = temp.next;
+            len++;
+        }
+        if (len < n) { return; }
+        temp = head;
+        int loop = len - n + 1;
+        for (int i = 1; i < loop; i++) {
+            temp = temp.next;
+        }
+        System.out.println(temp.data);
+    }
+
+    public void deleteList() {
+        head = null;
+    }
+
+    /**
+     * Given a singly linked list and a key, count number of occurrences of given key in linked list. For example, if
+     * given linked list is 1->2->1->2->1->3->1 and given key is 1, then output should be 4. <br/>
+     * <b>Algorithm: </b><br/>
+     * 1. Initialize count as zero.<br/>
+     * 2. Loop through each element of linked list:<br/>
+     * a) If element data is equal to the passed number then increment the count.<br/>
+     * 3. Return count.
+     */
+    public int count(int searchFor) {
+        Node current = head;
+        int count = 0;
+        while (current != null) {
+            if (current.data == searchFor) {
+                count++;
+            }
+            current = current.next;
+        }
+        return count;
+    }
+
+    /**
+     * Given a linked list, check if the the linked list has loop or not. Below diagram shows a linked list with a loop.
+     * <b>Floyd’s Cycle-Finding Algorithm:</b><br />
+     * This is the fastest method. Traverse linked list using two pointers. Move one pointer by one and other pointer by
+     * two. If these pointers meet at some node then there is a loop. If pointers do not meet then linked list doesn’t
+     * have loop.
+     */
+    public int detectLoop() {
+        Node slow = head;
+        Node fast = head;
+        while (slow != null && fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                System.out.println("Found loop");
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    public void sortedInsert(Node n) {
+        if (head == null || head.data >= n.data) {
+            n.next = head;
+            head = n;
+        } else {
+            Node current = head;
+            while (current.next != null && current.next.data < n.data) {
+                current = current.next;
+            }
+            n.next = current.next;
+            current.next = n;
+        }
+    }
+
+    public void printReverse(Node head) {
+        if (head == null) { return; }
+        printReverse(head.next);
+        System.out.print(head.data + "->");
+    }
+
+    public void removeDuplicatesFromSortedList() {
+        if (head == null) { return; }
+        Node current = head;
+        Node next = null;
+        while (current.next != null) {
+            if (current.data == current.next.data) {
+                next = current.next.next;
+                current.next = null;
+                current.next = next;
+            } else {
+                current = current.next;
+            }
+        }
+    }
+
+    public void removeDuplicatesFromUnsortedList() {
+        if (head == null) { return; }
+        Node current = head;
+        Node next = null;
+        while (current != null && current.next != null) {
+            next = current;
+            while (next.next != null) {
+                if (current.data == next.next.data) {
+                    next.next = next.next.next;
+                } else {
+                    next = next.next;
+                }
+            }
+            current = current.next;
+        }
+    }
+
+    public void moveToFront() {
+        if (head == null || head.next == null) { return; }
+        Node secLast = null;
+        Node last = head;
+        while (last.next != null) {
+            secLast = last;
+            last = last.next;
+        }
+        secLast.next = null;
+        last.next = head;
+        head = last;
+    }
+
+    public static void main(String[] args) {
+        // testDeleteNode();
+        // testSwapNodes();
+        // testGetNth();
+        // testDeleteNodeByNode();
+        // testPrintMiddle();
+        // testPrintNthFromLast();
+        // testDetectLoop();
+        // testSortedInsert();
+        // testRemoveDuplicatesFromUnsortedList();
+        testMoveToFront();
+    }
+
+    static void testMoveToFront() {
+        LinkedList list = initList(Type.SORTED_DESC);
+        list.printList();
+        list.moveToFront();
+        list.printList();
+    }
+
+    static void testRemoveDuplicatesFromUnsortedList() {
+        LinkedList list = initList(Type.UNSORTED, true);
+        list.printList();
+        list.removeDuplicatesFromUnsortedList();
+        list.printList();
+    }
+
+    static void testSortedInsert() {
+        LinkedList list = new LinkedList();
+        list.sortedInsert(list.new Node(5));
+        list.sortedInsert(list.new Node(10));
+        list.sortedInsert(list.new Node(7));
+        list.sortedInsert(list.new Node(9));
+        list.sortedInsert(list.new Node(1));
+        list.sortedInsert(list.new Node(8));
+        list.printList();
+    }
+
+    static void testDetectLoop() {
+        LinkedList list = initList(Type.UNSORTED);
+        list.head.next.next.next.next.next.next.next.next.next = list.head;
+        list.detectLoop();
+    }
+
+    static void testPrintNthFromLast() {
+        LinkedList list = initList(Type.UNSORTED);
+        list.printList();
+        list.printNthFromLast(4);
+    }
+
+    static void testPrintMiddle() {
+        LinkedList list = new LinkedList();
+        for (int i = 5; i > 0; --i) {
+            list.push(i);
+            list.printList();
+            list.printMiddle();
+        }
+    }
+
+    static void testDeleteNodeByNode() {
+        LinkedList list = initList(Type.UNSORTED);
+        System.out.println("Before deleting");
+        list.printList();
+        list.deleteNodeByNode(list.head);
+        System.out.println("After deleting");
+        list.printList();
+    }
+
+    static void testGetNth() {
+        LinkedList list = initList(Type.UNSORTED);
+        list.printList();
+        System.out.println("\nElement at index 3 is " + list.getNth(3));
     }
 
     static void testSwapNodes() {
-        LinkedList llist = new LinkedList();
-
-        /*
-         * The constructed linked list is: 1->2->3->4->5->6->7
-         */
-        llist.push(7);
-        llist.push(6);
-        llist.push(5);
-        llist.push(4);
-        llist.push(3);
-        llist.push(2);
-        llist.push(1);
+        LinkedList list = initList(Type.SORTED_DESC);
 
         System.out.print("\n Linked list before calling swapNodes() ");
-        llist.printList();
+        list.printList();
 
-        llist.swapNodes(4, 3);
+        list.swapNodes(4, 3);
 
         System.out.print("\n Linked list after calling swapNodes() ");
-        llist.printList();
+        list.printList();
+    }
+
+    static void testDeleteNode() {
+        LinkedList list = new LinkedList();
+        list.append(6);
+        list.push(7);
+        list.push(1);
+        list.append(4);
+        list.insertAfter(list.head.next, 8);
+        System.out.println("\nCreated Linked list is: ");
+        list.printList();
+
+        list.deleteNode(8);
+        list.printList();
+    }
+
+    private enum Type {
+        SORTED_DESC, SORTED_ASC, UNSORTED;
+    }
+
+    private static LinkedList initList(Type type) {
+        return initList(type, true);
+    }
+
+    private static LinkedList initList(Type type, boolean haveDuplicate) {
+        LinkedList list = new LinkedList();
+        int size = 10;
+        if (Type.SORTED_DESC == type) {
+            for (int i = size - 1; i >= 0; i--) {
+                list.push(i);
+            }
+        } else if (Type.SORTED_ASC == type) {
+            for (int i = 0; i < size; i++) {
+                list.push(i);
+            }
+        } else if (Type.UNSORTED == type) {
+            Random random = new Random();
+            if (!haveDuplicate) {
+                Set<Integer> set = new HashSet<Integer>();
+                for (int i = 0; i < size; i++) {
+                    set.add(Integer.valueOf(random.nextInt(50)));
+                }
+                for (Integer n : set) {
+                    list.push(n.intValue());
+                }
+            } else {
+                for (int i = 0; i < size; i++) {
+                    list.push(Integer.valueOf(random.nextInt(100)));
+                }
+            }
+        }
+        return list;
     }
 }
