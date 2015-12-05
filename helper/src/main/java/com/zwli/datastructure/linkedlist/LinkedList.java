@@ -155,8 +155,8 @@ public class LinkedList {
     }
 
     /**
-     * Given a Linked List and a number n, write a function that returns the
-     * value at the n’th node from end of the Linked List.<br/>
+     * Given a Linked List and a number n, write a function that returns the value at the n’th node from end of the
+     * Linked List.<br/>
      * <b>Method 1 (Use length of linked list)</b><br/>
      * 1) Calculate the length of Linked List. Let the length be len.<br/>
      * 2) Print the (len – n + 1)th node from the begining of the Linked List.
@@ -182,14 +182,12 @@ public class LinkedList {
     }
 
     /**
-     * Given a singly linked list and a key, count number of occurrences of
-     * given key in linked list. For example, if given linked list is
-     * 1->2->1->2->1->3->1 and given key is 1, then output should be 4. <br/>
+     * Given a singly linked list and a key, count number of occurrences of given key in linked list. For example, if
+     * given linked list is 1->2->1->2->1->3->1 and given key is 1, then output should be 4. <br/>
      * <b>Algorithm: </b><br/>
      * 1. Initialize count as zero.<br/>
      * 2. Loop through each element of linked list:<br/>
-     * a) If element data is equal to the passed number then increment the
-     * count.<br/>
+     * a) If element data is equal to the passed number then increment the count.<br/>
      * 3. Return count.
      */
     public int count(int searchFor) {
@@ -205,13 +203,11 @@ public class LinkedList {
     }
 
     /**
-     * Given a linked list, check if the the linked list has loop or not. Below
-     * diagram shows a linked list with a loop. <b>Floyd’s Cycle-Finding
-     * Algorithm:</b><br />
-     * This is the fastest method. Traverse linked list using two pointers. Move
-     * one pointer by one and other pointer by two. If these pointers meet at
-     * some node then there is a loop. If pointers do not meet then linked list
-     * doesn’t have loop.
+     * Given a linked list, check if the the linked list has loop or not. Below diagram shows a linked list with a loop.
+     * <b>Floyd’s Cycle-Finding Algorithm:</b><br />
+     * This is the fastest method. Traverse linked list using two pointers. Move one pointer by one and other pointer by
+     * two. If these pointers meet at some node then there is a loop. If pointers do not meet then linked list doesn’t
+     * have loop.
      */
     public int detectLoop() {
         Node slow = head;

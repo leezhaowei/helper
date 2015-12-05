@@ -1,5 +1,10 @@
 package com.zwli.datastructure.tree;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Stack;
+
 public class Tree {
 
     private static class Node {
@@ -15,6 +20,15 @@ public class Tree {
 
     static enum PrintOrder {
         INORDER, PREORDER, POSTORDER;
+    }
+
+    static class IntWrapper {
+        int num;
+
+        @Override
+        public String toString() {
+            return String.valueOf(num);
+        }
     }
 
     Node root;
@@ -117,6 +131,14 @@ public class Tree {
         }
     }
 
+    public int depth(Node root) {
+        if (root == null) {
+            return 0;
+        } else {
+            return 1 + Math.max(depth(root.left), depth(root.right));
+        }
+    }
+
     public void mirror(Node current) {
         if (current == null) {
             return;
@@ -156,7 +178,92 @@ public class Tree {
     }
 
     public void printLevelOrder(Node current) {
+        // TODO:
+    }
 
+    public Node createMinimalBST(int arr[], int start, int end) {
+        if (end < start) { return null; }
+        int mid = (start + end) / 2;
+        Node n = new Node(arr[mid]);
+        n.left = createMinimalBST(arr, start, mid - 1);
+        n.right = createMinimalBST(arr, mid + 1, end);
+        return n;
+    }
+
+    public Node createMinimalBST(int arr[]) {
+        return createMinimalBST(arr, 0, arr.length - 1);
+    }
+
+    public void createLevelLinkedList(Node current, List<LinkedList<Node>> lists, int level) {
+        if (current == null) { return; }
+        LinkedList<Node> list = null;
+        if (lists.size() == level) {
+            list = new LinkedList<Node>();
+            lists.add(list);
+        } else {
+            list = lists.get(level);
+        }
+        list.add(current);
+        createLevelLinkedList(current.left, lists, level + 1);
+        createLevelLinkedList(current.right, lists, level + 1);
+    }
+
+    public List<LinkedList<Node>> createLevelLinkedList(Node current) {
+        List<LinkedList<Node>> lists = new ArrayList<LinkedList<Node>>();
+        createLevelLinkedList(current, lists, 0);
+        return lists;
+    }
+
+    // public void printAncestors(Node root, int key) {
+    // if (root == null) { return; }
+    // Stack<Node> stack = new Stack<Node>();
+    // while (true) {
+    // while (root != null && root.data != key) {
+    // stack.push(root);
+    // root = root.left;
+    // }
+    // if (root != null && root.data == key) {
+    // break;
+    // }
+    // if (stack.peek().right == null) {
+    // root = stack.pop();
+    // while (!stack.isEmpty() && stack.peek().right == root) {
+    // root = stack.pop();
+    // }
+    // }
+    // root = stack.isEmpty() ? null : stack.peek().right;
+    // }
+    // while (!stack.isEmpty()) {
+    // System.out.print(stack.pop().data);
+    // }
+    // }
+
+    public boolean printAncestors(Node root, int target) {
+        if (root == null) { return false; }
+        if (root.data == target) { return true; }
+        if (printAncestors(root.left, target) || printAncestors(root.right, target)) {
+            System.out.print(root.data);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasPathSum(Node node, IntWrapper sum) {
+        if (node == null) {
+            return (sum.num == 0);
+        } else {
+            boolean ans = false;
+            IntWrapper subSum = new IntWrapper();
+            subSum.num = sum.num - node.data;
+            if (subSum.num == 0 && node.left == null && node.right == null) { return true; }
+            if (node.left != null) {
+                ans = ans || hasPathSum(node.left, subSum);
+            }
+            if (node.right != null) {
+                ans = ans || hasPathSum(node.right, subSum);
+            }
+            return ans;
+        }
     }
 
     public static void main(String[] args) {
@@ -166,7 +273,77 @@ public class Tree {
         // testIdenticalTrees();
         // testMaxDepth();
         // testMirror();
-        testPrintPaths();
+        // testPrintPaths();
+        // testCreateMinimalBST();
+        // testCreateLevelLinkedList();
+        // testPrintAncestors();
+        testHasPathSum();
+    }
+
+    static void testHasPathSum() {
+        Node root = initNode(10);
+        root.left = initNode(8);
+        root.right = initNode(2);
+        root.left.left = initNode(3);
+        root.left.right = initNode(5);
+        root.right.left = initNode(2);
+        Tree t = new Tree();
+
+        IntWrapper sum = new IntWrapper();
+        sum.num = 21;
+
+        if (t.hasPathSum(root, sum)) {
+            System.out.println("There is a root-to-leaf path with sum " + sum);
+        } else {
+            System.out.println("There is no root-to-leaf path with sum " + sum);
+        }
+    }
+
+    static void testPrintAncestors() {
+        Node root = initNode(1);
+        root.left = initNode(2);
+        root.right = initNode(3);
+        root.left.left = initNode(4);
+        root.left.right = initNode(5);
+        root.right.left = initNode(6);
+        root.right.right = initNode(7);
+        root.left.left.left = initNode(8);
+        root.left.right.right = initNode(9);
+        root.right.right.left = initNode(10);
+        Tree t = new Tree();
+
+        System.out.println("Following are all keys and their ancestors");
+        for (int key = 1; key <= 10; key++) {
+            System.out.print(key + " ");
+            t.printAncestors(root, key);
+            System.out.println();
+        }
+    }
+
+    static void testCreateLevelLinkedList() {
+        Node n = initTree();
+        Tree t = new Tree();
+        List<LinkedList<Node>> lists = t.createLevelLinkedList(n);
+        for (LinkedList<Node> linkedList : lists) {
+            for (Node node : linkedList) {
+                System.out.print(node.data + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    static void testCreateMinimalBST() {
+        int arr[] = new int[10];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (i);
+        }
+        Tree t = new Tree();
+        Node n = t.createMinimalBST(arr);
+        t.printInorder(n);
+        System.out.println();
+        t.printPreorder(n);
+        System.out.println();
+        t.printPostorder(n);
     }
 
     static void testPrintPaths() {
