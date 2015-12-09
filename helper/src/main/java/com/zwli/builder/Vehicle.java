@@ -36,4 +36,13 @@ public class Vehicle {
             return speed;
         }
     }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
 }

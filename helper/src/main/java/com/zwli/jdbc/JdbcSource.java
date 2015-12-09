@@ -3,10 +3,10 @@ package com.zwli.jdbc;
 import com.zwli.builder.ObjBuilder;
 
 public class JdbcSource {
-    private String url;
-    private String driver;
-    private String username;
-    private String password;
+    private final String url;
+    private final String driver;
+    private final String username;
+    private final String password;
 
     private JdbcSource(Builder builder) {
         this.url = builder._url;
