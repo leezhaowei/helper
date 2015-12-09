@@ -160,8 +160,26 @@ public class DsHelper {
             list.add(c);
         }
         sb.append(" )");
-
         return listDsPersons(sb.toString(), list);
+    }
+
+    public List<DsCourse> listCoursesByUserId(List<Integer> idList) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(DS_COURSE_LIST_ALL).append(" where id in ( ");
+        List<Criteria> list = new ArrayList<Criteria>();
+        for (int i = 0; i < idList.size(); i++) {
+            sb.append("?");
+            if (i != idList.size() - 1) {
+                sb.append(",");
+            }
+            Criteria c = new Criteria();
+            c.value = idList.get(i).toString();
+            c.type = CriteriaType.INT;
+            c.index = i + 1;
+            list.add(c);
+        }
+        sb.append(" )");
+        return listDsCourses(sb.toString(), list);
     }
 
     public List<DsPerson> listDsPersons(String sql, List<Criteria> criteriaList) {
@@ -266,7 +284,16 @@ public class DsHelper {
         // testGetDsCourse();
         // testListFriendIdsByUserId();
         // testListCourseIdsByUserId();
-        testListFriendsByUserId();
+        // testListFriendsByUserId();
+        testListCoursesByUserId();
+    }
+
+    static void testListCoursesByUserId() {
+        List<Integer> idList = Arrays.asList(new Integer[] { 1, 2, 3 });
+        List<DsCourse> list = getInstance().listCoursesByUserId(idList);
+        for (DsCourse e : list) {
+            System.out.println(e);
+        }
     }
 
     static void testListFriendsByUserId() {
