@@ -2,10 +2,9 @@ package com.zwli.datastructure.example.model;
 
 import java.io.Serializable;
 
-public class DsRefSociality implements Serializable {
+public class DsRefSociality extends DsRef implements Serializable {
 
     private static final long serialVersionUID = -1012326556549221593L;
-    private Integer studentId;
     private Integer friendId;
 
     @Override
@@ -13,7 +12,7 @@ public class DsRefSociality implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((friendId == null) ? 0 : friendId.hashCode());
-        result = prime * result + ((studentId == null) ? 0 : studentId.hashCode());
+        result = prime * result + ((getStudentId() == null) ? 0 : getStudentId().hashCode());
         return result;
     }
 
@@ -36,11 +35,11 @@ public class DsRefSociality implements Serializable {
         } else if (!friendId.equals(other.friendId)) {
             return false;
         }
-        if (studentId == null) {
-            if (other.studentId != null) {
+        if (getStudentId() == null) {
+            if (other.getStudentId() != null) {
                 return false;
             }
-        } else if (!studentId.equals(other.studentId)) {
+        } else if (!getStudentId().equals(other.getStudentId())) {
             return false;
         }
         return true;
@@ -48,15 +47,7 @@ public class DsRefSociality implements Serializable {
 
     @Override
     public String toString() {
-        return "DsRefSociality [studentId=" + studentId + ", friendId=" + friendId + "]";
-    }
-
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
+        return "DsRefSociality [studentId=" + getStudentId() + ", friendId=" + friendId + "]";
     }
 
     public Integer getFriendId() {

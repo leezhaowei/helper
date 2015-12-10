@@ -4,9 +4,11 @@
   <groupId>com.zwli</groupId>
   <artifactId>helper</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <spring.version>4.2.3.RELEASE</spring.version>
   </properties>
 
   <build>
@@ -20,6 +22,60 @@
           <target>1.7</target>
         </configuration>
       </plugin>
+
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- <plugin> -->
+      <!-- <artifactId>maven-javadoc-plugin</artifactId> -->
+      <!-- <version>2.9.1</version> -->
+      <!-- <executions> -->
+      <!-- <execution> -->
+      <!-- <id>attach-javadocs</id> -->
+      <!-- <goals> -->
+      <!-- <goal>jar</goal> -->
+      <!-- </goals> -->
+      <!-- </execution> -->
+      <!-- </executions> -->
+      <!-- </plugin> -->
+      <!-- <plugin> -->
+      <!-- <groupId>org.apache.maven.plugins</groupId> -->
+      <!-- <artifactId>maven-checkstyle-plugin</artifactId> -->
+      <!-- <version>2.9.1</version> -->
+      <!-- <configuration> -->
+      <!-- <configLocation>checkstyle.xml</configLocation> -->
+      <!-- <includeTestSourceDirectory>true</includeTestSourceDirectory> -->
+      <!-- <consoleOutput>true</consoleOutput> -->
+      <!-- <failsOnError>true</failsOnError> -->
+      <!-- <useFile /> -->
+      <!-- </configuration> -->
+      <!-- <executions> -->
+      <!-- <execution> -->
+      <!-- <id>check-style</id> -->
+      <!-- <phase>compile</phase> -->
+      <!-- <goals> -->
+      <!-- <goal>checkstyle</goal> -->
+      <!-- </goals> -->
+      <!-- </execution> -->
+      <!-- <execution> -->
+      <!-- <id>test-check-style</id> -->
+      <!-- <phase>test-compile</phase> -->
+      <!-- <goals> -->
+      <!-- <goal>checkstyle</goal> -->
+      <!-- </goals> -->
+      <!-- </execution> -->
+      <!-- </executions> -->
+      <!-- </plugin> -->
+
     </plugins>
   </build>
 
@@ -109,10 +165,48 @@
     </dependency>
     <!-- SVNKit END -->
 
+    <!-- JDBC Driver START -->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.37</version>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.4.190</version>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>9.4-1206-jdbc42</version>
+    </dependency>
+    <!-- JDBC Driver END -->
+
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-commons</artifactId>
+      <version>1.11.1.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring.version}</version>
     </dependency>
 
   </dependencies>
