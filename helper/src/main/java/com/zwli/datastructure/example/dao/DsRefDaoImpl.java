@@ -2,6 +2,8 @@ package com.zwli.datastructure.example.dao;
 
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import com.zwli.datastructure.example.model.DsRef;
 import com.zwli.datastructure.example.model.DsRefSociality;
 import com.zwli.datastructure.example.model.DsRefStucource;
@@ -31,6 +33,12 @@ public class DsRefDaoImpl implements DsRefDao {
     public List<DsRefSociality> listFriendIdsByUserId(Integer userId) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public void setDataSource(DataSource dataSource) {
+        // TODO Auto-generated method stub
+
     }
 
 }

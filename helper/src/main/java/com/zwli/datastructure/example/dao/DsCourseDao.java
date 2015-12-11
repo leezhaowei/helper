@@ -9,6 +9,4 @@ public interface DsCourseDao extends Dao<DsCourse> {
 
     public List<DsCourse> listCoursesByUserId(List<Integer> idList);
 
-    public List<DsCourse> listDsCourses(String sql, List<Integer> idList);
-
 }

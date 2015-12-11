@@ -41,16 +41,22 @@ public class DsPersonDaoImpl implements DsPersonDao {
 
     @Override
     public List<DsPerson> listFriendsByUserId(List<Integer> idList) {
-        // TODO Auto-generated method stub
-        return null;
+        StringBuilder sql = new StringBuilder();
+        sql.append(SqlProvider.DS_PERSON_LIST_ALL);
+        if (idList != null && idList.size() > 0) {
+            sql.append(" where id in ( ");
+            for (int i = 0; i < idList.size(); i++) {
+                sql.append("?");
+                if (i != idList.size() - 1) {
+                    sql.append(",");
+                }
+            }
+            sql.append(" )");
+        }
+        return jdbcTemplate.query(sql.toString(), idList.toArray(), rowMapper);
     }
 
     @Override
-    public List<DsPerson> listDsPersons(String sql, List<Integer> idList) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
         this.jdbcTemplate = new JdbcTemplate(this.dataSource);

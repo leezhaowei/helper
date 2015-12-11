@@ -9,6 +9,4 @@ public interface DsPersonDao extends Dao<DsPerson> {
 
     public List<DsPerson> listFriendsByUserId(List<Integer> idList);
 
-    public List<DsPerson> listDsPersons(String sql, List<Integer> idList);
-
 }
