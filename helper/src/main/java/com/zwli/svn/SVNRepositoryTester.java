@@ -100,7 +100,7 @@ public class SVNRepositoryTester {
             if (errorCode.getCategory() == SVNErrorCode.RA_CATEGORY) {
                 throw new RuntimeException(String.format("Invalid credentials: %s %s", getUserName(), getSvnUrl()), e);
             }
-            throw new RuntimeException(String.format("Invalid URL %", SVN_URL), e);
+            throw new RuntimeException(String.format("Invalid URL %s", SVN_URL), e);
         }
     }
 

@@ -2,6 +2,7 @@ package com.zwli.datastructure.example.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -41,6 +42,9 @@ public class DsPersonDaoImpl implements DsPersonDao {
 
     @Override
     public List<DsPerson> listFriendsByUserId(List<Integer> idList) {
+        if (idList == null || idList.size() == 0) {
+            return Collections.emptyList();
+        }
         StringBuilder sql = new StringBuilder();
         sql.append(SqlProvider.DS_PERSON_LIST_ALL);
         if (idList != null && idList.size() > 0) {

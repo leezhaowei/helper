@@ -8,7 +8,7 @@ import com.zwli.thread.deadlock1.exceptions.InsufficientFundsException;
 
 public class DemonstrateDeadlock {
 
-    private static final String tieLock = null;
+    private static final String tieLock = "TIE_LOCK";
 
     public static void main(String[] args) {
         final Random rnd = new Random();

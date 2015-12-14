@@ -41,7 +41,8 @@ public class DatabaseBackupHandler {
         DatabaseType type = DatabaseType.valueOf(backup.getDatabaseType());
         String pwd = EncryptionHandler.getInstance().decrypt(backup.getPassword());
         try {
-            DbChecker.checkDbConnection(getDriverName(type), getUrl(type, backup.getDatabaseName()), backup.getUsername(), pwd);
+            DbChecker.checkDbConnection(getDriverName(type), getUrl(type, backup.getDatabaseName()),
+                    backup.getUsername(), pwd);
         } catch (BusinessException e) {
             log.error(e.getMessage(), e);
             return false;
@@ -193,7 +194,7 @@ public class DatabaseBackupHandler {
         return dumpPath;
     }
 
-    private static String buildBackupFileName(String dbName) {
+    private static synchronized String buildBackupFileName(String dbName) {
         return dbName + "_" + sdf.format(new Date());
     }
 
@@ -215,16 +216,17 @@ public class DatabaseBackupHandler {
         try {
             try {
                 String backupFile = getBackupFile(backup);
-                ProcessBuilder builder = new ProcessBuilder("pg_dump.exe", "-f", backupFile, "-U", backup.getUsername(),
-                        backup.getDatabaseName());
+                ProcessBuilder builder = new ProcessBuilder("pg_dump.exe", "-f", backupFile, "-U",
+                        backup.getUsername(), backup.getDatabaseName());
                 builder.environment().put("PGPASSWORD", EncryptionHandler.getInstance().decrypt(backup.getPassword()));
                 builder.redirectErrorStream(true);
                 Process p = builder.start();
                 reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
                 StringBuilder line = new StringBuilder();
                 while (reader.ready()) {
-                    if (null != line && !"".equals(line)) {
-                        line.append(reader.readLine());
+                    String t = reader.readLine();
+                    if (null != t && !"".equals(t)) {
+                        line.append(t);
                         line.append("\n");
                     }
                 }

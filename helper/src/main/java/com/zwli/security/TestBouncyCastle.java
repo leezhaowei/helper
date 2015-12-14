@@ -24,8 +24,8 @@ public class TestBouncyCastle {
 
     private static final String UTF8 = "UTF8";
 
-    private static final byte[] KeyValues = { (byte) 0xA9, (byte) 0x9B, (byte) 0xC8, (byte) 0x32, (byte) 0x56, (byte) 0x35,
-            (byte) 0xE3, (byte) 0x03 };
+    private static final byte[] KeyValues = { (byte) 0xA9, (byte) 0x9B, (byte) 0xC8, (byte) 0x32, (byte) 0x56,
+            (byte) 0x35, (byte) 0xE3, (byte) 0x03 };
 
     private static Cipher[] init() {
         try {
@@ -78,11 +78,6 @@ public class TestBouncyCastle {
         return decryptedData;
     }
 
-    private static void release(Cipher ecipher, Cipher dcipher) {
-        ecipher = null;
-        dcipher = null;
-    }
-
     public static void main(String[] args) {
         testA();
         System.out.println("======================================");
@@ -104,8 +99,6 @@ public class TestBouncyCastle {
             System.out.println(text);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            release(ecipher, dcipher);
         }
     }
 
@@ -122,8 +115,6 @@ public class TestBouncyCastle {
             System.out.println(text);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            release(ecipher, dcipher);
         }
     }
 
