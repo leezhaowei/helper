@@ -6,23 +6,29 @@ import java.util.List;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.zwli.datastructure.example.dao.wrapper.IdWrapper;
 import com.zwli.datastructure.example.model.DsCourse;
 import com.zwli.datastructure.example.model.DsPerson;
-import com.zwli.jdbc.dao.Wrapper;
 
-public class TestApp {
+public class TestDaoApp {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        testDsPersonDao(context);
+        // testDsPersonDao(context);
+        // testDsCourseDao(context);
 
         context.close();
     }
 
     static void testDsCourseDao(ConfigurableApplicationContext context) {
-        DsCourseDao dsCourseDao = (DsCourseDao) context.getBean("dsCourseDao");
-        List<DsCourse> list = dsCourseDao.listAll();
+        DsCourseDao dao = (DsCourseDao) context.getBean("dsCourseDao");
+        List<DsCourse> list = dao.listAll();
+        printList(list);
+        DsCourse e = dao.findById(new IdWrapper(2));
+        System.out.println(e);
+        List<Integer> idList = Arrays.asList(new Integer[] { 21, 22, 23 });
+        list = dao.listCoursesByUserId(idList);
         printList(list);
     }
 
@@ -46,18 +52,4 @@ public class TestApp {
             System.out.println(t);
         }
     }
-
-    static class IdWrapper implements Wrapper {
-        Integer value;
-
-        IdWrapper(Integer _value) {
-            value = _value;
-        }
-
-        @Override
-        public Integer value() {
-            return value;
-        }
-    }
-
 }
