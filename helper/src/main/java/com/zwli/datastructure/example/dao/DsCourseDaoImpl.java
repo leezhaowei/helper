@@ -34,7 +34,7 @@ public class DsCourseDaoImpl implements DsCourseDao {
 
     @Override
     public DsCourse findById(Wrapper id) {
-        return jdbcTemplate.queryForObject(SqlProvider.DS_COURSE_BY_ID, new Object[] { id.id() }, rowMapper);
+        return jdbcTemplate.queryForObject(SqlProvider.DS_COURSE_BY_ID, new Object[] { id.value() }, rowMapper);
     }
 
     @Override

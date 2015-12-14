@@ -36,7 +36,7 @@ public class DsPersonDaoImpl implements DsPersonDao {
 
     @Override
     public DsPerson findById(Wrapper id) {
-        return jdbcTemplate.queryForObject(SqlProvider.DS_PERSON_BY_ID, new Object[] { id.id() }, rowMapper);
+        return jdbcTemplate.queryForObject(SqlProvider.DS_PERSON_BY_ID, new Object[] { id.value() }, rowMapper);
     }
 
     @Override
