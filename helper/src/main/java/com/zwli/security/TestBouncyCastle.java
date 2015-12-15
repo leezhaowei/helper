@@ -103,13 +103,8 @@ public class TestBouncyCastle {
     }
 
     static void testB() {
-        Cipher ecipher = null;
         Cipher dcipher = null;
         try {
-            Cipher[] c = init();
-            ecipher = c[0];
-            dcipher = c[1];
-
             String text = "bt4AUzTV14kK8FwkcK/BNg==";
             text = decrypt(dcipher, text);
             System.out.println(text);
