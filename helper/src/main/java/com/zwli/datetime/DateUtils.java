@@ -54,48 +54,30 @@ import java.util.Date;
  */
 public class DateUtils {
 
-    /** * 日期格式：yyyy年MM月dd日 HH时mm分ss秒 */
     public static final String DateCNFormat = "yyyy年MM月dd日 HH时mm分ss秒";
 
-    /** * 日期格式：yyyy-MM-dd */
     public static final String DateDayFormat = "yyyy-MM-dd";
 
-    /** * 日期格式：yyyyMMdd */
     public static final String DateDayFormat1 = "yyyyMMdd";
 
-    /** * 日期格式：yyyy-MM-dd_HH-mm-ss */
     public static final String DateFileFormat = "yyyy-MM-dd_HH-mm-ss";
 
-    /** * 日期格式：yyyyMMddHHmmss */
     public static final String DateFormatFull = "yyyyMMddHHmmss";
 
-    /** * 日期格式：yyyy-MM-dd HH:mm:ss,SSS */
     public static final String DateMilliFormat = "yyyy-MM-dd HH:mm:ss,SSS";
 
-    /** * 日期格式：yyyyMMddHHmmssSSS */
     public static final String DateMilliFormat1 = "yyyyMMddHHmmssSSS";
 
-    /** * 日期格式：yyyy-MM-dd HH:mm */
     public static final String DateMinuteFormat = "yyyy-MM-dd HH:mm";
 
-    /** * 日期格式：yyyy-MM-dd HH:mm:ss */
     public static final String DateSecondFormat = "yyyy-MM-dd HH:mm:ss";
 
-    /** * 日期格式：EEE, dd MMM yyyy HH:mm:ss z */
     public static final String DateTimeGMT = "EEE, dd MMM yyyy HH:mm:ss z";
 
-    /** * 一年中每个月的天数 */
     private static final int[] DayArray = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    /**
-     * 获取指定月份的天数
-     *
-     * @param year
-     * @param month
-     * @return
-     */
     public static int getDayOfMonth(int year, int month) {
         if (month < 1 || month > 12) {
             return -1;
@@ -116,12 +98,6 @@ public class DateUtils {
         return retn;
     }
 
-    /**
-     * 获取指定日期的所处月份的第一天
-     *
-     * @param c
-     * @return
-     */
     public static Calendar getFirstDayOfMonth(Calendar c) {
         c.set(Calendar.DAY_OF_MONTH, 1);
         return c;
@@ -130,7 +106,8 @@ public class DateUtils {
     /**
      * 获取指定日期的所处月份的第一天
      *
-     * @param date 指定日期。
+     * @param date
+     *            指定日期。
      * @return 指定日期的所处月份的第一天
      */
     public static Date getFirstDayOfMonth(Date date) {
@@ -142,7 +119,8 @@ public class DateUtils {
     /**
      * 获取指定日期的下一个月的第一天
      *
-     * @param cal 指定日历。
+     * @param cal
+     *            指定日历。
      * @return 指定日期的下一个月的第一天
      */
     public static Calendar getFirstDayOfNextMonth(Calendar cal) {
@@ -154,7 +132,8 @@ public class DateUtils {
     /**
      * 获取指定日期的下一个月的第一天
      *
-     * @param date 指定日期。
+     * @param date
+     *            指定日期。
      * @return 指定日期的下一个月的第一天
      */
     public static Date getFirstDayOfNextMonth(Date date) {
@@ -166,7 +145,8 @@ public class DateUtils {
     /**
      * 获取指定日期的下一个星期的第一天
      *
-     * @param cal 指定日历。
+     * @param cal
+     *            指定日历。
      * @return 指定日期的下一个星期的第一天
      */
     public static Calendar getFirstDayOfNextWeek(Calendar cal) {
@@ -178,7 +158,8 @@ public class DateUtils {
     /**
      * 获取指定日期的下一个星期的第一天
      *
-     * @param date 指定日期。
+     * @param date
+     *            指定日期。
      * @return 指定日期的下一个星期的第一天
      */
     public static Date getFirstDayOfNextWeek(Date date) {
@@ -238,7 +219,8 @@ public class DateUtils {
     /**
      * 获取指定日期的所处星期的第一天<br>
      *
-     * @param cal 指定日历。
+     * @param cal
+     *            指定日历。
      * @return 指定日期的所处星期的第一天
      */
     public static Calendar getFirstDayOfWeek(Calendar cal) {
@@ -271,7 +253,8 @@ public class DateUtils {
     /**
      * 获取指定日期的所处星期的第一天<br>
      *
-     * @param date 指定日期。
+     * @param date
+     *            指定日期。
      * @return 指定日期的所处星期的第一天
      */
     public static Date getFirstDayOfWeek(Date date) {
@@ -296,7 +279,8 @@ public class DateUtils {
      * 11. 如果date在11月，则为30日<br>
      * 12. 如果date在12月，则为31日
      *
-     * @param cal 指定日历。
+     * @param cal
+     *            指定日历。
      * @return 指定日期的所处月份的最后一天
      */
     public static Calendar getLastDayOfMonth(Calendar cal) {
@@ -348,7 +332,8 @@ public class DateUtils {
     /**
      * 获取指定日期的所处月份的最后一天
      *
-     * @param date 指定日期。
+     * @param date
+     *            指定日期。
      * @return 指定日期的所处月份的最后一天
      */
     public static Date getLastDayOfMonth(Date date) {
@@ -360,7 +345,8 @@ public class DateUtils {
     /**
      * 获取指定日期的下一个月的最后一天
      *
-     * @param cal 指定日期。
+     * @param cal
+     *            指定日期。
      * @return 指定日期的下一个月的最后一天
      */
     public static Calendar getLastDayOfNextMonth(Calendar cal) {
@@ -372,7 +358,8 @@ public class DateUtils {
     /**
      * 获取指定日期的下一个月的最后一天
      *
-     * @param date 指定日期。
+     * @param date
+     *            指定日期。
      * @return 指定日期的下一个月的最后一天
      */
     public static Date getLastDayOfNextMonth(Date date) {
@@ -384,7 +371,8 @@ public class DateUtils {
     /**
      * 获取指定日期的下一个星期的最后一天
      *
-     * @param cal 指定日期。
+     * @param cal
+     *            指定日期。
      * @return 指定日期的下一个星期的最后一天
      */
     public static Calendar getLastDayOfNextWeek(Calendar cal) {
@@ -396,7 +384,8 @@ public class DateUtils {
     /**
      * 获取指定日期的下一个星期的最后一天
      *
-     * @param date 指定日期。
+     * @param date
+     *            指定日期。
      * @return 指定日期的下一个星期的最后一天
      */
     public static Date getLastDayOfNextWeek(Date date) {
@@ -456,7 +445,8 @@ public class DateUtils {
     /**
      * 获取指定日期的所处星期的最后一天<br>
      *
-     * @param cal 指定日历。
+     * @param cal
+     *            指定日历。
      * @return 指定日期的所处星期的最后一天
      */
     public static Calendar getLastDayOfWeek(Calendar cal) {
@@ -489,7 +479,8 @@ public class DateUtils {
     /**
      * 获取指定日期的所处星期的最后一天
      *
-     * @param date 指定日期。
+     * @param date
+     *            指定日期。
      * @return 指定日期的所处星期的最后一天
      */
     public static Date getLastDayOfWeek(Date date) {
@@ -501,7 +492,8 @@ public class DateUtils {
     /**
      * 获取指定日期的下一天
      *
-     * @param cal 指定日历。
+     * @param cal
+     *            指定日历。
      * @return 指定日期的下一天
      */
     public static Calendar getNextDay(Calendar cal) {
@@ -512,7 +504,8 @@ public class DateUtils {
     /**
      * 获取指定日期的下一天
      *
-     * @param date 指定日期。
+     * @param date
+     *            指定日期。
      * @return 指定日期的下一天
      */
     public static Date getNextDay(Date date) {
@@ -524,7 +517,8 @@ public class DateUtils {
     /**
      * 获取指定日期的下一个月
      *
-     * @param cal 指定日历。
+     * @param cal
+     *            指定日历。
      * @return 指定日期的下一个月
      */
     public static Calendar getNextMonth(Calendar cal) {
@@ -535,7 +529,8 @@ public class DateUtils {
     /**
      * 获取指定日期的下一个月
      *
-     * @param date 指定日期。
+     * @param date
+     *            指定日期。
      * @return 指定日期的下一个月
      */
     public static Date getNextMonth(Date date) {
@@ -547,7 +542,8 @@ public class DateUtils {
     /**
      * 获取指定日期的下一个星期
      *
-     * @param cal 指定日历。
+     * @param cal
+     *            指定日历。
      * @return 指定日期的下一个星期
      */
     public static Calendar getNextWeek(Calendar cal) {
@@ -558,7 +554,8 @@ public class DateUtils {
     /**
      * 获取指定日期的下一个星期
      *
-     * @param date 指定日期。
+     * @param date
+     *            指定日期。
      * @return 指定日期的下一个星期
      */
     public static Date getNextWeek(Date date) {
@@ -573,7 +570,8 @@ public class DateUtils {
      * 1.如果date是星期五，则加3天<br>
      * 2.如果date是星期六，则加2天, 否则加1天
      *
-     * @param cal 指定日历。
+     * @param cal
+     *            指定日历。
      * @return 指定日期的后一个工作日
      */
     public static Calendar getNextWorkingDay(Calendar cal) {
@@ -594,7 +592,8 @@ public class DateUtils {
     /**
      * 获取指定日期的后一个工作日
      *
-     * @param date 指定日期。
+     * @param date
+     *            指定日期。
      * @return 指定日期的后一个工作日
      */
     public static Date getNextWorkingDay(Date date) {
@@ -675,7 +674,8 @@ public class DateUtils {
     /**
      * 得到指定日期的前一个工作日
      *
-     * @param cal 指定日历。
+     * @param cal
+     *            指定日历。
      * @return 指定日期的前一个工作日
      */
     public static Calendar getPreviousWorkingDay(Calendar cal) {
@@ -699,7 +699,8 @@ public class DateUtils {
      * 1.如果date是星期日，则减3天<br>
      * 2.如果date是星期六，则减2天, 否则减1天
      *
-     * @param date 指定日期。
+     * @param date
+     *            指定日期。
      * @return 指定日期的前一个工作日
      */
     public static Date getPreviousWorkingDay(Date date) {
@@ -711,7 +712,8 @@ public class DateUtils {
     /**
      * 判断指定日期的年份是否是闰年
      *
-     * @param cal 指定日历
+     * @param cal
+     *            指定日历
      * @return 是否闰年
      */
     public static boolean isLeapYear(Calendar cal) {
@@ -722,7 +724,8 @@ public class DateUtils {
     /**
      * 判断指定日期的年份是否是闰年
      *
-     * @param date 指定日期。
+     * @param date
+     *            指定日期。
      * @return 是否闰年
      */
     public static boolean isLeapYear(Date date) {
@@ -737,7 +740,8 @@ public class DateUtils {
      * 1. 被400整除是闰年<br>
      * 2. 能被4整除同时不能被100整除则是闰年
      *
-     * @param year 指定的年
+     * @param year
+     *            指定的年
      * @return 是否闰年
      */
     public static boolean isLeapYear(int year) {
@@ -754,8 +758,10 @@ public class DateUtils {
     /**
      * 解析字符串格式的日期获得<code> java.util.Calendar </code>类型
      *
-     * @param stringDate 字符串格式的日期
-     * @param pattern 该日期的字符串表示形式
+     * @param stringDate
+     *            字符串格式的日期
+     * @param pattern
+     *            该日期的字符串表示形式
      * @return
      */
     public static Calendar parseCalendarByFormat(String stringDate, String pattern) {
@@ -782,8 +788,10 @@ public class DateUtils {
      * </tr>
      * </table>
      *
-     * @param stringDate 字符串格式的日期
-     * @param pattern 该日期的字符串表示形式
+     * @param stringDate
+     *            字符串格式的日期
+     * @param pattern
+     *            该日期的字符串表示形式
      * @return
      */
     public static Date parseDateByFormat(String stringDate, String pattern) {
@@ -838,7 +846,8 @@ public class DateUtils {
      * </tr>
      * </table>
      *
-     * @param pattern 日期格式
+     * @param pattern
+     *            日期格式
      * @return 格式化后的当前日期
      */
     public static String toStringByFormat(final String pattern) {
@@ -848,8 +857,10 @@ public class DateUtils {
     /**
      * 格式化后的当前日期
      *
-     * @param pattern 日期格式
-     * @param second 时间毫秒数，<code> long </code>
+     * @param pattern
+     *            日期格式
+     * @param second
+     *            时间毫秒数，<code> long </code>
      * @return 格式化后的当前日期
      */
     public static String toStringByFormat(final String pattern, long second) {
@@ -859,8 +870,10 @@ public class DateUtils {
     /**
      * 格式化后的当前日期
      *
-     * @param pattern 日期格式
-     * @param second 时间毫秒数，<code> String </code>
+     * @param pattern
+     *            日期格式
+     * @param second
+     *            时间毫秒数，<code> String </code>
      * @return 格式化后的当前日期
      */
     public static String toStringByFormat(final String pattern, String second) {

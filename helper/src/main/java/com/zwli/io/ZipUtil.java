@@ -36,7 +36,7 @@ public class ZipUtil {
 
     /**
      * Compressing everything in folder directoryPath and name the zip as same as this folder.
-     * 
+     *
      * @param directoryPath
      * @return
      * @throws IOException
@@ -50,9 +50,11 @@ public class ZipUtil {
     }
 
     /**
-     * @param rootPath directory which contains files
+     * @param rootPath
+     *            directory which contains files
      * @param zipFileName
-     * @param files files to zip
+     * @param files
+     *            files to zip
      * @return
      * @throws IOException
      */
@@ -96,15 +98,19 @@ public class ZipUtil {
     /**
      * Creates a zip entry for the path specified with a name built from the base passed in and the file/directory name.
      * If the path is a directory, a recursive call is made such that the full directory is added to the zip.
-     * 
-     * @param zipOut The zip file's output stream
-     * @param zipFileName the zip file name
-     * @param filesToZip files to zip
-     * @param basePath The base prefix to for the name of the zip file entry
+     *
+     * @param zipOut
+     *            The zip file's output stream
+     * @param zipFileName
+     *            the zip file name
+     * @param filesToZip
+     *            files to zip
+     * @param basePath
+     *            The base prefix to for the name of the zip file entry
      * @throws IOException
      */
-    private static void addFilesToZip(ZipArchiveOutputStream zipOut, String zipFileName, File[] filesToZip, String basePath)
-            throws IOException {
+    private static void addFilesToZip(ZipArchiveOutputStream zipOut, String zipFileName, File[] filesToZip,
+            String basePath) throws IOException {
         FileInputStream fis = null;
         for (File f : filesToZip) {
             if (zipFileName.equals(f.getName())) {
@@ -196,9 +202,11 @@ public class ZipUtil {
 
     /**
      * Extract zip file at the specified target path.
-     * 
-     * @param zipPath path to zip file
-     * @param targetPath path to extract zip file to. Created if it doesn't exist.
+     *
+     * @param zipPath
+     *            path to zip file
+     * @param targetPath
+     *            path to extract zip file to. Created if it doesn't exist.
      */
     public static void unzip(String zipPath, String targetPath) {
         File f = new File(zipPath);

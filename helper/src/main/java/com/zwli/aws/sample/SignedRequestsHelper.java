@@ -30,7 +30,7 @@ public class SignedRequestsHelper {
 
     private String awsAccessKeyId = "AKIAI2QAEIGH6ZJB7QYA";
 
-    private String awsSecretKey = "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";
+    private String awsSecretKey = "";
 
     private SecretKeySpec secretKeySpec = null;
 

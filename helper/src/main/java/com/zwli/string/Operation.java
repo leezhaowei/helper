@@ -3,13 +3,10 @@ package com.zwli.string;
 /**
  * 加减乘除、位运算等操作<br>
  * 创建日期：2007-11-22
- * 
+ *
  * @author 李赵伟
  */
 public class Operation {
-
-	public static void main(String[] args) {
-	}
 
 	// ------------------------------------------------------------------------
 	// 如何用位运算实现下面的要求？
@@ -35,7 +32,7 @@ public class Operation {
 	 * 用这个掩码与你的数相与，比如 int r = n & mask;<br>
 	 * 判断结果是否为0，如果不是0，记下它是第几次移位（目前为0次）<br>
 	 * 然后将n右移1位，重复上面的操作，直接n右移之后为0为止。<br>
-	 * 
+	 *
 	 * @param num
 	 */
 	static void printBit(int num) {

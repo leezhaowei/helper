@@ -9,10 +9,11 @@ import java.util.logging.Logger;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
- * zwli on May 12, 2014 10:13:22 AM<br>
- *
  * How to check virus and corrupted files in files transfer in socket programming<br>
- * You have to calculate the MD5 checksum for you file that you are sending, and after receiving the file, you again need to calculate the checksum, the previous checksum should be equal to the new one if the file has not been changes in between.
+ * You have to calculate the MD5 checksum for you file that you are sending, and after receiving the file, you again
+ * need to calculate the checksum, the previous checksum should be equal to the new one if the file has not been changes
+ * in between. <br>
+ * zwli on May 12, 2014 10:13:22 AM
  */
 public class MD5Checksum {
 
