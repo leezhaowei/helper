@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Hello, World</title>
+    <style type="text/css">
+        html {
+            height: 100%
+        }
+
+        body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+
+        #container {
+            width: 100%;
+            height: 60%;
+        }
+    </style>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak="></script>
+</head>
+
+<body>
+<div id="container"></div>
+<br/> [latitude,longitude]:
+<input type="text" id="latLon" size="50" value="116.404,39.915"/>
+<button onclick="showCoordinate()">Show coordinate</button>
+<script type="text/javascript">
+    var map = new BMap.Map("container"); // create a map instance
+    var point = new BMap.Point(116.404, 39.915); // create coordinate
+    map.centerAndZoom(point, 15); // initialize map, set the centre point and map level
+
+    function showCoordinate() {
+        var latLon = document.getElementById("latLon").value;
+        map.clearOverlays();
+        var new_point = new BMap.Point(latLon.split(",")[1], latLon.split(",")[0]);
+        var marker = new BMap.Marker(new_point);
+        map.addOverlay(marker);
+        map.panTo(new_point);
+    }
+</script>
+</body>
+</html>

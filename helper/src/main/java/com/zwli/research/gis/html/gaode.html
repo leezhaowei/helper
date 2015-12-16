@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Hello World</title>
+    <style type="text/css">
+        html {
+            height: 100%
+        }
+
+        body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+
+        #container {
+            width: 100%;
+            height: 60%;
+        }
+    </style>
+    <script type="text/javascript"
+            src="https://webapi.amap.com/maps?v=1.3&key="></script>
+</head>
+<body>
+<div id="container"></div>
+<br/> [latitude,longitude]:
+<input type="text" id="latLon" size="50" value="116.404,39.915"/>
+<button onclick="showCoordinate()">Show coordinate</button>
+<script type="text/javascript">
+    var map = new AMap.Map('container', {
+        zoom: 15,
+        center: [116.404, 39.915]
+    });
+
+    function showCoordinate() {
+        var latLon = document.getElementById("latLon").value;
+        var lngLatXY = [latLon.split(",")[1], latLon.split(",")[0]];
+        map.clearMap();
+        new AMap.Marker({
+            map: map,
+            position: lngLatXY
+        });
+        map.setFitView();
+    }
+</script>
+</body>
+</html>
