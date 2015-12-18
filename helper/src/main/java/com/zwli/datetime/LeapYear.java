@@ -10,10 +10,10 @@ public class LeapYear {
      * 1) year % 400 == 0<br>
      * 2) year % 4 == 0 && year % 100 != 0
      */
-    public static boolean isLeapYear(int year) {
+    public static boolean isLeapYear(final int year) {
         if (year % 400 == 0) {
             return true;
         }
-        return ((year % 4 == 0 && year % 100 != 0) ? true : false);
+        return (year % 4 == 0 && year % 100 != 0) ? true : false;
     }
 }

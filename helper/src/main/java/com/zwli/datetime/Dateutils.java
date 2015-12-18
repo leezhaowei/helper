@@ -1,4 +1,4 @@
-package com.zwli.datetime;
+package com.zwli.datetime; // NOPMD by jli on 15-12-18 PM3:48
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,316 +8,285 @@ import java.util.Date;
 /**
  * @author zwli Create: 2007-11-07
  */
-public class Dateutils {
+public final class Dateutils {
 
-    public static final String DateCNFormat = "yyyy年MM月dd日 HH时mm分ss秒";
+    // "yyyy-MM-dd";
+    // "yyyy-MM-dd HH:mm";
+    // "yyyy-MM-dd HH:mm:ss,SSS";
 
-    public static final String DateDayFormat = "yyyy-MM-dd";
+    // "yyyy/MM/dd";
+    // "yyyy/MM/dd HH:mm:ss";
+    // "yyyy/MM/dd HH:mm:ss,SSS";
+    // "EEE, dd MMM yyyy HH:mm:ss z";
 
-    public static final String DateDayFormat1 = "yyyyMMdd";
+    private static final int DAY_OF_MONTH_28 = 28;
+    private static final int DAY_OF_MONTH_29 = 29;
+    private static final int DAY_OF_MONTH_30 = 30;
+    private static final int DAY_OF_MONTH_31 = 31;
 
-    public static final String DateFileFormat = "yyyy-MM-dd_HH-mm-ss";
-
-    public static final String DateFormatFull = "yyyyMMddHHmmss";
-
-    public static final String DateMilliFormat = "yyyy-MM-dd HH:mm:ss,SSS";
-
-    public static final String DateMilliFormat1 = "yyyyMMddHHmmssSSS";
-
-    public static final String DateMinuteFormat = "yyyy-MM-dd HH:mm";
-
-    public static final String DateSecondFormat = "yyyy-MM-dd HH:mm:ss";
-
-    public static final String DateTimeGMT = "EEE, dd MMM yyyy HH:mm:ss z";
-
-    private static final int[] DayArray = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    private static final int[] DAY_OF_MONTH_ARRAY = new int[] { DAY_OF_MONTH_31, DAY_OF_MONTH_28, DAY_OF_MONTH_31,
+            DAY_OF_MONTH_30, DAY_OF_MONTH_31, DAY_OF_MONTH_30, DAY_OF_MONTH_31, DAY_OF_MONTH_31, DAY_OF_MONTH_30,
+            DAY_OF_MONTH_31, DAY_OF_MONTH_30, DAY_OF_MONTH_31 };
 
     private static final ThreadLocal<SimpleDateFormat> SDF = new ThreadLocal<SimpleDateFormat>() {
         @Override
         protected SimpleDateFormat initialValue() {
-            return new SimpleDateFormat("yyyy-MM-dd");
+            return new SimpleDateFormat("yyyy/MM/dd"); // NOPMD by jli on 15-12-18 PM3:53
         }
     };
 
-    public static int getDayOfMonth(int year, int month) {
-        if (month < 1 || month > 12) {
-            return -1;
-        }
-
-        int retn = 0;
-        if (2 == month) {
-            if (LeapYear.isLeapYear(year)) {
-                retn = 29;
-            } else {
-                retn = DayArray[month - 1];
-            }
-
-        } else {
-            retn = DayArray[month - 1];
-        }
-
-        return retn;
+    private Dateutils() {
     }
 
-    public static Calendar getFirstDayOfMonth(Calendar c) {
+    public static int getDayOfMonth(final int year, final int month) {
+        if (month < Calendar.JANUARY || month > Calendar.DECEMBER) {
+            return -1; // NOPMD by jli on 15-12-18 PM3:55
+        }
+        int days;
+        if (Calendar.FEBRUARY == month) {
+            if (LeapYear.isLeapYear(year)) {
+                days = DAY_OF_MONTH_29;
+            } else {
+                days = DAY_OF_MONTH_ARRAY[month - 1];
+            }
+        } else {
+            days = DAY_OF_MONTH_ARRAY[month - 1];
+        }
+        return days;
+    }
+
+    public static Calendar getFirstDayOfMonth(final Calendar c) { // NOPMD by jli on 15-12-18 PM3:52
         c.set(Calendar.DAY_OF_MONTH, 1);
         return c;
     }
 
-    public static Date getFirstDayOfMonth(Date date) {
-        Calendar c = Calendar.getInstance();
+    public static Date getFirstDayOfMonth(final Date date) {
+        final Calendar c = Calendar.getInstance(); // NOPMD by jli on 15-12-18 PM3:52
         c.setTime(date);
         return getFirstDayOfMonth(c).getTime();
     }
 
-    public static Calendar getFirstDayOfNextMonth(Calendar cal) {
+    public static Calendar getFirstDayOfNextMonth(final Calendar cal) {
         cal.setTime(getNextMonth(cal.getTime()));
         cal.setTime(getFirstDayOfMonth(cal.getTime()));
         return cal;
     }
 
-    public static Date getFirstDayOfNextMonth(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getFirstDayOfNextMonth(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getFirstDayOfNextMonth(cal).getTime();
     }
 
-    public static Calendar getFirstDayOfNextWeek(Calendar cal) {
+    public static Calendar getFirstDayOfNextWeek(final Calendar cal) {
         cal.setTime(getNextWeek(cal.getTime()));
         cal.setTime(getFirstDayOfWeek(cal.getTime()));
         return cal;
     }
 
-    public static Date getFirstDayOfNextWeek(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getFirstDayOfNextWeek(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getFirstDayOfNextWeek(cal).getTime();
     }
 
-    public static Calendar getFirstDayOfPreviousMonth(Calendar cal) {
+    public static Calendar getFirstDayOfPreviousMonth(final Calendar cal) {
         cal.setTime(getPreviousMonth(cal.getTime()));
         cal.setTime(getFirstDayOfMonth(cal.getTime()));
         return cal;
     }
 
-    public static Date getFirstDayOfPreviousMonth(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getFirstDayOfPreviousMonth(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getFirstDayOfPreviousMonth(cal).getTime();
     }
 
-    public static Calendar getFirstDayOfPreviousWeek(Calendar cal) {
+    public static Calendar getFirstDayOfPreviousWeek(final Calendar cal) {
         cal.setTime(getPreviousWeek(cal.getTime()));
         cal.setTime(getFirstDayOfWeek(cal.getTime()));
         return cal;
     }
 
-    public static Date getFirstDayOfPreviousWeek(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getFirstDayOfPreviousWeek(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getFirstDayOfPreviousWeek(cal).getTime();
     }
 
-    public static Calendar getFirstDayOfWeek(Calendar cal) {
-        switch (cal.get(Calendar.DAY_OF_WEEK)) {
-        case (Calendar.SUNDAY):
-            cal.add(Calendar.DATE, -6);
-            break;
-        case (Calendar.MONDAY):
+    public static Calendar getFirstDayOfWeek(final Calendar cal) {
+        switch (cal.get(Calendar.DAY_OF_WEEK)) { // NOPMD by jli on 15-12-18 PM5:47
+        case Calendar.MONDAY:
             cal.add(Calendar.DATE, 0);
             break;
-        case (Calendar.TUESDAY):
+        case Calendar.TUESDAY:
             cal.add(Calendar.DATE, -1);
             break;
-        case (Calendar.WEDNESDAY):
+        case Calendar.WEDNESDAY:
             cal.add(Calendar.DATE, -2);
             break;
-        case (Calendar.THURSDAY):
+        case Calendar.THURSDAY:
             cal.add(Calendar.DATE, -3);
             break;
-        case (Calendar.FRIDAY):
+        case Calendar.FRIDAY:
             cal.add(Calendar.DATE, -4);
             break;
-        case (Calendar.SATURDAY):
+        case Calendar.SATURDAY:
             cal.add(Calendar.DATE, -5);
             break;
+        default:
+            cal.add(Calendar.DATE, -6);
         }
         return cal;
     }
 
-    public static Date getFirstDayOfWeek(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getFirstDayOfWeek(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getFirstDayOfWeek(cal).getTime();
     }
 
-    public static Calendar getLastDayOfMonth(Calendar cal) {
-        switch (cal.get(Calendar.MONTH)) {
-        case 0:
-            cal.set(Calendar.DAY_OF_MONTH, 31);
+    public static Calendar getLastDayOfMonth(final Calendar cal) {
+        final int month = cal.get(Calendar.MONTH);
+        switch (month) { // NOPMD by jli on 15-12-18 PM5:47
+        case Calendar.FEBRUARY:
+            cal.set(Calendar.DAY_OF_MONTH, DAY_OF_MONTH_28);
             break;
-        case 1:
-            cal.set(Calendar.DAY_OF_MONTH, 28);
+        case Calendar.MARCH:
+        case Calendar.APRIL:
+        case Calendar.AUGUST:
+        case Calendar.OCTOBER:
+            cal.set(Calendar.DAY_OF_MONTH, DAY_OF_MONTH_30);
             break;
-        case 2:
-            cal.set(Calendar.DAY_OF_MONTH, 31);
-            break;
-        case 3:
-            cal.set(Calendar.DAY_OF_MONTH, 30);
-            break;
-        case 4:
-            cal.set(Calendar.DAY_OF_MONTH, 31);
-            break;
-        case 5:
-            cal.set(Calendar.DAY_OF_MONTH, 30);
-            break;
-        case 6:
-            cal.set(Calendar.DAY_OF_MONTH, 31);
-            break;
-        case 7:
-            cal.set(Calendar.DAY_OF_MONTH, 31);
-            break;
-        case 8:
-            cal.set(Calendar.DAY_OF_MONTH, 30);
-            break;
-        case 9:
-            cal.set(Calendar.DAY_OF_MONTH, 31);
-            break;
-        case 10:
-            cal.set(Calendar.DAY_OF_MONTH, 30);
-            break;
-        case 11:
-            cal.set(Calendar.DAY_OF_MONTH, 31);
-            break;
+        default:
+            cal.set(Calendar.DAY_OF_MONTH, DAY_OF_MONTH_31);
         }
-        // 检查闰年
-        if ((cal.get(Calendar.MONTH) == Calendar.FEBRUARY) && (LeapYear.isLeapYear(cal.get(Calendar.YEAR)))) {
-            cal.set(Calendar.DAY_OF_MONTH, 29);
+        if (month == Calendar.FEBRUARY && LeapYear.isLeapYear(cal.get(Calendar.YEAR))) {
+            cal.set(Calendar.DAY_OF_MONTH, DAY_OF_MONTH_29);
         }
         return cal;
     }
 
-    public static Date getLastDayOfMonth(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getLastDayOfMonth(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getLastDayOfMonth(cal).getTime();
     }
 
-    public static Calendar getLastDayOfNextMonth(Calendar cal) {
+    public static Calendar getLastDayOfNextMonth(final Calendar cal) {
         cal.setTime(getNextMonth(cal.getTime()));
         cal.setTime(getLastDayOfMonth(cal.getTime()));
         return cal;
     }
 
-    public static Date getLastDayOfNextMonth(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getLastDayOfNextMonth(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getLastDayOfNextMonth(cal).getTime();
     }
 
-    public static Calendar getLastDayOfNextWeek(Calendar cal) {
+    public static Calendar getLastDayOfNextWeek(final Calendar cal) {
         cal.setTime(getNextWeek(cal.getTime()));
         cal.setTime(getLastDayOfWeek(cal.getTime()));
         return cal;
     }
 
-    public static Date getLastDayOfNextWeek(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getLastDayOfNextWeek(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getLastDayOfNextWeek(cal).getTime();
     }
 
-    public static Calendar getLastDayOfPreviousMonth(Calendar cal) {
+    public static Calendar getLastDayOfPreviousMonth(final Calendar cal) {
         cal.setTime(getPreviousMonth(cal.getTime()));
         cal.setTime(getLastDayOfMonth(cal.getTime()));
         return cal;
     }
 
-    public static Date getLastDayOfPreviousMonth(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getLastDayOfPreviousMonth(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getLastDayOfPreviousMonth(cal).getTime();
     }
 
-    public static Calendar getLastDayOfPreviousWeek(Calendar cal) {
+    public static Calendar getLastDayOfPreviousWeek(final Calendar cal) {
         cal.setTime(getPreviousWeek(cal.getTime()));
         cal.setTime(getLastDayOfWeek(cal.getTime()));
         return cal;
     }
 
-    public static Date getLastDayOfPreviousWeek(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getLastDayOfPreviousWeek(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getLastDayOfPreviousWeek(cal).getTime();
     }
 
-    public static Calendar getLastDayOfWeek(Calendar cal) {
-        switch (cal.get(Calendar.DAY_OF_WEEK)) {
-        case (Calendar.SUNDAY):
-            cal.add(Calendar.DATE, 0);
-            break;
-        case (Calendar.MONDAY):
+    public static Calendar getLastDayOfWeek(final Calendar cal) {
+        switch (cal.get(Calendar.DAY_OF_WEEK)) { // NOPMD by jli on 15-12-18 PM5:48
+        case Calendar.MONDAY:
             cal.add(Calendar.DATE, 6);
             break;
-        case (Calendar.TUESDAY):
+        case Calendar.TUESDAY:
             cal.add(Calendar.DATE, 5);
             break;
-        case (Calendar.WEDNESDAY):
+        case Calendar.WEDNESDAY:
             cal.add(Calendar.DATE, 4);
             break;
-        case (Calendar.THURSDAY):
+        case Calendar.THURSDAY:
             cal.add(Calendar.DATE, 3);
             break;
-        case (Calendar.FRIDAY):
+        case Calendar.FRIDAY:
             cal.add(Calendar.DATE, 2);
             break;
-        case (Calendar.SATURDAY):
+        case Calendar.SATURDAY:
             cal.add(Calendar.DATE, 1);
             break;
+        default:
+            cal.add(Calendar.DATE, 0);
         }
         return cal;
     }
 
-    public static Date getLastDayOfWeek(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getLastDayOfWeek(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getLastDayOfWeek(cal).getTime();
     }
 
-    public static Calendar getNextDay(Calendar cal) {
+    public static Calendar getNextDay(final Calendar cal) {
         cal.add(Calendar.DATE, 1);
         return cal;
     }
 
-    public static Date getNextDay(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getNextDay(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getNextDay(cal).getTime();
     }
 
-    public static Calendar getNextMonth(Calendar cal) {
+    public static Calendar getNextMonth(final Calendar cal) {
         cal.add(Calendar.MONTH, 1);
         return cal;
     }
 
-    public static Date getNextMonth(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getNextMonth(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getNextMonth(cal).getTime();
     }
 
-    public static Calendar getNextWeek(Calendar cal) {
+    public static Calendar getNextWeek(final Calendar cal) {
         cal.add(Calendar.DATE, 7);
         return cal;
     }
 
-    public static Date getNextWeek(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getNextWeek(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getNextWeek(cal).getTime();
     }
 
-    public static Calendar getNextWorkingDay(Calendar cal) {
+    public static Calendar getNextWorkingDay(final Calendar cal) {
         switch (cal.get(Calendar.DAY_OF_WEEK)) {
         case Calendar.FRIDAY:
             cal.add(Calendar.DATE, 3);
@@ -332,51 +301,51 @@ public class Dateutils {
         return cal;
     }
 
-    public static Date getNextWorkingDay(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getNextWorkingDay(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getNextWorkingDay(cal).getTime();
     }
 
-    public static Date getPreviousMonth(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getPreviousMonth(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getPreviousMonth(cal).getTime();
     }
 
-    public static Calendar getPreviousMonth(Calendar cal) {
+    public static Calendar getPreviousMonth(final Calendar cal) {
         cal.add(Calendar.MONTH, -1);
         return cal;
     }
 
-    public static Calendar getPreviousDay(Calendar cal) {
+    public static Calendar getPreviousDay(final Calendar cal) {
         cal.add(Calendar.DAY_OF_MONTH, -1);
         return cal;
     }
 
-    public static Date getPreviousDay(Date date) {
-        Calendar c = Calendar.getInstance();
+    public static Date getPreviousDay(final Date date) {
+        final Calendar c = Calendar.getInstance(); // NOPMD by jli on 15-12-18 PM3:51
         c.setTime(date);
         return getPreviousDay(c).getTime();
     }
 
-    public static Calendar getPreviousWeek(Calendar cal) {
+    public static Calendar getPreviousWeek(final Calendar cal) {
         cal.add(Calendar.WEEK_OF_MONTH, -1);
         return cal;
     }
 
-    public static Date getPreviousWeek(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getPreviousWeek(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getPreviousWeek(cal).getTime();
     }
 
-    public static Calendar getPreviousWorkingDay(Calendar cal) {
+    public static Calendar getPreviousWorkingDay(final Calendar cal) {
         switch (cal.get(Calendar.DAY_OF_WEEK)) {
-        case (Calendar.MONDAY):
+        case Calendar.MONDAY:
             cal.add(Calendar.DATE, -3);
             break;
-        case (Calendar.SUNDAY):
+        case Calendar.SUNDAY:
             cal.add(Calendar.DATE, -2);
             break;
         default:
@@ -386,34 +355,28 @@ public class Dateutils {
         return cal;
     }
 
-    public static Date getPreviousWorkingDay(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Date getPreviousWorkingDay(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return getPreviousWorkingDay(cal).getTime();
     }
 
-    public static Calendar parseCalendarByFormat(String stringDate, String pattern) {
-        Calendar cal = Calendar.getInstance();
+    public static Calendar parseCalendarByFormat(final String stringDate, final String pattern) throws ParseException {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(parseDateByFormat(stringDate, pattern));
         return cal;
     }
 
-    public static Date parseDateByFormat(String strDate, String pattern) {
-        Date date = null;
+    public static Date parseDateByFormat(final String strDate, final String pattern) throws ParseException {
         SDF.get().applyPattern(pattern);
-        try {
-            date = SDF.get().parse(strDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
+        return SDF.get().parse(strDate);
     }
 
-    public static String toStringByFormat(Calendar cal, String pattern) {
+    public static String toStringByFormat(final Calendar cal, final String pattern) {
         return toStringByFormat(cal.getTime(), pattern);
     }
 
-    public static String toStringByFormat(Date date, final String pattern) {
+    public static String toStringByFormat(final Date date, final String pattern) {
         SDF.get().applyPattern(pattern);
         return SDF.get().format(date);
     }
@@ -422,28 +385,28 @@ public class Dateutils {
         return toStringByFormat(new Date(), pattern);
     }
 
-    public static String toStringByFormat(final String pattern, long second) {
+    public static String toStringByFormat(final String pattern, final long second) {
         return toStringByFormat(new Date(second), pattern);
     }
 
-    public static String toStringByFormat(final String pattern, String second) {
-        Date date = new Date(Long.parseLong(second));
+    public static String toStringByFormat(final String pattern, final String second) {
+        final Date date = new Date(Long.parseLong(second));
         return toStringByFormat(date, pattern);
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         test();
     }
 
-    private static void test() {
-        String pattern = DateMilliFormat1; // "yyyyMMddHHmmssSSS";
+    static final String PATTERN = "yyyyMMddHHmmssSSS"; // NOPMD by jli on 15-12-18 下午5:54
 
+    private static void test() {
         for (int i = 0; i < 10; i++) {
             try {
                 Thread.sleep(100);
-            } catch (InterruptedException e) {
+            } catch (final InterruptedException e) {
             }
-            System.out.println(toStringByFormat(new Date(), pattern));
+            System.out.println(toStringByFormat(new Date(), PATTERN)); // NOPMD by jli on 15-12-18 PM3:46
         }
     }
 }
