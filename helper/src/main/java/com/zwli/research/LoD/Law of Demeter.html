@@ -1,0 +1,2126 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>Law of Demeter</title>
+<style type="text/css">
+img.wp-smiley, img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important
+}
+</style>
+<style type="text/css" media="screen">
+body {
+	background-position: top center
+}
+
+body.single .entry, body.page
+.entry {
+	font-size: 15px !important
+}
+
+#main-nav ul li.current-menu-item a, #main-nav ul li.current-menu-item a:hover,
+	#main-nav ul li.current-menu-parent a, #main-nav ul li.current-menu-parent a:hover,
+	#main-nav ul li.current-page-ancestor a, #main-nav ul li.current-page-ancestor a:hover,
+	.pagination span.current, .ei-slider-thumbs li.ei-slider-element,
+	.breaking-news span, .ei-title h2, h2.cat-box-title, a.more-link,
+	.scroll-nav a, .flex-direction-nav a, .tagcloud a:hover, #tabbed-widget ul.tabs li.active a,
+	.slider-caption h2, .full-width .content .slider-caption h2,
+	.review-percentage .review-item span span, .review-final-score,
+	.woocommerce span.onsale, .woocommerce-page span.onsale, .woocommerce .widget_price_filter .ui-slider .ui-slider-handle,
+	.woocommerce-page .widget_price_filter .ui-slider .ui-slider-handle,
+	.button, a.button, #main-content input[type="submit"], #main-content input[type="submit"]:focus,
+	span.onsale, .mejs-container .mejs-controls .mejs-time-rail .mejs-time-current,
+	#reading-position-indicator {
+	background-color: #326693 !important
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #326693 !important
+}
+
+#main-nav, .top-nav {
+	border-bottom-color: #326693
+}
+
+.cat-box, .footer-bottom
+.container {
+	border-top-color: #326693
+}
+
+body.single .post .entry a, body.page .post .entry
+a {
+	color: #326693
+}
+
+body.single .post .entry a:hover, body.page .post .entry a:hover {
+	color: #478cc4;
+	text-decoration: underline
+}
+
+#main-nav ul
+li {
+	text-transform: none
+}
+
+.toc
+dl {
+	display: block
+}
+
+.toc
+dt {
+	display: block
+}
+
+.toc
+dd {
+	display: block;
+	-webkit-margin-start: 20px;
+	-moz-margin-start: 20px
+}
+
+.toc {
+	line-height: 1.4;
+	font-size: 90%;
+	border-bottom: 1px solid #eee;
+	padding: 20px;
+	border: 1px solid #e1e1e1;
+	background: #f1f1f1;
+	border-radius: 9px;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+	width: 80%;
+	display: inline-block;
+	margin: 20px 0
+}
+
+code {
+	display: inline
+}
+
+.tip {
+	padding: 10px 20px 25px 80px;
+	margin: 2.5em 1em;
+	border-color: #dedede #d8d8d8 #d3d3d3;
+	text-shadow: 0 1px 0 #fff;
+	-webkit-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+	-moz-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+	box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+	background-color: #FAFAFA;
+	color: #555;
+	border: 1px solid #DEDEDE;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px
+}
+
+.download {
+	padding: 10px 20px 25px 80px;
+	margin: 2.5em 1em;
+	border-color: #dedede #d8d8d8 #d3d3d3;
+	text-shadow: 0 1px 0 #fff;
+	-webkit-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+	-moz-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+	box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+	background-color: #FAFAFA;
+	color: #555;
+	border: 1px solid #DEDEDE;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px
+}
+
+.nlbox {
+	background: #E2ECFA;
+	margin: 15px 0px 15px;
+	padding: 10px;
+	-webkit-border-radius: 3px;
+	-mozilla-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	-moz-box-shadow: 0px 2px 2px 1px #d7e1eb;
+	-webkit-box-shadow: 0px 2px 2px 1px #d7e1eb;
+	box-shadow: 0px 2px 2px 1px #d7e1eb;
+	border: solid 1px #D8D8D8;
+	display: inline-block
+}
+
+.nlbox1 {
+	background: #E2ECFA;
+	margin: -10px 0 25px;
+	width: auto;
+	max-width: 798px;
+	padding: 10px;
+	-webkit-border-radius: 3px;
+	-mozilla-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	-moz-box-shadow: 0px 2px 2px 1px #d7e1eb;
+	-webkit-box-shadow: 0px 2px 2px 1px #d7e1eb;
+	box-shadow: 0px 2px 2px 1px #d7e1eb;
+	border: solid 1px #D8D8D8
+}
+
+.button-gw {
+	border-top: 1px solid #96d1f8;
+	background: #65a9d7;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3e779d),
+		to(#65a9d7));
+	background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+	background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+	background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+	background: -o-linear-gradient(top, #3e779d, #65a9d7);
+	padding: 20px 40px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+	-moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+	box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+	text-shadow: rgba(0, 0, 0, .4) 0 1px 0;
+	color: white;
+	font-size: 34px;
+	font-family: Georgia, Serif;
+	text-decoration: none !important;
+	vertical-align: middle
+}
+
+.button-gw:hover {
+	border-top-color: #28597a;
+	background: #28597a;
+	color: #ccc
+}
+
+.button-gw:active {
+	border-top-color: #1b435e;
+	background: #1b435e
+}
+
+.widget_wpjb-recent-jobs .wpjb-grid-compact {
+	margin-left: 5%;
+	margin-right: 5%
+}
+
+.attribution {
+	border-color: #dedede #d8d8d8 #d3d3d3;
+	text-shadow: 0 1px 0 #fff;
+	-webkit-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+	-moz-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+	box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+	background: #fff;
+	background: -moz-linear-gradient(top, #fff 0%, #f6f6f6 47%, #ededed 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff),
+		color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
+	background: -webkit-linear-gradient(top, #fff 0%, #f6f6f6 47%, #ededed 100%);
+	background: -o-linear-gradient(top, #fff 0%, #f6f6f6 47%, #ededed 100%);
+	background: -ms-linear-gradient(top, #fff 0%, #f6f6f6 47%, #ededed 100%);
+	background: linear-gradient(top, #fff 0%, #f6f6f6 47%, #ededed 100%);
+	padding: 3px 8px;
+	line-height: 20px;
+	color: #555;
+	border: 1px solid #DEDEDE;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin-top: 20px;
+	display: inline-block
+}
+
+.attribution
+.reference {
+	font-weight: bold
+}
+
+.attribution
+table {
+	border: none;
+	background-color: inherit
+}
+
+.attribution table
+td {
+	vertical-align: top;
+	padding: 0px 5px;
+	border-bottom: none;
+	font-size: inherit
+}
+
+a.TPbutton_w_cnd01lb:hover {
+	background-color: #fc0;
+	color: #fff;
+	text-decoration: none;
+	transition: none
+}
+
+a.TPbutton_w_cnd01lb {
+	-webkit-border-radius: 7px;
+	-mozilla-border-radius: 7px;
+	-o-border-radius: 7px;
+	border-radius: 7px;
+	text-decoration: none;
+	color: #fff;
+	font-family: 'lucida sans', 'lucida grande', arial, helvetica,
+		sans-serif;
+	letter-spacing: -1px;
+	font-weight: bold;
+	background-color: #f90;
+	padding: 4px 10px 4px 10px;
+	font-size: 16px;
+	-moz-box-shadow: 0px 3px 3px 2px #d7e1eb;
+	-webkit-box-shadow: 0px 3px 3px 2px #d7e1eb;
+	box-shadow: 0px 3px 3px 2px #d7e1eb;
+	border: solid 2px #fff;
+	width: 200px;
+	height: 56px;
+	transition: none
+}
+
+.TPbutton_w_cnd01lb_arrow {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	vertical-align: bottom;
+	width: 30px;
+	height: 20px;
+}
+
+#commentform
+input {
+	width: inherit
+}
+
+#author-box .post-listing {
+	margin-bottom: 0px
+}
+
+#author-box .block-head
+h3 {
+	text-transform: none
+}
+
+header#theme-header {
+	margin: 0 0 0
+}
+
+blockquote {
+	display: inline-block;
+	margin: 20px 0 10px 40px;
+	font-size: 14px
+}
+
+blockquote:before {
+	font-size: 25px;
+	line-height: inherit
+}
+
+.syntaxhighlighter {
+	display: inline-block
+}
+
+@media ( max-width : 767px) {
+	#div-gpt-ad-1415445260332-0 {
+		display: none
+	}
+}
+
+@media ( max-width : 479px) {
+	#div-gpt-ad-1415445260332-3 {
+		margin-left: -10px
+	}
+	#div-gpt-ad-1415445260332-4 {
+		margin-left: -10px
+	}
+	#div-gpt-ad-1415445260332-6 {
+		margin-left: -10px
+	}
+}
+
+.wpjb div, body .wpjb p, body .wpjb ul, body .wpjb li, body .wpjb ol,
+	body .wpjb span, body .wpjb img, body .wpjb form, body .wpjb fieldset,
+	body .wpjb label, body .wpjb table, body .wpjb thead, body .wpjb tfoot,
+	body .wpjb tbody, body .wpjb tr, body .wpjb td, body .wpjb strong, body .wpjb b,
+	body .wpjb em, body .wpjb i, body .wpjb
+center {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	box-shadow: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	list-style-type: none
+}
+
+.wpjb .wpjb-grid {
+	margin: 0% 0% 0% 0%
+}
+
+.wpjb-grid .wpjb-grid-row {
+	clear: both;
+	overflow: hidden;
+	padding: 0.75em 0 0.75em 0;
+	margin: 0 0 0 0;
+	border-bottom: 1px solid whitesmoke
+}
+
+.wpjb-grid .wpjb-grid-row>div {
+	padding: 0 1% 0 1%
+}
+
+.wpjb-grid .wpjb-grid-col-right {
+	text-align: right
+}
+
+.wpjb .wpjb-grid .wpjb-sub {
+	display: block;
+	margin: 0 0 0 0;
+	padding: 2px 0 0 0;
+	line-height: 1.3em;
+	font-size: 0.95em
+}
+
+.wpjb-col-title {
+	width: 40%
+}
+
+[class*='wpjb-col-'] {
+	float: left
+}
+
+#wpjb-top-search {
+	margin: 0 0 15px 0;
+	padding: 8px 2% 2px 2%;
+	clear: both;
+	overflow: hidden
+}
+
+.wpjb .wpjb-layer-inside {
+	border: 1px solid whitesmoke;
+	border-radius: 2px;
+	background-color: #fcfcfc;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .04)
+}
+
+#wpjb-top-search input[type=text] {
+	width: 49%;
+	display: inline
+}
+
+.wpjb select, .wpjb textarea, .wpjb input[type=password], .wpjb input[type=text]
+	{
+	margin: 2px;
+	padding: 6px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box
+}
+
+#wpjb-top-search ul
+li {
+	display: inline-block;
+	line-height: 1.2em;
+	margin: 2% 1% 1% 1%;
+	float: left
+}
+
+.wpjb input[type=checkbox], .wpjb input[type=radio] {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box
+}
+
+#wpjb-top-search
+label {
+	display: inline !important;
+	width: auto;
+	float: none
+}
+
+#wpjb-top-search .wpjb-top-search-submit {
+	float: right;
+	margin: 4px 0 4px 0
+}
+</style>
+</head>
+<body id="top"
+  class="single single-post postid-21943 single-format-standard"
+  style="margin-right: 0px;">
+  <div class="wrapper">
+    <div class="container">
+      <div id="main-content"
+        class="container fade-in animated3 sidebar-narrow-left">
+        <div class="content-wrap-wide">
+          <div class="content">
+            <section id="author-box">
+              <div class="block-head">
+                <h3>About Eyal Golan</h3>
+              </div>
+              <div class="post-listing">
+                <div class="author-description">Eyal is a
+                  professional software engineer and an architect. He is
+                  a developer and leader of highly sophisticated systems
+                  in different areas, such as networking, security,
+                  commerce and more.</div>
+              </div>
+            </section>
+            <article id="the-post"
+              class="post-listing post-21943 post type-post status-publish format-standard has-post-thumbnail hentry category-software-development">
+              <div class="post-inner">
+                <h1 class="name post-title entry-title"
+                  itemprop="itemReviewed" itemscope=""
+                  itemtype="http://schema.org/Thing">
+                  <span itemprop="name">Law of Demeter</span>
+                </h1>
+                <p class="post-meta">
+                  <span class="post-meta-author">Posted by: <a
+                    href="http://www.javacodegeeks.com/author/eyal-golan/"
+                    title="">Eyal Golan </a></span> <span class="post-cats">in
+                    <a
+                    href="http://www.javacodegeeks.com/category/software-development/"
+                    rel="category tag">Software Development</a>
+                  </span> <span class="tie-date">February 21st, 2014</span>
+                </p>
+                <div class="entry">
+                  <blockquote>
+                    <p>
+                      <em><strong>Reduce coupling and
+                          improve encapsulation…</strong></em>
+                    </p>
+                  </blockquote>
+                  <h2>General</h2>
+                  <p>
+                    In this post I want to go over <em>Law of
+                      Demeter</em> (<strong>LoD</strong>). I find this topic
+                    an extremely important for having the code clean,
+                    well-designed and maintainable.
+                  </p>
+                  <p>In my experience, seeing it broken is a huge
+                    smell for bad design. Following the law, or
+                    refactoring based on it, leads to much improved,
+                    readable and more maintainable code.</p>
+                  <h2>So what is Law of Demeter?</h2>
+                  <p>I will start by mentioning the 4 basic rules:</p>
+                  <blockquote>
+                    <p>Law of Demeter says that a method M of object
+                      O can access / invoke methods of:</p>
+                    <ol>
+                      <li>O itself</li>
+                      <li>M’s input arguments</li>
+                      <li>Any object created in M</li>
+                      <li>O’s parameters / dependencies</li>
+                    </ol>
+                  </blockquote>
+                  <p>These are fairly simple rules.</p>
+                  <p>
+                    Let’s put this in other words:
+                    <code>Each unit (method) should have limited
+                      knowledge about other units.</code>
+                  </p>
+                  <h2>Metaphors</h2>
+                  <p>
+                    The most common one is: <em>Don’t talk to
+                      strangers</em>
+                  </p>
+                  <p>How about this:</p>
+                  <p>Suppose I buy something at 7-11. When I need to
+                    pay, will I give my wallet to the clerk so she will
+                    open it and get the money out? Or will I give her
+                    the money directly?</p>
+                  <p>How about this metaphor:</p>
+                  <p>
+                    When you take your dog out for a walk, do you tell <em>it</em>
+                    to walk or its legs?
+                  </p>
+                  <h2>Why do we want to follow this rule?</h2>
+                  <ul>
+                    <li>We can change a class without having a
+                      ripple effect of changing many others.</li>
+                    <li>We can change called methods without
+                      changing anything else.</li>
+                    <li>Using LoD makes our tests much easier to
+                      construct. We don’t need to write so many ‘<em>when</em>‘
+                      for mocks that return and return and return.
+                    </li>
+                    <li>It improves the encapsulation and
+                      abstraction (I’ll show in the example below).<br>
+                      But basically, we hide “how things work”.
+                    </li>
+                    <li>It makes our code less coupled. A caller
+                      method is coupled only in one object, and not all
+                      of the inner dependencies.</li>
+                    <li>It will usually model better the real
+                      world.<br> Take as an example the wallet and
+                      payment.
+                    </li>
+                  </ul>
+                  <h2>Counting Dots?</h2>
+                  <p>
+                    Although usually many <em>dots</em> imply LoD
+                    violation, sometimes it doesn’t make sense to “merge
+                    the dots”.<br> Does:
+                  </p>
+                  <div id="highlighter_486731"
+                    class="syntaxhighlighter  ">
+                    <div class="lines">
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>1</code></td>
+                              <td class="content"><code
+                                  class="plain">getEmployee().getChildren().getBirthdays()</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <p>suggest that we do something like:</p>
+                  <div id="highlighter_923596"
+                    class="syntaxhighlighter  ">
+                    <div class="lines">
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>1</code></td>
+                              <td class="content"><code
+                                  class="plain">getEmployeeChildrenBirthdays()</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <p>I am not entirely sure.</p>
+                  <h2>Too Many Wrapper Classes</h2>
+                  <p>This is another outcome of trying to avoid LoD.
+                    In this particular situation, I strongly believe
+                    that it’s another design smell which should be taken
+                    care of.</p>
+                  <p>As always, we must have common sense while
+                    coding, cleaning and / or refactoring.</p>
+                  <h2>Example</h2>
+                  <p>
+                    Suppose we have a class: <em>Item</em>. The item can
+                    hold multiple attributes. Each attribute has a name
+                    and values (it’s a multiple value attribute)
+                  </p>
+                  <p>The simplest implementations would be using
+                    Map.</p>
+                  <div id="highlighter_353136"
+                    class="syntaxhighlighter  ">
+                    <div class="lines">
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>01</code></td>
+                              <td class="content"><code
+                                  class="keyword">public</code> <code
+                                  class="keyword">class</code> <code
+                                  class="plain">Item {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>02</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">private</code> <code
+                                  class="keyword">final</code> <code
+                                  class="plain">Map&lt;String,
+                                  Set&lt;String&gt;&gt; attributes;</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>03</code></td>
+                              <td class="content">&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>04</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="plain">Item(Map&lt;String,
+                                  Set&lt;String&gt;&gt; attributes) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>05</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">this</code> <code
+                                  class="plain">.attributes =
+                                  attributes;</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>06</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>07</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code>&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>08</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="plain">Map&lt;String,
+                                  Set&lt;String&gt;&gt; getAttributes()
+                                  {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>09</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">return</code> <code
+                                  class="plain">attributes;</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>10</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>11</code></td>
+                              <td class="content"><code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    Let’s have a class <em>ItemsSaver</em> that uses the
+                    Item and attributes: (please ignore the unstructured
+                    methods. This is an example for LoD, not SRP)
+                  </p>
+                  <div id="highlighter_262909"
+                    class="syntaxhighlighter  ">
+                    <div class="lines">
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>01</code></td>
+                              <td class="content"><code
+                                  class="keyword">public</code> <code
+                                  class="keyword">class</code> <code
+                                  class="plain">ItemSaver {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>02</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">private</code> <code
+                                  class="plain">String
+                                  valueToSave;</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>03</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="plain">ItemSaver(String
+                                  valueToSave) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>04</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">this</code> <code
+                                  class="plain">.valueToSave =
+                                  valueToSave;</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>05</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>06</code></td>
+                              <td class="content">&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>07</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="keyword">void</code> <code
+                                  class="plain">doSomething(String
+                                  attributeName, Item item) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>08</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="plain">Set&lt;String&gt;
+                                  attributeValues =
+                                  item.getAttributes().get(attributeName);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>09</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">for</code> <code
+                                  class="plain">(String value :
+                                  attributeValues) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>10</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">if</code> <code
+                                  class="plain">(value.equals(valueToSave))
+                                  {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>11</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="plain">doSomethingElse();</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>12</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>13</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>14</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>15</code></td>
+                              <td class="content">&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>16</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">private</code> <code
+                                  class="keyword">void</code> <code
+                                  class="plain">doSomethingElse()
+                                  {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>17</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>18</code></td>
+                              <td class="content"><code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <p>Suppose I know that it’s a single value (from
+                    the context of the application). And I want to take
+                    it. Then the code would look like:</p>
+                  <div id="highlighter_345273"
+                    class="syntaxhighlighter  ">
+                    <div class="lines">
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>1</code></td>
+                              <td class="content"><code
+                                  class="plain">Set&lt;String&gt;
+                                  attributeValues =
+                                  item.getAttributes().get(attributeName);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>2</code></td>
+                              <td class="content"><code
+                                  class="plain">String
+                                  singleValue =
+                                  attributeValues.iterator().next();</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>3</code></td>
+                              <td class="content">&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>4</code></td>
+                              <td class="content"><code
+                                  class="comments">// String
+                                  singleValue =
+                                  item.getAttributes().get(attributeName).iterator().next();</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <p>I think that it is clear to see that we’re
+                    having a problem. Wherever we use the attributes of
+                    the Item, we know how it works. We know the inner
+                    implementation of it. It also makes our test much
+                    harder to maintain.</p>
+                  <p>Let’s see an example of a test using mock
+                    (Mockito): You can see imagine how much effort it
+                    should take to change and maintain it.</p>
+                  <div id="highlighter_121322"
+                    class="syntaxhighlighter  ">
+                    <div class="lines">
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>1</code></td>
+                              <td class="content"><code
+                                  class="plain">Item item =
+                                  mock(Item.</code> <code class="keyword">class</code>
+                                <code class="plain">);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>2</code></td>
+                              <td class="content"><code
+                                  class="plain">Map&lt;String,
+                                  Set&lt;String&gt;&gt; attributes =
+                                  mock(Map.</code> <code class="keyword">class</code>
+                                <code class="plain">);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>3</code></td>
+                              <td class="content"><code
+                                  class="plain">Set&lt;String&gt;
+                                  values = mock(Set.</code> <code
+                                  class="keyword">class</code> <code
+                                  class="plain">);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>4</code></td>
+                              <td class="content"><code
+                                  class="plain">Iterator&lt;String&gt;
+                                  iterator = mock(Iterator.</code> <code
+                                  class="keyword">class</code> <code
+                                  class="plain">);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>5</code></td>
+                              <td class="content"><code
+                                  class="plain">when(iterator.next()).thenReturn(</code>
+                                <code class="string">"the single
+                                  value"</code> <code class="plain">);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>6</code></td>
+                              <td class="content"><code
+                                  class="plain">when(values.iterator()).thenReturn(iterator);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>7</code></td>
+                              <td class="content"><code
+                                  class="plain">when(attributes.containsKey(</code>
+                                <code class="string">"the-key"</code> <code
+                                  class="plain">)).thenReturn(</code> <code
+                                  class="keyword">true</code> <code
+                                  class="plain">);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>8</code></td>
+                              <td class="content"><code
+                                  class="plain">when(attributes.get(</code>
+                                <code class="string">"the-key"</code> <code
+                                  class="plain">)).thenReturn(values);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>9</code></td>
+                              <td class="content"><code
+                                  class="plain">when(item.getAttributes()).thenReturn(attributes);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <p>We can use real Item instead of mocking, but
+                    we’ll still need to create lots of pre-test data.</p>
+                  <p>Let’s recap:</p>
+                  <ul>
+                    <li>We exposed the inner implementation of how
+                      Item holds Attributes</li>
+                    <li>In order to use attributes, we needed to
+                      ask the item and then to ask for inner objects
+                      (the values).</li>
+                    <li>If we ever want to change the attributes
+                      implementation, we will need to make changes in
+                      the classes that use Item and the attributes.
+                      Probably a-lot classes.</li>
+                    <li>Constructing the test is tedious,
+                      cumbersome, error-prone and lots of maintenance.</li>
+                  </ul>
+                  <h2>Improvement</h2>
+                  <p>The first improvement would be to ask let Item
+                    delegate the attributes.</p>
+                  <div id="highlighter_266927"
+                    class="syntaxhighlighter  ">
+                    <div class="lines">
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>01</code></td>
+                              <td class="content"><code
+                                  class="keyword">public</code> <code
+                                  class="keyword">class</code> <code
+                                  class="plain">Item {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>02</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">private</code> <code
+                                  class="keyword">final</code> <code
+                                  class="plain">Map&lt;String,
+                                  Set&lt;String&gt;&gt; attributes;</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>03</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="plain">Item(Map&lt;String,
+                                  Set&lt;String&gt;&gt; attributes) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>04</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">this</code> <code
+                                  class="plain">.attributes =
+                                  attributes;</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>05</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>06</code></td>
+                              <td class="content">&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>07</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="keyword">boolean</code> <code
+                                  class="plain">attributeExists(String
+                                  attributeName) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>08</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">return</code> <code
+                                  class="plain">attributes.containsKey(attributeName);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>09</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>10</code></td>
+                              <td class="content">&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>11</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="plain">Set&lt;String&gt;
+                                  values(String attributeName) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>12</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">return</code> <code
+                                  class="plain">attributes.get(attributeName);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>13</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>14</code></td>
+                              <td class="content">&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>15</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="plain">String
+                                  getSingleValue(String attributeName) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>16</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">return</code> <code
+                                  class="plain">values(attributeName).iterator().next();</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>17</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>18</code></td>
+                              <td class="content"><code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <p>And the test becomes much simpler.</p>
+                  <div id="highlighter_636987"
+                    class="syntaxhighlighter  ">
+                    <div class="lines">
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>1</code></td>
+                              <td class="content"><code
+                                  class="plain">Item item =
+                                  mock(Item.</code> <code class="keyword">class</code>
+                                <code class="plain">);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>2</code></td>
+                              <td class="content"><code
+                                  class="plain">when(item.getSingleValue(</code>
+                                <code class="string">"the-key"</code> <code
+                                  class="plain">)).thenReturn(</code> <code
+                                  class="string">"the single
+                                  value"</code> <code class="plain">);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <p>We are (almost) hiding totally the
+                    implementation of attributes from other classes.</p>
+                  <p>The client classes are not aware of the
+                    implementation expect two cases:</p>
+                  <ol>
+                    <li>Item still knows how attributes are built.</li>
+                    <li>The class that creates Item (whichever it
+                      is), also knows the implementation of attributes.</li>
+                  </ol>
+                  <p>
+                    The two points above mean that if we change the
+                    implementation of Attributes (something else than a
+                    map), at least two other classes will need to be
+                    change. This is a great example for <strong><em>High
+                        Coupling</em></strong>.
+                  </p>
+                  <h2>The Next Step Improvement</h2>
+                  <p>The solution above will sometimes (usually?) be
+                    enough. As pragmatic programmers, we need to know
+                    when to stop. However, let’s see how we can even
+                    improve the first solution.</p>
+                  <p>
+                    Create a class <em>Attributes</em>:
+                  </p>
+                  <div id="highlighter_789467"
+                    class="syntaxhighlighter  ">
+                    <div class="lines">
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>01</code></td>
+                              <td class="content"><code
+                                  class="keyword">public</code> <code
+                                  class="keyword">class</code> <code
+                                  class="plain">Attributes {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>02</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">private</code> <code
+                                  class="keyword">final</code> <code
+                                  class="plain">Map&lt;String,
+                                  Set&lt;String&gt;&gt; attributes;</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>03</code></td>
+                              <td class="content">&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>04</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="plain">Attributes() {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>05</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">this</code> <code
+                                  class="plain">.attributes = </code> <code
+                                  class="keyword">new</code> <code
+                                  class="plain">HashMap&lt;&gt;();</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>06</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>07</code></td>
+                              <td class="content">&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>08</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="keyword">boolean</code> <code
+                                  class="plain">attributeExists(String
+                                  attributeName) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>09</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">return</code> <code
+                                  class="plain">attributes.containsKey(attributeName);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>10</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>11</code></td>
+                              <td class="content">&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>12</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="plain">Set&lt;String&gt;
+                                  values(String attributeName) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>13</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">return</code> <code
+                                  class="plain">attributes.get(attributeName);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>14</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>15</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code>&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>16</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="plain">String
+                                  getSingleValue(String attributeName) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>17</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">return</code> <code
+                                  class="plain">values(attributeName).iterator().next();</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>18</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>19</code></td>
+                              <td class="content">&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>20</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="plain">Attributes
+                                  addAttribute(String attributeName,
+                                  Collection&lt;String&gt; values) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>21</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">this</code> <code
+                                  class="plain">.attributes.put(attributeName,
+                                </code> <code class="keyword">new</code> <code
+                                  class="plain">HashSet&lt;&gt;(values));</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>22</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">return</code> <code
+                                  class="keyword">this</code> <code
+                                  class="plain">;</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>23</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>24</code></td>
+                              <td class="content"><code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <p>And the Item that uses it:</p>
+                  <div id="highlighter_125136"
+                    class="syntaxhighlighter  ">
+                    <div class="lines">
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>01</code></td>
+                              <td class="content"><code
+                                  class="keyword">public</code> <code
+                                  class="keyword">class</code> <code
+                                  class="plain">Item {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>02</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">private</code> <code
+                                  class="keyword">final</code> <code
+                                  class="plain">Attributes
+                                  attributes;</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>03</code></td>
+                              <td class="content">&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>04</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="plain">Item(Attributes
+                                  attributes) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>05</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">this</code> <code
+                                  class="plain">.attributes =
+                                  attributes;</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>06</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>07</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code>&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>08</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="keyword">boolean</code> <code
+                                  class="plain">attributeExists(String
+                                  attributeName) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>09</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">return</code> <code
+                                  class="plain">attributes.attributeExists(attributeName);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>10</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>11</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code>&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>12</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="plain">Set&lt;String&gt;
+                                  values(String attributeName) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>13</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">return</code> <code
+                                  class="plain">attributes.values(attributeName);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>14</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>15</code></td>
+                              <td class="content">&nbsp;</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>16</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="keyword">public</code> <code
+                                  class="plain">String
+                                  getSingleValue(String attributeName) {</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>17</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                <code class="keyword">return</code> <code
+                                  class="plain">attributes.getSingleValue(attributeName);</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt2">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>18</code></td>
+                              <td class="content"><code
+                                  class="spaces">&nbsp;&nbsp;</code> <code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="line alt1">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="number"><code>19</code></td>
+                              <td class="content"><code
+                                  class="plain">}</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <p>(Did you noticed? The implementation of
+                    attributes inside item was changed, but the test did
+                    not need to. This is thanks to the small change of
+                    delegation.)</p>
+                  <p>In the second solution we improved the
+                    encapsulation of Attributes. Now even Item does not
+                    know how it works.</p>
+                  <p>We can change the implementation of Attributes
+                    without touching any other class.</p>
+                  <p>We can make different implementations of
+                    Attributes:</p>
+                  <ul>
+                    <li>An implementation that holds a Set of
+                      values (as in the example).</li>
+                    <li>An implementation that holds a List of
+                      values.</li>
+                    <li>A totally different data structure that we
+                      can think of.</li>
+                  </ul>
+                  <p>As long as all of our tests pass, we can be
+                    sure that everything is OK.</p>
+                  <h2>What did we get?</h2>
+                  <ul>
+                    <li>The code is much more maintainable.</li>
+                    <li>Tests are simpler and more maintainable.</li>
+                    <li>It is much more flexible. We can change
+                      implementation of Attributes (map, set, list,
+                      whatever we choose).</li>
+                    <li>Changes in Attribute does not affect any
+                      other part of the code. Not even those who
+                      directly uses it.</li>
+                    <li>Modularization and code reuse. We can use <em>Attributes</em>
+                      class in other places in the code.
+                    </li>
+                  </ul>
+                  <p>&nbsp;</p>
+                  <div
+                    style="border: 1px solid #D8D8D8; background: #FAFAFA; width: 100%; padding-left: 5px;">
+                    <b><i>Reference: </i></b><a
+                      href="http://eyalgo.com/2014/02/17/law-of-demeter-4/"
+                      rel="external nofollow" title="" class="ext-link"
+                      data-wpel-target="_blank">Law of Demeter</a> from
+                    our <a href="http://www.javacodegeeks.com/jcg">JCG
+                      partner</a> Eyal Golan at the <a
+                      href="http://eyalgo.com/" rel="external nofollow"
+                      title="" class="ext-link"
+                      data-wpel-target="_blank">Learning and
+                      Improving as a Craftsman Developer</a> blog.
+                  </div>
+                </div>
+                <span style="display: none" class="updated">2014-02-21</span>
+                <div style="display: none" class="vcard author"
+                  itemprop="author" itemscope=""
+                  itemtype="http://schema.org/Person">
+                  <strong class="fn" itemprop="name"><a
+                    href="https://plus.google.com/104588962061038670494?rel=author?rel=author"
+                    rel="external nofollow" title="" class="ext-link"
+                    data-wpel-target="_blank">+Eyal Golan</a></strong>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
