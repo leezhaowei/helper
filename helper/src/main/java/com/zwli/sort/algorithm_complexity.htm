@@ -1,0 +1,666 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:36.0pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:36.0pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+.MsoChpDefault
+	{font-family:"Calibri","sans-serif";}
+.MsoPapDefault
+	{margin-bottom:10.0pt;
+	line-height:115%;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-GB>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+125%'><b><span lang=ZH-CN style='font-size:12.0pt;line-height:125%;font-family:
+宋体'>各种排序算法的复杂度</span></b></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=64 valign=top style='width:47.95pt;border:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>排序法</span></p>
+  </td>
+  <td width=76 valign=top style='width:2.0cm;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>平均时间</span></p>
+  </td>
+  <td width=85 valign=top style='width:63.8pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>最差情形</span></p>
+  </td>
+  <td width=85 valign=top style='width:63.75pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>稳定度</span></p>
+  </td>
+  <td width=95 valign=top style='width:70.9pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>额外空间</span></p>
+  </td>
+  <td width=164 valign=top style='width:123.0pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>备注</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=64 style='width:47.95pt;border:solid windowtext 1.0pt;border-top:
+  none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>冒泡</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(n2)</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(n2)</span></p>
+  </td>
+  <td width=85 style='width:63.75pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>稳定</span></p>
+  </td>
+  <td width=95 style='width:70.9pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(1)</span></p>
+  </td>
+  <td width=164 style='width:123.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>n</span><span
+  lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>小时较好</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=64 style='width:47.95pt;border:solid windowtext 1.0pt;border-top:
+  none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>交换</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(n2)</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(n2)</span></p>
+  </td>
+  <td width=85 style='width:63.75pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>不稳定</span></p>
+  </td>
+  <td width=95 style='width:70.9pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(1)</span></p>
+  </td>
+  <td width=164 style='width:123.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>n</span><span
+  lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>小时较好</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=64 style='width:47.95pt;border:solid windowtext 1.0pt;border-top:
+  none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>选择</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(n2)</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(n2)</span></p>
+  </td>
+  <td width=85 style='width:63.75pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>不稳定</span></p>
+  </td>
+  <td width=95 style='width:70.9pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(1)</span></p>
+  </td>
+  <td width=164 style='width:123.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>n</span><span
+  lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>小时较好</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=64 style='width:47.95pt;border:solid windowtext 1.0pt;border-top:
+  none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>插入</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(n2)</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(n2)</span></p>
+  </td>
+  <td width=85 style='width:63.75pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>稳定</span></p>
+  </td>
+  <td width=95 style='width:70.9pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(1)</span></p>
+  </td>
+  <td width=164 style='width:123.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>大部分已排序时较好</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=64 style='width:47.95pt;border:solid windowtext 1.0pt;border-top:
+  none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>基数</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(log<sub>R</sub>B)</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(log<sub>R</sub>B)</span></p>
+  </td>
+  <td width=85 style='width:63.75pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>稳定</span></p>
+  </td>
+  <td width=95 style='width:70.9pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(n)</span></p>
+  </td>
+  <td width=164 style='width:123.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>B</span><span
+  lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>是真数</span><span
+  style='font-size:10.0pt;line-height:125%'>(0-9)</span><span lang=ZH-CN
+  style='font-size:10.0pt;line-height:125%;font-family:宋体'>，</span><span
+  style='font-size:10.0pt;line-height:125%'>R</span><span lang=ZH-CN
+  style='font-size:10.0pt;line-height:125%;font-family:宋体'>是基数</span><span
+  style='font-size:10.0pt;line-height:125%'>(</span><span lang=ZH-CN
+  style='font-size:10.0pt;line-height:125%;font-family:宋体'>个十百</span><span
+  style='font-size:10.0pt;line-height:125%'>)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=64 style='width:47.95pt;border:solid windowtext 1.0pt;border-top:
+  none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>Shell</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(nlogn)</span></p>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(n^1.25)</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(ns) 1&lt;s&lt;2</span></p>
+  </td>
+  <td width=85 style='width:63.75pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>不稳定</span></p>
+  </td>
+  <td width=95 style='width:70.9pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(1)</span></p>
+  </td>
+  <td width=164 style='width:123.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>s</span><span
+  lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>是所选分组</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=64 style='width:47.95pt;border:solid windowtext 1.0pt;border-top:
+  none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>快速</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(nlogn)</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(n2)</span></p>
+  </td>
+  <td width=85 style='width:63.75pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>不稳定</span></p>
+  </td>
+  <td width=95 style='width:70.9pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(nlogn)</span></p>
+  </td>
+  <td width=164 style='width:123.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>n</span><span
+  lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>大时较好</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=64 style='width:47.95pt;border:solid windowtext 1.0pt;border-top:
+  none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>归并</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(nlogn)</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(nlogn)</span></p>
+  </td>
+  <td width=85 style='width:63.75pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>稳定</span></p>
+  </td>
+  <td width=95 style='width:70.9pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(1)</span></p>
+  </td>
+  <td width=164 style='width:123.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>n</span><span
+  lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>大时较好</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=64 style='width:47.95pt;border:solid windowtext 1.0pt;border-top:
+  none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>堆</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(nlogn)</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(nlogn)</span></p>
+  </td>
+  <td width=85 style='width:63.75pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:
+  宋体'>不稳定</span></p>
+  </td>
+  <td width=95 style='width:70.9pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>O(1)</span></p>
+  </td>
+  <td width=164 style='width:123.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  125%'><span style='font-size:10.0pt;line-height:125%'>n</span><span
+  lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>大时较好</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+125%'><span style='font-size:10.0pt;line-height:125%'>&nbsp;</span></p>
+
+<p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
+0cm;margin-left:21.3pt;margin-bottom:.0001pt;text-indent:-18.0pt;line-height:
+125%'><b><span style='font-size:10.0pt;line-height:125%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+style='font-size:10.0pt;line-height:125%'> </span></b><b><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>快速排序（</span></b><b><span
+style='font-size:10.0pt;line-height:125%'>QuickSort</span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>）</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-indent:
+21.0pt;line-height:125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:
+125%;font-family:宋体'>快速排序是一个就地排序，分而治之，大规模递归的算法。从本质上来说，它是归并排序的就地版本。快速排序可以由下面四步组成。</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-bottom:0cm;margin-bottom:.0001pt;
+text-indent:-18.0pt;line-height:125%'><span style='font-size:10.0pt;line-height:
+125%'>1)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;
+font-family:宋体'>如果不多于</span><span style='font-size:10.0pt;line-height:125%'>1</span><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>个数据，直接返回。</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-bottom:0cm;margin-bottom:
+.0001pt;text-indent:-18.0pt;line-height:125%'><span style='font-size:10.0pt;
+line-height:125%'>2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;
+font-family:宋体'>一般选择序列最左边的值作为支点数据。</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-bottom:0cm;margin-bottom:
+.0001pt;text-indent:-18.0pt;line-height:125%'><span style='font-size:10.0pt;
+line-height:125%'>3)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;
+font-family:宋体'>将序列分成</span><span style='font-size:10.0pt;line-height:125%'>2</span><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>部分，一部分都大于支点数据，另外一部分都小于支点数据。</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-bottom:0cm;margin-bottom:.0001pt;
+text-indent:-18.0pt;line-height:125%'><span style='font-size:10.0pt;line-height:
+125%'>4)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=ZH-CN style='font-size:10.0pt;line-height:125%;
+font-family:宋体'>对两边利用递归排序数列。</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-indent:
+21.0pt;line-height:125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:
+125%;font-family:宋体'>快速排序比大部分排序算法都要快。尽管我们可以在某些特殊的情况下写出比快速排序快的算法，但是就通常情况而言，没有比它更快的了。快速排序是递归的，对于内存非常有限的机器来说，它不是一个好的选择。</span></p>
+
+<p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
+0cm;margin-left:21.3pt;margin-bottom:.0001pt;text-indent:-18.0pt;line-height:
+125%'><b><span style='font-size:10.0pt;line-height:125%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>归并排序（</span></b><b><span
+style='font-size:10.0pt;line-height:125%'>MergeSort</span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>）</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-indent:
+21.0pt;line-height:125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:
+125%;font-family:宋体'>归并排序先分解要排序的序列，从</span><span style='font-size:10.0pt;
+line-height:125%'>1</span><span lang=ZH-CN style='font-size:10.0pt;line-height:
+125%;font-family:宋体'>分成</span><span style='font-size:10.0pt;line-height:125%'>2</span><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>，</span><span
+style='font-size:10.0pt;line-height:125%'>2</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>分成</span><span
+style='font-size:10.0pt;line-height:125%'>4</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>，依次分解，当分解到只有</span><span
+style='font-size:10.0pt;line-height:125%'>1</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>个一组的时候，就可以排序这些分组，然后依次合并回原来的序列中，这样就可以排序所有数据。合并排序比堆排序稍微快一点，但是需要比堆排序多一倍的内存空间，因为它需要一个额外的数组。</span></p>
+
+<p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
+0cm;margin-left:21.3pt;margin-bottom:.0001pt;text-indent:-18.0pt;line-height:
+125%'><b><span style='font-size:10.0pt;line-height:125%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>堆排序（</span></b><b><span
+style='font-size:10.0pt;line-height:125%'>HeapSort</span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>）</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-indent:
+21.0pt;line-height:125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:
+125%;font-family:宋体'>堆排序适合于数据量非常大的场合（百万数据）。</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-indent:
+21.0pt;line-height:125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:
+125%;font-family:宋体'>堆排序不需要大量的递归或者多维的暂存数组。这对于数据量非常巨大的序列是合适的。比如超过数百万条记录，因为快速排序，归并排序都使用递归来设计算法，在数据量非常大的时候，可能会发生堆栈溢出错误。</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-indent:
+21.0pt;line-height:125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:
+125%;font-family:宋体'>堆排序会将所有的数据建成一个堆，最大的数据在堆顶，然后将堆顶数据和序列的最后一个数据交换。接下来再次重建堆，交换数据，依次下去，就可以排序所有的数据。</span></p>
+
+<p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
+0cm;margin-left:21.3pt;margin-bottom:.0001pt;text-indent:-18.0pt;line-height:
+125%'><b><span style='font-size:10.0pt;line-height:125%'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+style='font-size:10.0pt;line-height:125%'>Shell</span></b><b><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>排序（</span></b><b><span
+style='font-size:10.0pt;line-height:125%'>ShellSort</span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>）</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-indent:
+21.0pt;line-height:125%'><span style='font-size:10.0pt;line-height:125%'>Shell</span><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>排序通过将数据分成不同的组，先对每一组进行排序，然后再对所有的元素进行一次插入排序，以减少数据交换和移动的次数。平均效率是</span><span
+style='font-size:10.0pt;line-height:125%'>O(nlogn)</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>。其中分组的合理性会对算法产生重要的影响。现在多用</span><span
+style='font-size:10.0pt;line-height:125%'>D.E.Knuth</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>的分组方法。</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-indent:
+21.0pt;line-height:125%'><span style='font-size:10.0pt;line-height:125%'>Shell</span><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>排序比冒泡排序快</span><span
+style='font-size:10.0pt;line-height:125%'>5</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>倍，比插入排序大致快</span><span
+style='font-size:10.0pt;line-height:125%'>2</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>倍。</span><span
+style='font-size:10.0pt;line-height:125%'>Shell</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>排序比起</span><span
+style='font-size:10.0pt;line-height:125%'>QuickSort</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>，</span><span
+style='font-size:10.0pt;line-height:125%'>MergeSort</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>，</span><span
+style='font-size:10.0pt;line-height:125%'>HeapSort</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>慢很多。但是它相对比较简单，它适合于数据量在</span><span
+style='font-size:10.0pt;line-height:125%'>5000</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>以下并且速度并不是特别重要的场合。它对于数据量较小的数列重复排序是非常好的。</span></p>
+
+<p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
+0cm;margin-left:21.3pt;margin-bottom:.0001pt;text-indent:-18.0pt;line-height:
+125%'><b><span style='font-size:10.0pt;line-height:125%'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>插入排序（</span></b><b><span
+style='font-size:10.0pt;line-height:125%'>InsertSort</span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>）</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-indent:
+21.0pt;line-height:125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:
+125%;font-family:宋体'>插入排序通过把序列中的值插入一个已经排序好的序列中，直到该序列的结束。插入排序是对冒泡排序的改进。它比冒泡排序快</span><span
+style='font-size:10.0pt;line-height:125%'>2</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>倍。一般不用在数据大于</span><span
+style='font-size:10.0pt;line-height:125%'>1000</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>的场合下使用插入排序，或者重复排序超过</span><span
+style='font-size:10.0pt;line-height:125%'>200</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>数据项的序列。</span></p>
+
+<p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
+0cm;margin-left:21.3pt;margin-bottom:.0001pt;text-indent:-18.0pt;line-height:
+125%'><b><span style='font-size:10.0pt;line-height:125%'>6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>冒泡排序（</span></b><b><span
+style='font-size:10.0pt;line-height:125%'>BubbleSort</span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>）</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-indent:
+21.0pt;line-height:125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:
+125%;font-family:宋体'>冒泡排序是最慢的排序算法。在实际运用中它是效率最低的算法。它通过一趟又一趟地比较数组中的每一个元素，使较大的数据下沉，较小的数据上升。它是</span><span
+style='font-size:10.0pt;line-height:125%'>O(n^2)</span><span lang=ZH-CN
+style='font-size:10.0pt;line-height:125%;font-family:宋体'>的算法。</span></p>
+
+<p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
+0cm;margin-left:21.3pt;margin-bottom:.0001pt;text-indent:-18.0pt;line-height:
+125%'><b><span style='font-size:10.0pt;line-height:125%'>7.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>交换排序（</span></b><b><span
+style='font-size:10.0pt;line-height:125%'>ExchangeSort</span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>）和选择排序（</span></b><b><span
+style='font-size:10.0pt;line-height:125%'>SelectSort</span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>）</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-indent:
+21.0pt;line-height:125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:
+125%;font-family:宋体'>这两种排序方法都是交换方法的排序算法，效率都是</span><span style='font-size:10.0pt;
+line-height:125%'> O(n2)</span><span lang=ZH-CN style='font-size:10.0pt;
+line-height:125%;font-family:宋体'>。在实际应用中处于和冒泡排序基本相同的地位。它们只是排序算法发展的初级阶段，在实际中使用较少。</span></p>
+
+<p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
+0cm;margin-left:21.3pt;margin-bottom:.0001pt;text-indent:-18.0pt;line-height:
+125%'><b><span style='font-size:10.0pt;line-height:125%'>8.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>基数排序（</span></b><b><span
+style='font-size:10.0pt;line-height:125%'>RadixSort</span></b><b><span
+lang=ZH-CN style='font-size:10.0pt;line-height:125%;font-family:宋体'>）</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-indent:
+21.0pt;line-height:125%'><span lang=ZH-CN style='font-size:10.0pt;line-height:
+125%;font-family:宋体'>基数排序和通常的排序算法并不走同样的路线。它是一种比较新颖的算法，但是它只能用于整数的排序，如果我们要把同样的办法运用到浮点数上，我们必须了解浮点数的存储格式，并通过特殊的方式将浮点数映射到整数上，然后再映射回去，这是非常麻烦的事情，因此，它的使用同样也不多。而且，最重要的是，这样算法也需要较多的存储空间。</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+125%'><span style='font-size:10.0pt;line-height:125%'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+125%'><span style='font-size:10.0pt;line-height:125%'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
