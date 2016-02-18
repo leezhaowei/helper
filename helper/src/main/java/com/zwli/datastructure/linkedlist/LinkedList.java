@@ -12,19 +12,24 @@ public class LinkedList {
         int data;
         Node next;
 
-        Node(int d) {
+        Node(final int d) {
             data = d;
             next = null;
         }
+
+        @Override
+        public String toString() {
+            return data + " next:" + next;
+        }
     }
 
-    public void push(int d) {
+    public void push(final int d) {
         Node n = new Node(d);
         n.next = head;
         head = n;
     }
 
-    public void insertAfter(Node prevNode, int d) {
+    public void insertAfter(final Node prevNode, final int d) {
         if (null == prevNode) {
             System.out.println("The given previous node cannot null!");
             return;
@@ -34,7 +39,7 @@ public class LinkedList {
         prevNode.next = n;
     }
 
-    public void append(int d) {
+    public void append(final int d) {
         Node n = new Node(d);
         if (null == head) {
             head = n;
@@ -43,6 +48,14 @@ public class LinkedList {
         n.next = null;
         Node last = traverse(head);
         last.next = n;
+    }
+
+    public void printList(Node n) {
+        while (null != n) {
+            System.out.print(n.data + "->");
+            n = n.next;
+        }
+        System.out.println();
     }
 
     public void printList() {
@@ -61,7 +74,7 @@ public class LinkedList {
         return last;
     }
 
-    public void deleteNode(int key) {
+    public void deleteNode(final int key) {
         Node temp = head;
         if (temp != null && temp.data == key) {
             head = temp.next;
@@ -70,12 +83,16 @@ public class LinkedList {
         while (temp.next != null && temp.next.data != key) {
             temp = temp.next;
         }
-        if (temp == null || temp.next == null) { return; }
+        if (temp == null || temp.next == null) {
+            return;
+        }
         temp.next = temp.next.next;
     }
 
-    public void deleteNodeByPosition(int position) {
-        if (head == null) { return; }
+    public void deleteNodeByPosition(final int position) {
+        if (head == null) {
+            return;
+        }
         Node temp = head;
         if (position == 0) {
             head = temp.next;
@@ -84,19 +101,23 @@ public class LinkedList {
         for (int i = 0; temp != null && i < position - 1; i++) {
             temp = temp.next;
         }
-        if (temp == null || temp.next == null) { return; }
+        if (temp == null || temp.next == null) {
+            return;
+        }
         temp.next = temp.next.next;
     }
 
-    public void deleteNodeByNode(Node target) {
+    public void deleteNodeByNode(final Node target) {
         Node temp = target.next;
         target.data = temp.data;
         target.next = temp.next;
         temp = null;
     }
 
-    public void swapNodes(int x, int y) {
-        if (x == y) { return; }
+    public void swapNodes(final int x, final int y) {
+        if (x == y) {
+            return;
+        }
 
         Node prevX = null, currX = head;
         while (currX != null && currX.data != x) {
@@ -110,7 +131,9 @@ public class LinkedList {
             currY = currY.next;
         }
 
-        if (currX == null || currY == null) { return; }
+        if (currX == null || currY == null) {
+            return;
+        }
 
         if (prevX != null) {
             prevX.next = currY;
@@ -129,12 +152,14 @@ public class LinkedList {
         currY.next = temp;
     }
 
-    public int getNth(int index) {
+    public int getNth(final int index) {
         Node current = head;
         int count = 0;
 
         while (current != null) {
-            if (count == index) { return current.data; }
+            if (count == index) {
+                return current.data;
+            }
             count++;
             current = current.next;
         }
@@ -161,14 +186,16 @@ public class LinkedList {
      * 1) Calculate the length of Linked List. Let the length be len.<br/>
      * 2) Print the (len – n + 1)th node from the begining of the Linked List.
      */
-    public void printNthFromLast(int n) {
+    public void printNthFromLast(final int n) {
         int len = 0;
         Node temp = head;
         while (temp != null) {
             temp = temp.next;
             len++;
         }
-        if (len < n) { return; }
+        if (len < n) {
+            return;
+        }
         temp = head;
         int loop = len - n + 1;
         for (int i = 1; i < loop; i++) {
@@ -190,7 +217,7 @@ public class LinkedList {
      * a) If element data is equal to the passed number then increment the count.<br/>
      * 3. Return count.
      */
-    public int count(int searchFor) {
+    public int count(final int searchFor) {
         Node current = head;
         int count = 0;
         while (current != null) {
@@ -223,7 +250,7 @@ public class LinkedList {
         return 0;
     }
 
-    public void sortedInsert(Node n) {
+    public void sortedInsert(final Node n) {
         if (head == null || head.data >= n.data) {
             n.next = head;
             head = n;
@@ -237,14 +264,18 @@ public class LinkedList {
         }
     }
 
-    public void printReverse(Node head) {
-        if (head == null) { return; }
+    public void printReverse(final Node head) {
+        if (head == null) {
+            return;
+        }
         printReverse(head.next);
         System.out.print(head.data + "->");
     }
 
     public void removeDuplicatesFromSortedList() {
-        if (head == null) { return; }
+        if (head == null) {
+            return;
+        }
         Node current = head;
         Node next = null;
         while (current.next != null) {
@@ -259,7 +290,9 @@ public class LinkedList {
     }
 
     public void removeDuplicatesFromUnsortedList() {
-        if (head == null) { return; }
+        if (head == null) {
+            return;
+        }
         Node current = head;
         Node next = null;
         while (current != null && current.next != null) {
@@ -292,8 +325,10 @@ public class LinkedList {
     // }
     // return -1;
     // }
-    public int findByIndex(int k) {
-        if (head == null) { return -1; }
+    public int findByIndex(final int k) {
+        if (head == null) {
+            return -1;
+        }
         Node current = head;
         for (int i = 0; i < k; i++) {
             if ((current == null || current.next == null) && i < k) {
@@ -306,7 +341,9 @@ public class LinkedList {
     }
 
     public void moveToFront() {
-        if (head == null || head.next == null) { return; }
+        if (head == null || head.next == null) {
+            return;
+        }
         Node secLast = null;
         Node last = head;
         while (last.next != null) {
@@ -322,8 +359,10 @@ public class LinkedList {
         return traverse(head);
     }
 
-    public void partitionByKey(int key) {
-        if (head == null) { return; }
+    public void partitionByKey(final int key) {
+        if (head == null) {
+            return;
+        }
 
         Node current = head;
         LinkedList beforeList = new LinkedList();
@@ -367,13 +406,41 @@ public class LinkedList {
         }
         while (slow != null) {
             int top = stack.pop().intValue();
-            if (top != slow.data) { return false; }
+            if (top != slow.data) {
+                return false;
+            }
             slow = slow.next;
         }
         return true;
     }
 
-    public static void main(String[] args) {
+    public int size() {
+        Node current = head;
+        int count = 0;
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
+    }
+
+    public void sortByOddAndEven() {
+        if (head == null) {
+            return;
+        }
+        Node odd = head;
+        Node even = head.next;
+        Node evenHead = even;
+        while (even != null && even.next != null) {
+            odd.next = even.next;
+            odd = odd.next;
+            even.next = odd.next;
+            even = even.next;
+        }
+        odd.next = evenHead;
+    }
+
+    public static void main(final String[] args) {
         // testDeleteNode();
         // testSwapNodes();
         // testGetNth();
@@ -386,7 +453,21 @@ public class LinkedList {
         // testMoveToFront();
         // testFindByIndex();
         // testPartitionByKey();
-        testIsPalindrome();
+        // testIsPalindrome();
+        testSortByOddAndEven();
+    }
+
+    static void testSortByOddAndEven() {
+        LinkedList list = initList(Type.SORTED_DESC);
+
+        System.out.print("Before: ");
+        list.printList();
+        // System.out.println(list.size());
+        list.sortByOddAndEven();
+
+        System.out.println();
+        System.out.print("After: ");
+        list.printList();
     }
 
     static void testIsPalindrome() {
@@ -502,33 +583,33 @@ public class LinkedList {
         SORTED_DESC, SORTED_ASC, UNSORTED;
     }
 
-    private static LinkedList initList(Type type) {
+    private static LinkedList initList(final Type type) {
         return initList(type, true);
     }
 
-    private static LinkedList initList(Type type, boolean haveDuplicate) {
+    private static LinkedList initList(final Type type, final boolean haveDuplicate) {
         LinkedList list = new LinkedList();
         int size = 10;
         if (Type.SORTED_DESC == type) {
-            for (int i = size - 1; i >= 0; i--) {
+            for (int i = size; i >= 1; i--) {
                 list.push(i);
             }
         } else if (Type.SORTED_ASC == type) {
-            for (int i = 0; i < size; i++) {
+            for (int i = 1; i < size; i++) {
                 list.push(i);
             }
         } else if (Type.UNSORTED == type) {
             Random random = new Random();
             if (!haveDuplicate) {
                 Set<Integer> set = new HashSet<Integer>();
-                for (int i = 0; i < size; i++) {
+                for (int i = 1; i < size; i++) {
                     set.add(Integer.valueOf(random.nextInt(50)));
                 }
                 for (Integer n : set) {
                     list.push(n.intValue());
                 }
             } else {
-                for (int i = 0; i < size; i++) {
+                for (int i = 1; i < size; i++) {
                     list.push(Integer.valueOf(random.nextInt(100)));
                 }
             }
