@@ -14,4 +14,9 @@ public interface LinkList<E> {
 
     public Link<E> delete(E key);
 
+    public Link<E> getHead();
+
+    public void setHead(Link<E> head);
+
+    public ListIterator<E> iterator();
 }

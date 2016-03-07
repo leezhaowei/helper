@@ -75,6 +75,21 @@ public class LinkListImpl<E> implements LinkList<E> {
         return current;
     }
 
+    @Override
+    public ListIterator<E> iterator() {
+        return null;
+    }
+
+    @Override
+    public Link<E> getHead() {
+        return head;
+    }
+
+    @Override
+    public void setHead(Link<E> head) {
+        this.head = head;
+    }
+
     // --------------------------------------------------------
     public static void main(final String[] args) {
         LinkList<Integer> ll = new LinkListImpl<Integer>();
