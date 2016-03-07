@@ -2,11 +2,10 @@ package com.zwli.datastructure.array;
 
 public class OrderedApp {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         int maxSize = 100;
-        OrdArray arr;
-        arr = new OrdArray(maxSize);
-        arr.insert(77); // insert 10 items
+        OrdArray arr = new OrdArray(maxSize);
+        arr.insert(77);
         arr.insert(99);
         arr.insert(44);
         arr.insert(55);
@@ -16,16 +15,16 @@ public class OrderedApp {
         arr.insert(00);
         arr.insert(66);
         arr.insert(33);
-        int searchKey = 55; // search for item
+        int searchKey = 55;
         if (arr.find(searchKey) != arr.size()) {
             System.out.println("Found " + searchKey);
         } else {
             System.out.println("Can’t find " + searchKey);
         }
-        arr.display(); // display items
-        arr.delete(00); // delete 3 items
+        arr.display();
+        arr.delete(00);
         arr.delete(55);
         arr.delete(99);
-        arr.display(); // display items again
+        arr.display();
     }
 }

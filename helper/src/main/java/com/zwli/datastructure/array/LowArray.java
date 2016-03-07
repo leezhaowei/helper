@@ -1,15 +1,17 @@
 package com.zwli.datastructure.array;
 
-
 public class LowArray {
-    private long[] a; // ref to array a
-  //--------------------------------------------------------------
-  public LowArray(int size) // constructor
-  { a = new long[size]; } // create array
-  //--------------------------------------------------------------
-  public void setElem(int index, long value) // set value
-  { a[index] = value; }
-  //--------------------------------------------------------------
-  public long getElem(int index) // get value
-  { return a[index]; }
+    private final long[] a;
+
+    public LowArray(final int size) {
+        a = new long[size];
+    }
+
+    public void setElem(final int index, final long value) {
+        a[index] = value;
+    }
+
+    public long getElem(final int index) {
+        return a[index];
+    }
 }

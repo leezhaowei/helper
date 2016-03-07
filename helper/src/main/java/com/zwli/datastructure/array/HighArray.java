@@ -2,56 +2,55 @@ package com.zwli.datastructure.array;
 
 public class HighArray {
 
-    private long[] a;
+    private final long[] a;
 
     private int nElems;
 
-    public HighArray(int max) {
-        a = new long[max]; // create the array
-        nElems = 0; // no items yet
+    public HighArray(final int max) {
+        a = new long[max];
+        nElems = 0;
     }
 
-    public boolean find(long searchKey) {
+    public boolean find(final long searchKey) {
         int j;
         for (j = 0; j < nElems; j++) {
-            // for each element,
             if (a[j] == searchKey) {
-                break; // exit loop before end
+                break;
             }
         }
         if (j == nElems) {
-            return false; // yes, can’t find it
+            return false;
         } else {
-            return true; // no, found it
+            return true;
         }
     }
 
-    public int findByBinary(long searchKey) {
+    public int findByBinary(final long searchKey) {
         int lowerBound = 0;
         int upperBound = nElems - 1;
         int curIn;
         while (true) {
             curIn = (lowerBound + upperBound) / 2;
             if (a[curIn] == searchKey) {
-                return curIn; // found it
+                return curIn;
             } else if (lowerBound > upperBound) {
-                return nElems; // can’t find it
-            } else { // divide range
+                return nElems;
+            } else {
                 if (a[curIn] < searchKey) {
-                    lowerBound = curIn + 1; // it’s in upper half
+                    lowerBound = curIn + 1;
                 } else {
-                    upperBound = curIn - 1; // it’s in lower half
+                    upperBound = curIn - 1;
                 }
             }
         }
     }
 
-    public void insert(long value) {
-        a[nElems] = value; // insert it
-        nElems++; // increment size
+    public void insert(final long value) {
+        a[nElems] = value;
+        nElems++;
     }
 
-    public boolean delete(long value) {
+    public boolean delete(final long value) {
         int j;
         for (j = 0; j < nElems; j++) {
             if (value == a[j]) {
@@ -60,12 +59,11 @@ public class HighArray {
         }
         if (j == nElems) {
             return false;
-        } else { // found it
+        } else {
             for (int k = j; k < nElems; k++) {
-                // move higher ones down
                 a[k] = a[k + 1];
             }
-            nElems--; // decrement size
+            nElems--;
             return true;
         }
     }
