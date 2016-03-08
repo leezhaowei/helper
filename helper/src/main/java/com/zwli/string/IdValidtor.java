@@ -40,7 +40,7 @@ public class IdValidtor {
     private IdValidtor() {
     }
 
-    public static void main(String args[]) {
+    public static void main(final String args[]) {
         String id = "130103198202010910";
         System.out.println(IdValidtor.verify(id));
     }
@@ -99,7 +99,7 @@ public class IdValidtor {
     }
 
     // 15 update to 18
-    private static String modifyID(String fifteenid) {
+    private static String modifyID(final String fifteenid) {
         String eightid = fifteenid.substring(0, 6);
         eightid = eightid + "19";
         eightid = eightid + fifteenid.substring(6, 15);

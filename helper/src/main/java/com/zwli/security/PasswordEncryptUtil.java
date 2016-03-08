@@ -15,7 +15,7 @@ public class PasswordEncryptUtil {
 
     public static String ENCRYPT_KEY = "Encrypt"; //$NON-NLS-1$
 
-    private static String rawKey = "Talend-Key"; //$NON-NLS-1$
+    private static String rawKey = "KeyKeyKey"; //$NON-NLS-1$
 
     private static SecretKey key = null;
 
@@ -32,7 +32,7 @@ public class PasswordEncryptUtil {
         return key;
     }
 
-    public static String encryptPassword(String input) throws Exception {
+    public static String encryptPassword(final String input) throws Exception {
         if (input == null || input.length() == 0) {
             return input;
         }
@@ -59,7 +59,7 @@ public class PasswordEncryptUtil {
         return passwordKey;
     }
 
-    public static String encryptPasswordHex(String input) throws Exception {
+    public static String encryptPasswordHex(final String input) throws Exception {
         if (input == null || input.length() == 0) {
             return input;
         }
@@ -71,7 +71,7 @@ public class PasswordEncryptUtil {
         return dec;
     }
 
-    public static String decryptPassword(String input) throws Exception, BadPaddingException {
+    public static String decryptPassword(final String input) throws Exception, BadPaddingException {
         if (input == null || input.length() == 0) {
             return input;
         }
@@ -83,7 +83,7 @@ public class PasswordEncryptUtil {
         return new String(clearByte);
     }
 
-    public static boolean isPasswordType(String type) {
+    public static boolean isPasswordType(final String type) {
         // should match with JavaTypesManager.PASSWORD.getLabel() and
         // JavaTypesManager.PASSWORD.getId()
         if (type == null) {
@@ -92,7 +92,7 @@ public class PasswordEncryptUtil {
         return type.equals("Password") || type.equals("id_Password"); //$NON-NLS-1$   //$NON-NLS-2$
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         String a = "ypZnTZuZe1EGNU+PntEIQw==";
         try {
             String b = decryptPassword(a);

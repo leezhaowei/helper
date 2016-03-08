@@ -2,9 +2,6 @@ package com.zwli.string;
 
 /**
  * 加减乘除、位运算等操作<br>
- * 创建日期：2007-11-22
- *
- * @author 李赵伟
  */
 public class Operation {
 
@@ -35,7 +32,7 @@ public class Operation {
 	 *
 	 * @param num
 	 */
-	static void printBit(int num) {
+	static void printBit(final int num) {
 		int mask = 1;
 		System.out.print(num + " = ");
 		while (true) {
