@@ -1,27 +1,28 @@
 package com.zwli.datastructure.tree;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Stack;
 
 /**
  * binary tree(二叉树)简单实现
- * 
- * @author 李赵伟 Create: 3:16:51 PM Jun 29, 2009
  */
-public class BinaryTree {
+public class BinaryTree<T> {
 
-    private Node root;
+    private Node<T> root;
 
     public BinaryTree() {
         root = null;
     }
 
-    public Node find(int key) {
-        Node current = root;
-        while (current.iData != key) {
-            if (key < current.iData) {
-                current = current.leftChild;
+    public Node<T> find(final int key) {
+        Node<T> current = root;
+        while (current.key != key) {
+            if (key < current.key) {
+                current = current.left;
             } else {
-                current = current.rightChild;
+                current = current.right;
             }
             if (current == null) {
                 return null;
@@ -30,27 +31,27 @@ public class BinaryTree {
         return current;
     }
 
-    public void insert(int id, double dd) {
-        Node newNode = new Node();
-        newNode.iData = id;
-        newNode.dData = dd;
+    public void insert(final int key, final T data) {
+        Node<T> newNode = new Node<T>();
+        newNode.key = key;
+        newNode.data = data;
         if (root == null) {
             root = newNode;
         } else {
-            Node current = root;
-            Node parent;
+            Node<T> current = root;
+            Node<T> parent;
             while (true) {
                 parent = current;
-                if (id < current.iData) {
-                    current = current.leftChild;
+                if (key < current.key) {
+                    current = current.left;
                     if (current == null) {
-                        parent.leftChild = newNode;
+                        parent.left = newNode;
                         return;
                     }
                 } else {
-                    current = current.rightChild;
+                    current = current.right;
                     if (current == null) { // insert on right
-                        parent.rightChild = newNode;
+                        parent.right = newNode;
                         return;
                     }
                 }
@@ -58,61 +59,61 @@ public class BinaryTree {
         }
     }
 
-    public boolean delete(int key) {
-        Node current = root;
-        Node parent = root;
-        boolean isLeftChild = true;
+    public boolean delete(final int key) {
+        Node<T> current = root;
+        Node<T> parent = root;
+        boolean isLeft = true;
 
-        while (current.iData != key) {
+        while (current.key != key) {
             parent = current;
-            if (key < current.iData) {
-                isLeftChild = true;
-                current = current.leftChild;
+            if (key < current.key) {
+                isLeft = true;
+                current = current.left;
             } else {
-                isLeftChild = false;
-                current = current.rightChild;
+                isLeft = false;
+                current = current.right;
             }
             if (current == null) {
                 return false;
             }
         }
 
-        if (current.leftChild == null && current.rightChild == null) {// 要删除的节点没有左右子节点
+        if (current.left == null && current.right == null) {// 要删除的节点没有左右子节点
             if (current == root) {
                 root = null; // 树被清空
-            } else if (isLeftChild) {
-                parent.leftChild = null; // 要删除的节点是左节点
+            } else if (isLeft) {
+                parent.left = null; // 要删除的节点是左节点
             } else {
-                parent.rightChild = null; // 要删除的节点是右节点
+                parent.right = null; // 要删除的节点是右节点
             }
-        } else if (current.rightChild == null) { // 要删除的节点没有右节点
+        } else if (current.right == null) { // 要删除的节点没有右节点
             if (current == root) {
-                root = current.leftChild;
-            } else if (isLeftChild) {
-                parent.leftChild = current.leftChild;
+                root = current.left;
+            } else if (isLeft) {
+                parent.left = current.left;
             } else {
-                parent.rightChild = current.leftChild;
+                parent.right = current.left;
             }
-        } else if (current.leftChild == null) { // 要删除的节点没有左节点
+        } else if (current.left == null) { // 要删除的节点没有左节点
             if (current == root) {
-                root = current.rightChild;
-            } else if (isLeftChild) {
-                parent.leftChild = current.rightChild;
+                root = current.right;
+            } else if (isLeft) {
+                parent.left = current.right;
             } else {
-                parent.rightChild = current.rightChild;
+                parent.right = current.right;
             }
         } else { // 要删除的节点有左右子节点
-            Node successor = getSuccessor(current);
+            Node<T> successor = getSuccessor(current);
             if (current == root) {
                 root = successor;
-            } else if (isLeftChild) {
-                parent.leftChild = successor;
+            } else if (isLeft) {
+                parent.left = successor;
             } else {
-                parent.rightChild = successor;
+                parent.right = successor;
             }
 
             // 后继节点代替要删除的节点的位置，要继承删除节点的子节点
-            successor.leftChild = current.leftChild;
+            successor.left = current.left;
         }
         return true;
     }
@@ -120,24 +121,24 @@ public class BinaryTree {
     /*
      * 查询中序后继节点，用于代替被删除的节点
      */
-    private Node getSuccessor(Node delNode) {
-        Node successorParent = delNode; // 后继节点父节点
-        Node successor = delNode; // 后继节点
-        Node current = delNode.rightChild;
+    private Node<T> getSuccessor(final Node<T> delNode) {
+        Node<T> successorParent = delNode; // 后继节点父节点
+        Node<T> successor = delNode; // 后继节点
+        Node<T> current = delNode.right;
         while (current != null) {
             successorParent = successor;
             successor = current;
-            current = current.leftChild;
+            current = current.left;
         }
         // 后继节点肯定没有左子节点
-        if (successor != delNode.rightChild) {
-            successorParent.leftChild = successor.rightChild;
-            successor.rightChild = delNode.rightChild;
+        if (successor != delNode.right) {
+            successorParent.left = successor.right;
+            successor.right = delNode.right;
         }
         return successor;
     }
 
-    public void traverse(int traverseType) {
+    public void traverse(final int traverseType) {
         switch (traverseType) {
         case 1:
             System.out.print("\nPreorder traversal: ");
@@ -155,38 +156,38 @@ public class BinaryTree {
         System.out.println();
     }
 
-    private void preOrder(Node localRoot) {
+    private void preOrder(final Node<T> localRoot) {
         if (localRoot != null) {
-            System.out.print(localRoot.iData + " ");
-            preOrder(localRoot.leftChild);
-            preOrder(localRoot.rightChild);
+            System.out.print(localRoot.key + " ");
+            preOrder(localRoot.left);
+            preOrder(localRoot.right);
         }
     }
 
-    private void inOrder(Node localRoot) {
+    private void inOrder(final Node<T> localRoot) {
         if (localRoot != null) {
-            inOrder(localRoot.leftChild);
-            System.out.print(localRoot.iData + " ");
-            inOrder(localRoot.rightChild);
+            inOrder(localRoot.left);
+            System.out.print(localRoot.key + " ");
+            inOrder(localRoot.right);
         }
     }
 
-    private void postOrder(Node localRoot) {
+    private void postOrder(final Node<T> localRoot) {
         if (localRoot != null) {
-            postOrder(localRoot.leftChild);
-            postOrder(localRoot.rightChild);
-            System.out.print(localRoot.iData + " ");
+            postOrder(localRoot.left);
+            postOrder(localRoot.right);
+            System.out.print(localRoot.key + " ");
         }
     }
 
     public void displayTree() {
-        Stack<Node> globalStack = new Stack<Node>();
+        Stack<Node<T>> globalStack = new Stack<Node<T>>();
         globalStack.push(root);
         int nBlanks = 32;
         boolean isRowEmpty = false;
         System.out.println("......................................................");
         while (isRowEmpty == false) {
-            Stack<Node> localStack = new Stack<Node>();
+            Stack<Node<T>> localStack = new Stack<Node<T>>();
             isRowEmpty = true;
 
             for (int j = 0; j < nBlanks; j++) {
@@ -194,13 +195,13 @@ public class BinaryTree {
             }
 
             while (globalStack.isEmpty() == false) {
-                Node temp = globalStack.pop();
+                Node<T> temp = globalStack.pop();
                 if (temp != null) {
-                    System.out.print(temp.iData);
-                    localStack.push(temp.leftChild);
-                    localStack.push(temp.rightChild);
+                    System.out.print(temp.key);
+                    localStack.push(temp.left);
+                    localStack.push(temp.right);
 
-                    if (temp.leftChild != null || temp.rightChild != null) {
+                    if (temp.left != null || temp.right != null) {
                         isRowEmpty = false;
                     }
                 } else {
@@ -211,14 +212,96 @@ public class BinaryTree {
                 for (int j = 0; j < nBlanks * 2 - 2; j++) {
                     System.out.print(' ');
                 }
-            } // end while globalStack not empty
+            }
             System.out.println();
             nBlanks /= 2;
             while (localStack.isEmpty() == false) {
                 globalStack.push(localStack.pop());
             }
-        } // end while isRowEmpty is false
+        }
         System.out.println("......................................................");
-    } // end displayTree()
+    }
 
-} // end class Tree
+    public static void main(final String[] args) throws IOException {
+        int value;
+        BinaryTree<Double> theTree = new BinaryTree<Double>();
+
+        theTree.insert(50, 1.5);
+        theTree.insert(25, 1.2);
+        theTree.insert(75, 1.7);
+        theTree.insert(12, 1.5);
+        theTree.insert(37, 1.2);
+        theTree.insert(43, 1.7);
+        theTree.insert(30, 1.5);
+        theTree.insert(33, 1.2);
+        theTree.insert(87, 1.7);
+        theTree.insert(93, 1.5);
+        theTree.insert(97, 1.5);
+        theTree.insert(49, 1.5);
+        theTree.insert(51, 1.5);
+
+        while (true) {
+            System.out.print("Enter first letter of show, ");
+            System.out.print("insert, find, delete, or traverse: ");
+            int choice = getChar();
+            switch (choice) {
+            case 's':
+                theTree.displayTree();
+                break;
+            case 'i':
+                System.out.print("Enter value to insert: ");
+                value = getInt();
+                theTree.insert(value, value + 0.9);
+                break;
+            case 'f':
+                System.out.print("Enter value to find: ");
+                value = getInt();
+                Node<Double> found = theTree.find(value);
+                if (found != null) {
+                    System.out.print("Found: ");
+                    found.displayNode();
+                    System.out.print("\n");
+                } else {
+                    System.out.print("Could not find ");
+                }
+                System.out.print(value + '\n');
+                break;
+            case 'd':
+                System.out.print("Enter value to delete: ");
+                value = getInt();
+                boolean didDelete = theTree.delete(value);
+                if (didDelete) {
+                    System.out.print("Deleted " + value + '\n');
+                } else {
+                    System.out.print("Could not delete ");
+                }
+                System.out.print(value + '\n');
+                break;
+            case 't':
+                System.out.print("Enter type 1, 2 or 3: ");
+                value = getInt();
+                theTree.traverse(value);
+                break;
+            default:
+                System.out.print("Invalid entry\n");
+            } // end switch
+        } // end while
+    } // end main()
+
+    public static String getString() throws IOException {
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String s = br.readLine();
+        return s;
+    }
+
+    public static char getChar() throws IOException {
+        String s = getString();
+        return s.charAt(0);
+    }
+
+    public static int getInt() throws IOException {
+        String s = getString();
+        return Integer.parseInt(s);
+    }
+}

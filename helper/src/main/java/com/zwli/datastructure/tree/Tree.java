@@ -7,12 +7,11 @@ import java.util.List;
 public class Tree {
 
     private static class Node {
-
         int data;
         Node left;
         Node right;
 
-        public Node(int d) {
+        public Node(final int d) {
             data = d;
         }
     }
@@ -36,18 +35,26 @@ public class Tree {
     public Tree() {
     }
 
-    public Tree(Node n) {
+    public Tree(final Node n) {
         root = n;
     }
 
-    private boolean countSingleRec(Node current) {
-        if (current == null) { return true; }
+    private boolean countSingleRec(final Node current) {
+        if (current == null) {
+            return true;
+        }
 
         boolean left = countSingleRec(current.left);
         boolean right = countSingleRec(current.right);
-        if (!left || !right) { return false; }
-        if (current.left != null && current.data != current.left.data) { return false; }
-        if (current.right != null && current.data != current.right.data) { return false; }
+        if (!left || !right) {
+            return false;
+        }
+        if (current.left != null && current.data != current.left.data) {
+            return false;
+        }
+        if (current.right != null && current.data != current.right.data) {
+            return false;
+        }
 
         countOfSingleValuedSubTree++;
         return true;
@@ -58,28 +65,34 @@ public class Tree {
         return countOfSingleValuedSubTree;
     }
 
-    public void printPostorder(Node current) {
-        if (current == null) { return; }
+    public void printPostorder(final Node current) {
+        if (current == null) {
+            return;
+        }
         printPostorder(current.left);
         printPostorder(current.right);
         System.out.print(current.data + " ");
     }
 
-    public void printInorder(Node current) {
-        if (current == null) { return; }
+    public void printInorder(final Node current) {
+        if (current == null) {
+            return;
+        }
         printInorder(current.left);
         System.out.print(current.data + " ");
         printInorder(current.right);
     }
 
-    public void printPreorder(Node current) {
-        if (current == null) { return; }
+    public void printPreorder(final Node current) {
+        if (current == null) {
+            return;
+        }
         System.out.print(current.data + " ");
         printInorder(current.left);
         printInorder(current.right);
     }
 
-    public void printTree(PrintOrder order) {
+    public void printTree(final PrintOrder order) {
         if (PrintOrder.INORDER == order) {
             printInorder(root);
         } else if (PrintOrder.PREORDER == order) {
@@ -93,7 +106,7 @@ public class Tree {
         return calculateSize(root);
     }
 
-    private int calculateSize(Node current) {
+    private int calculateSize(final Node current) {
         if (current == null) {
             return 0;
         } else {
@@ -101,22 +114,26 @@ public class Tree {
         }
     }
 
-    public boolean identicalTrees(Node other) {
+    public boolean identicalTrees(final Node other) {
         return validateTrees(root, other);
     }
 
-    private boolean validateTrees(Node current, Node other) {
-        if (current == null && other == null) { return true; }
+    private boolean validateTrees(final Node current, final Node other) {
+        if (current == null && other == null) {
+            return true;
+        }
         if (current != null && other != null) {
             boolean a = current.data == other.data;
             boolean b = validateTrees(current.left, other.left);
             boolean c = validateTrees(current.right, other.right);
-            if (a && b && c) { return true; }
+            if (a && b && c) {
+                return true;
+            }
         }
         return false;
     }
 
-    public int maxDepth(Node current) {
+    public int maxDepth(final Node current) {
         if (current == null) {
             return 0;
         } else {
@@ -130,7 +147,7 @@ public class Tree {
         }
     }
 
-    public int depth(Node root) {
+    public int depth(final Node root) {
         if (root == null) {
             return 0;
         } else {
@@ -138,7 +155,7 @@ public class Tree {
         }
     }
 
-    public void mirror(Node current) {
+    public void mirror(final Node current) {
         if (current == null) {
             return;
         } else {
@@ -152,13 +169,15 @@ public class Tree {
         }
     }
 
-    public void printPaths(Node current) {
+    public void printPaths(final Node current) {
         int path[] = new int[10];
         printPathsRecur(current, path, 0);
     }
 
-    private void printPathsRecur(Node current, int[] path, int pathLen) {
-        if (current == null) { return; }
+    private void printPathsRecur(final Node current, final int[] path, int pathLen) {
+        if (current == null) {
+            return;
+        }
         path[pathLen] = current.data;
         pathLen++;
         if (current.left == null && current.right == null) {
@@ -169,19 +188,21 @@ public class Tree {
         }
     }
 
-    private void printArray(int path[], int len) {
+    private void printArray(final int path[], final int len) {
         for (int i = 0; i < len; i++) {
             System.out.print(path[i] + " ");
         }
         System.out.println();
     }
 
-    public void printLevelOrder(Node current) {
+    public void printLevelOrder(final Node current) {
         // TODO:
     }
 
-    public Node createMinimalBST(int arr[], int start, int end) {
-        if (end < start) { return null; }
+    public Node createMinimalBST(final int arr[], final int start, final int end) {
+        if (end < start) {
+            return null;
+        }
         int mid = (start + end) / 2;
         Node n = new Node(arr[mid]);
         n.left = createMinimalBST(arr, start, mid - 1);
@@ -189,12 +210,14 @@ public class Tree {
         return n;
     }
 
-    public Node createMinimalBST(int arr[]) {
+    public Node createMinimalBST(final int arr[]) {
         return createMinimalBST(arr, 0, arr.length - 1);
     }
 
-    public void createLevelLinkedList(Node current, List<LinkedList<Node>> lists, int level) {
-        if (current == null) { return; }
+    public void createLevelLinkedList(final Node current, final List<LinkedList<Node>> lists, final int level) {
+        if (current == null) {
+            return;
+        }
         LinkedList<Node> list = null;
         if (lists.size() == level) {
             list = new LinkedList<Node>();
@@ -207,7 +230,7 @@ public class Tree {
         createLevelLinkedList(current.right, lists, level + 1);
     }
 
-    public List<LinkedList<Node>> createLevelLinkedList(Node current) {
+    public List<LinkedList<Node>> createLevelLinkedList(final Node current) {
         List<LinkedList<Node>> lists = new ArrayList<LinkedList<Node>>();
         createLevelLinkedList(current, lists, 0);
         return lists;
@@ -237,9 +260,13 @@ public class Tree {
     // }
     // }
 
-    public boolean printAncestors(Node root, int target) {
-        if (root == null) { return false; }
-        if (root.data == target) { return true; }
+    public boolean printAncestors(final Node root, final int target) {
+        if (root == null) {
+            return false;
+        }
+        if (root.data == target) {
+            return true;
+        }
         if (printAncestors(root.left, target) || printAncestors(root.right, target)) {
             System.out.print(root.data);
             return true;
@@ -247,14 +274,16 @@ public class Tree {
         return false;
     }
 
-    public boolean hasPathSum(Node node, IntWrapper sum) {
+    public boolean hasPathSum(final Node node, final IntWrapper sum) {
         if (node == null) {
             return (sum.num == 0);
         } else {
             boolean ans = false;
             IntWrapper subSum = new IntWrapper();
             subSum.num = sum.num - node.data;
-            if (subSum.num == 0 && node.left == null && node.right == null) { return true; }
+            if (subSum.num == 0 && node.left == null && node.right == null) {
+                return true;
+            }
             if (node.left != null) {
                 ans = ans || hasPathSum(node.left, subSum);
             }
@@ -265,7 +294,7 @@ public class Tree {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         // testCountSingleRec();
         // testPrint();
         // testSize();
@@ -414,7 +443,7 @@ public class Tree {
         System.out.println(count);
     }
 
-    static Node initNode(int data) {
+    static Node initNode(final int data) {
         return new Node(data);
     }
 }

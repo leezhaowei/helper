@@ -1,20 +1,19 @@
 package com.zwli.datastructure.tree;
 
-public class Node {
+public class Node<T> {
 
-    public int iData; // data item (key)
-
-    public double dData; // data item
-
-    public Node leftChild; // this node's left child
-
-    public Node rightChild; // this node's right child
+    public int key;
+    public T data;
+    public Node<T> left;
+    public Node<T> right;
 
     public void displayNode() {
-        System.out.print('{');
-        System.out.print(iData);
-        System.out.print(", ");
-        System.out.print(dData);
-        System.out.print("} ");
+        StringBuilder info = new StringBuilder();
+        info.append('{');
+        info.append(key);
+        info.append(", ");
+        info.append(data);
+        info.append("} ");
+        System.out.println(info.toString());
     }
 }
