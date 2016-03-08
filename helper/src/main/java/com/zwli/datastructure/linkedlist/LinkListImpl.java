@@ -77,7 +77,7 @@ public class LinkListImpl<E> implements LinkList<E> {
 
     @Override
     public ListIterator<E> iterator() {
-        return null;
+        return new ListIteratorImpl<E>(this);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class LinkListImpl<E> implements LinkList<E> {
     }
 
     @Override
-    public void setHead(Link<E> head) {
+    public void setHead(final Link<E> head) {
         this.head = head;
     }
 
