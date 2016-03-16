@@ -8,7 +8,7 @@ public class Producer2 implements Runnable {
 
     private final int MAX_CAPACITY;
 
-    public Producer2(List<Integer> sharedQueue, int size) {
+    public Producer2(final List<Integer> sharedQueue, final int size) {
         this.taskQueue = sharedQueue;
         this.MAX_CAPACITY = size;
     }
@@ -19,13 +19,13 @@ public class Producer2 implements Runnable {
         while (true) {
             try {
                 produce(counter++);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    private void produce(int i) throws InterruptedException {
+    private void produce(final int i) throws InterruptedException {
         synchronized (taskQueue) {
             while (taskQueue.size() == MAX_CAPACITY) {
                 System.out.println("Queue is full " + Thread.currentThread().getName() + " is waiting , size: "

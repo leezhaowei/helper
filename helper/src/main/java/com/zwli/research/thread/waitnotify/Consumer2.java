@@ -1,12 +1,13 @@
 package com.zwli.research.thread.waitnotify;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Consumer2 implements Runnable {
 
     private final List<Integer> taskQueue;
 
-    public Consumer2(List<Integer> sharedQueue) {
+    public Consumer2(final List<Integer> sharedQueue) {
         this.taskQueue = sharedQueue;
     }
 
@@ -15,8 +16,8 @@ public class Consumer2 implements Runnable {
         while (true) {
             try {
                 consume();
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -33,5 +34,14 @@ public class Consumer2 implements Runnable {
             System.out.println("Consumed: " + i);
             taskQueue.notifyAll();
         }
+    }
+
+    public static void main(final String[] args) {
+        List<Integer> taskQueue = new ArrayList<Integer>();
+        final int MAX_CAPACITY = 5;
+        Thread tProducer = new Thread(new Producer2(taskQueue, MAX_CAPACITY), "Producer");
+        Thread tConsumer = new Thread(new Consumer2(taskQueue), "Consumer");
+        tProducer.start();
+        tConsumer.start();
     }
 }

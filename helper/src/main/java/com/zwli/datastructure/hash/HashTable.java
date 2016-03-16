@@ -41,8 +41,7 @@ public class HashTable {
         int hashVal = hashFunc(key); // hash the key
         // until empty cell or -1,
         while (hashArray[hashVal] != null && hashArray[hashVal].getKey() != -1) {
-            ++hashVal; // go to next cell
-            hashVal %= arraySize; // wraparound if necessary
+            hashVal = rehash(hashVal);
         }
         hashArray[hashVal] = item; // insert item
     } // end insert()
@@ -57,8 +56,7 @@ public class HashTable {
                 hashArray[hashVal] = nonItem; // delete item
                 return temp; // return item
             }
-            ++hashVal; // go to next cell
-            hashVal %= arraySize; // wraparound if necessary
+            hashVal = rehash(hashVal);
         }
         return null; // can't find item
     } // end delete()
@@ -71,10 +69,15 @@ public class HashTable {
             if (hashArray[hashVal].getKey() == key) {
                 return hashArray[hashVal]; // yes, return item
             }
-            ++hashVal; // go to next cell
-            hashVal %= arraySize; // wraparound if necessary
+            hashVal = rehash(hashVal);
         }
         return null; // can't find item
+    }
+
+    private int rehash(int hashVal) {
+        ++hashVal; // go to next cell
+        hashVal %= arraySize; // wraparound if necessary
+        return hashVal;
     }
 
 }
