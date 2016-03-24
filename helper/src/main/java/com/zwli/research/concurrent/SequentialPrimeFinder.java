@@ -1,4 +1,4 @@
-package com.zwli.research.thread;
+package com.zwli.research.concurrent;
 
 public class SequentialPrimeFinder extends AbstractPrimeFinder {
 

@@ -1,4 +1,4 @@
-package com.zwli.research.thread.racecondition;
+package com.zwli.research.concurrent.racecondition;
 
 public class RaceCondition {
 

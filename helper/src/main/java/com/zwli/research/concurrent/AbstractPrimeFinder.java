@@ -1,4 +1,4 @@
-package com.zwli.research.thread;
+package com.zwli.research.concurrent;
 
 public abstract class AbstractPrimeFinder {
     public boolean isPrime(final int number) {

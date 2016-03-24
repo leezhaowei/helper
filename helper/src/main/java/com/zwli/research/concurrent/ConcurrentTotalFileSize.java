@@ -1,4 +1,4 @@
-package com.zwli.research.thread;
+package com.zwli.research.concurrent;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -76,7 +76,7 @@ public class ConcurrentTotalFileSize {
     }
     public static void main(final String[] args) throws InterruptedException, ExecutionException, TimeoutException {
         final long start = System.nanoTime();
-        final File file = new File("D:/");
+        final File file = new File("/Users/ZhaoweiLi");
         final long total = new ConcurrentTotalFileSize().getTotalSizeOfFilesInDir(file);
         final long end = System.nanoTime();
         System.out.println("Total size: "+total);

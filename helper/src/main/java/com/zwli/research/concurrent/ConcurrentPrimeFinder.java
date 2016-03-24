@@ -1,4 +1,4 @@
-package com.zwli.research.thread;
+package com.zwli.research.concurrent;
 
 import java.util.ArrayList;
 import java.util.List;
