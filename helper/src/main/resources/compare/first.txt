@@ -1,11 +1,95 @@
-main start.
-CustomThreadA start.
-CustomThreadA loop at 0
-CustomThreadA loop at 1
-CustomThreadA loop at 2
-CustomThreadB start.
-CustomThreadA loop at 3
-CustomThreadA loop at 4
-CustomThreadA end.
-CustomThreadB end.
-main end!
+
+Job search Candidate Zone Sign Out
+Back
+inShare
+Software Developer
+
+14279BR
+
+Job Description
+
+Employees in this role use design documentation, such as Functional Programming Specifications and high level design documents to implement the identified components. They also ensure that the implemented components are unit tested and ready to be integrated into the product. Software developers also provide fixes to defects identified by the verification team during the software development life cycle.
+
+Primary job category
+
+Software Development & Support
+
+Secondary Job Category
+
+Other Software Development & Support
+
+Role ( Job Role )
+
+Software Developer
+
+Employment Type
+
+Full-Time
+
+Remote work possible?
+
+No
+
+Required Technical and Professional Expertise
+
+Job Responsibilities:
+- Work with global/local teams to analyze the business requirements and design, develop the solution by leveraging multiple IBM middlewares products and/or third parties products.
+- Work with the global/local team leads to drive innovation during the full life cycle of development
+- Responsible for the design, coding, unit testing, defect fix, etc
+ 
+
+Preferred Technical and Professional Experience
+
+Job Responsibilities:
+- Work with global/local teams to analyze the business requirements and design, develop the solution by leveraging multiple IBM middlewares products and/or third parties products.
+- Work with the global/local team leads to drive innovation during the full life cycle of development
+- Responsible for the design, coding, unit testing, defect fix, etc
+ 
+
+Eligibility Requirements
+
+Job Requirements (skills/experiences):
+- Graduates from international or Chinese top universities, major in Computer Science, EE etc
+- Research area on machine learning or artificial intelligence are the strong plus
+- Strong technical skills on Java/J2EE/Web applications, Java Script, JSP, HTML5/CSS etc
+- Good communication skills in both Chinese and English
+- Familiar with IBM products like WAS, DB2, Bluemix, and R, NoSQL or Hadoop, is a plu
+
+Required Education
+
+Bachelor's Degree
+
+Preferred Education
+
+Master's Degree
+
+Travel Required
+
+No Travel
+
+IBM Business Group
+
+T&O
+
+Is this role a commissionable/sales incentive based position?
+
+No
+
+Country
+
+China
+
+State / Province
+
+BEIJING
+
+City / Township / Village
+
+BEIJING
+
+EO Statement
+
+IBM is committed to creating a diverse environment and is proud to be an equal opportunity employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, gender, gender identity or expression, sexual orientation, national origin, genetics, disability, age, or veteran status. IBM is also committed to compliance with all fair employment practices regarding citizenship and immigration status.
+
+ERBP
+

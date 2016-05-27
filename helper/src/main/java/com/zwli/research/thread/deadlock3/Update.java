@@ -1,13 +1,13 @@
 package com.zwli.research.thread.deadlock3;
 
-import com.zwli.builder.ObjBuilder;
+import com.zwli.pattern.builder.ObjBuilder;
 
 public class Update {
 
     private final Author author;
     private final String updateText;
 
-    private Update(Builder b) {
+    private Update(final Builder b) {
         author = b.author;
         updateText = b.updateText;
     }
@@ -16,12 +16,12 @@ public class Update {
         private Author author;
         private String updateText;
 
-        public Builder author(Author author) {
+        public Builder author(final Author author) {
             this.author = author;
             return this;
         }
 
-        public Builder updateText(String updateText) {
+        public Builder updateText(final String updateText) {
             this.updateText = updateText;
             return this;
         }

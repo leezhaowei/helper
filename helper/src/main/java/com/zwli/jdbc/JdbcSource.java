@@ -1,6 +1,6 @@
 package com.zwli.jdbc;
 
-import com.zwli.builder.ObjBuilder;
+import com.zwli.pattern.builder.ObjBuilder;
 
 public class JdbcSource {
     private final String url;
@@ -8,7 +8,7 @@ public class JdbcSource {
     private final String username;
     private final String password;
 
-    private JdbcSource(Builder builder) {
+    private JdbcSource(final Builder builder) {
         this.url = builder._url;
         this.driver = builder._driver;
         this.username = builder._username;
@@ -26,22 +26,22 @@ public class JdbcSource {
             return new JdbcSource(this);
         }
 
-        public Builder url(String url) {
+        public Builder url(final String url) {
             _url = url;
             return this;
         }
 
-        public Builder driver(String driver) {
+        public Builder driver(final String driver) {
             _driver = driver;
             return this;
         }
 
-        public Builder username(String username) {
+        public Builder username(final String username) {
             _username = username;
             return this;
         }
 
-        public Builder password(String password) {
+        public Builder password(final String password) {
             _password = password;
             return this;
         }

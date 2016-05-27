@@ -1,11 +1,110 @@
-main start.
-CustomThreadA start.
-CustomThreadA loop at 0
-CustomThreadA loop at 1
-CustomThreadA loop at 2
-main end!
-CustomThreadB start.
-CustomThreadA loop at 3
-CustomThreadA loop at 4
-CustomThreadA end.
-CustomThreadB end.
+
+Job search Candidate Zone Sign Out
+Back
+inShare
+Software Developer
+
+19745BR
+
+Job Description
+
+Job requirements:
+
+    Able to communicate with others clearly, smoothly and effectively
+    Has strong sense of ownership and responsibility
+    Strong analytical and troubleshooting skills
+    Good English communication in writing , listening and speaking
+    Deliver commitment on time, with high quality.
+    Has following Technical Skills
+        Experienced in Java and J2EE or in C++.
+        Familiar with software engineering and software testing process.
+        Familiar with operating systems, including Windows, Linux, AIX and Solaris is a plus
+        Familiar with Database server(SQL, Oracle or DB2), LDAP server and HTTP server
+        Knowledge/experience in Shell scripts, Jython/Python/Perl is a plus
+
+Preferred:
+
+    Current or former IBM Co op, Intern or Extreme Blue with SW project experience
+    GPA (3.2 or higher on a 4.0 scale)
+    Leadership demonstrated in campus or internship. 
+
+Primary job category
+
+Software Development & Support
+
+Secondary Job Category
+
+Other Software Development & Support
+
+Role ( Job Role )
+
+Software Developer
+
+Employment Type
+
+Full-Time
+
+Remote work possible?
+
+No
+
+Required Technical and Professional Expertise
+
+Basic Qualifications:
+•Able to communicate with others clearly, smoothly and effectively
+•Has strong sense of ownership and responsibility
+•Analyze requirements, participate in design of new features in the product.
+•Develop/implement of feature design for product new release..
+•Collaborate/communicate with global stakeholders to achieve development goals.
+•Work across organization boundaries to achieve objectives.
+•Passionate to software development. An independent, assertive, self-motivated, creative, dynamic, and flexible approach is required, whilst offering and open to new ideas.
+•Good English communication in writing , listening and speaking
+•Deliver commitment on time, with high quality.
+
+Preferred Technical and Professional Experience
+
+Preferred:
+•Current or former IBM Co op, Intern or Extreme Blue with SW project experience
+•GPA (3.2 or higher on a 4.0 scale)
+Leadership demonstrated in campus or internship
+
+Eligibility Requirements
+
+none
+
+Required Education
+
+Bachelor's Degree
+
+Preferred Education
+
+Doctorate Degree
+
+Travel Required
+
+No Travel
+
+IBM Business Group
+
+GBS
+
+Is this role a commissionable/sales incentive based position?
+
+No
+
+Country
+
+China
+
+State / Province
+
+BEIJING
+
+City / Township / Village
+
+BEIJING
+
+EO Statement
+
+IBM is committed to creating a diverse environment and is proud to be an equal opportunity employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, gender, gender identity or expression, sexual orientation, national origin, genetics, disability, age, or veteran status. IBM is also committed to compliance with all fair employment practices regarding citizenship and immigration status.
+↑ Scroll to top
