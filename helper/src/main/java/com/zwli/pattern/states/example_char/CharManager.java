@@ -4,6 +4,11 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Stack;
 
+/**
+ * <b>Input: </b>The intent of the STATE pattern is to distribute state-specific logic across classes that represent an object’s state.<br>
+ * <b>Output: </b>ehT tnetni fo eht ETATS nrettap si ot etubirtsid etats-cificeps cigol ssorca sessalc taht tneserper na tcejbo’s etats.
+ * @author Jeffery Li
+ */
 public class CharManager {
 
     private final Stack<Character> stack = new Stack<Character>();
