@@ -31,8 +31,8 @@ public class TransformWord {
     }
 
     public List<String> transform(String startWord, String endWord) {
-        if (startWord == null || endWord == null) {
-            throw new IllegalArgumentException();
+        if (startWord == null || endWord == null || startWord.length() != endWord.length()) {
+            throw new IllegalArgumentException("Arguments invalid - [startWord, endWord]");
         }
 
         startWord = startWord.toLowerCase();
@@ -106,6 +106,9 @@ public class TransformWord {
             startWord = args[0];
             endWord = args[1];
             sUrl = args[2];
+        } else {
+            System.out.println("Example: java -jar transformword.jar startWord endWord letterDictUrl");
+            System.exit(1);
         }
 
         // sUrl = "http://tech.buuteeq.com/quiz/dm-1/4letterdict.html";
