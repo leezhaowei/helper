@@ -1,255 +1,269 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.zwli</groupId>
-  <artifactId>helper</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.zwli</groupId>
+	<artifactId>helper</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.version>4.2.3.RELEASE</spring.version>
-  </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>4.2.3.RELEASE</spring.version>
+	</properties>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.5.1</version>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-        </configuration>
-      </plugin>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
 
-      <!-- <plugin> -->
-      <!-- <artifactId>maven-source-plugin</artifactId> -->
-      <!-- <version>2.2.1</version> -->
-      <!-- <executions> -->
-      <!-- <execution> -->
-      <!-- <id>attach-sources</id> -->
-      <!-- <goals> -->
-      <!-- <goal>jar</goal> -->
-      <!-- </goals> -->
-      <!-- </execution> -->
-      <!-- </executions> -->
-      <!-- </plugin> -->
-      <!-- <plugin> -->
-      <!-- <artifactId>maven-javadoc-plugin</artifactId> -->
-      <!-- <version>2.9.1</version> -->
-      <!-- <executions> -->
-      <!-- <execution> -->
-      <!-- <id>attach-javadocs</id> -->
-      <!-- <goals> -->
-      <!-- <goal>jar</goal> -->
-      <!-- </goals> -->
-      <!-- </execution> -->
-      <!-- </executions> -->
-      <!-- </plugin> -->
-      <!-- <plugin> -->
-      <!-- <groupId>org.apache.maven.plugins</groupId> -->
-      <!-- <artifactId>maven-pmd-plugin</artifactId> -->
-      <!-- <configuration> -->
-      <!-- <linkXref>true</linkXref> -->
-      <!-- <sourceEncoding>UTF-8</sourceEncoding> -->
-      <!-- <minimumTokens>30</minimumTokens> -->
-      <!-- <targetJdk>1.4</targetJdk> -->
-      <!-- </configuration> -->
-      <!-- </plugin> -->
-      <!-- <plugin> -->
-      <!-- <groupId>org.apache.maven.plugins</groupId> -->
-      <!-- <artifactId>maven-checkstyle-plugin</artifactId> -->
-      <!-- <version>2.9.1</version> -->
-      <!-- <configuration> -->
-      <!-- <configLocation>checkstyle.xml</configLocation> -->
-      <!-- <includeTestSourceDirectory>true</includeTestSourceDirectory> -->
-      <!-- <consoleOutput>true</consoleOutput> -->
-      <!-- <failsOnError>true</failsOnError> -->
-      <!-- <useFile /> -->
-      <!-- </configuration> -->
-      <!-- <executions> -->
-      <!-- <execution> -->
-      <!-- <id>check-style</id> -->
-      <!-- <phase>compile</phase> -->
-      <!-- <goals> -->
-      <!-- <goal>checkstyle</goal> -->
-      <!-- </goals> -->
-      <!-- </execution> -->
-      <!-- <execution> -->
-      <!-- <id>test-check-style</id> -->
-      <!-- <phase>test-compile</phase> -->
-      <!-- <goals> -->
-      <!-- <goal>checkstyle</goal> -->
-      <!-- </goals> -->
-      <!-- </execution> -->
-      <!-- </executions> -->
-      <!-- </plugin> -->
+			<!-- <plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<configuration>
+					<linkXref>true</linkXref>
+					<sourceEncoding>UTF-8</sourceEncoding>
+					<minimumTokens>30</minimumTokens>
+					<targetJdk>1.4</targetJdk>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.9.1</version>
+				<configuration>
+					<configLocation>checkstyle.xml</configLocation>
+					<includeTestSourceDirectory>true</includeTestSourceDirectory>
+					<consoleOutput>true</consoleOutput>
+					<failsOnError>true</failsOnError>
+					<useFile />
+				</configuration>
+				<executions>
+					<execution>
+						<id>check-style</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>checkstyle</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>test-check-style</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>checkstyle</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin> -->
 
-    </plugins>
-  </build>
+		</plugins>
+	</build>
 
-  <dependencies>
+	<dependencies>
 
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.15</version>
-      <exclusions>
-        <exclusion>
-          <groupId>javax.jms</groupId>
-          <artifactId>jms</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.sun.jmx</groupId>
-          <artifactId>jmxri</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.sun.jdmk</groupId>
-          <artifactId>jmxtools</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-compress</artifactId>
-      <version>1.9</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.4</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.4</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-dbutils</groupId>
-      <artifactId>commons-dbutils</artifactId>
-      <version>1.6</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
-      <version>1.6</version>
-    </dependency>
-    <dependency>
-      <groupId>dom4j</groupId>
-      <artifactId>dom4j</artifactId>
-      <version>1.6.1</version>
-      <exclusions>
-        <exclusion>
-          <groupId>xml-apis</groupId>
-          <artifactId>xml-apis</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <!-- <dependency> -->
-    <!-- <groupId>org.json</groupId> -->
-    <!-- <artifactId>json</artifactId> -->
-    <!-- <version>20141113</version> -->
-    <!-- </dependency> -->
-    <dependency>
-      <groupId>org.bouncycastle</groupId>
-      <artifactId>bcprov-jdk15on</artifactId>
-      <version>1.52</version>
-    </dependency>
-    <!-- SVNKit START -->
-    <dependency>
-      <groupId>org.tmatesoft.svnkit</groupId>
-      <artifactId>svnkit</artifactId>
-      <version>1.8.9</version>
-    </dependency>
-    <dependency>
-      <groupId>org.tmatesoft.svnkit</groupId>
-      <artifactId>svnkit-javahl16</artifactId>
-      <version>1.8.9</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>svn-javahl-api</artifactId>
-          <groupId>org.apache.subversion</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.trilead</groupId>
-      <artifactId>trilead-ssh2</artifactId>
-      <version>1.0.0-build217</version>
-    </dependency>
-    <!-- SVNKit END -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.2.12</version>
+			<scope>compile</scope>
+			<optional>true</optional>
+		</dependency>
 
-    <!-- JDBC Driver START -->
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.37</version>
-    </dependency>
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <version>1.4.190</version>
-    </dependency>
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <version>9.4-1206-jdbc42</version>
-    </dependency>
-    <!-- JDBC Driver END -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-compress</artifactId>
+			<version>1.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbutils</groupId>
+			<artifactId>commons-dbutils</artifactId>
+			<version>1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- <dependency> <groupId>org.json</groupId> <artifactId>json</artifactId> <version>20141113</version> </dependency> -->
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>1.52</version>
+		</dependency>
+		<!-- SVNKit START -->
+		<dependency>
+			<groupId>org.tmatesoft.svnkit</groupId>
+			<artifactId>svnkit</artifactId>
+			<version>1.8.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.tmatesoft.svnkit</groupId>
+			<artifactId>svnkit-javahl16</artifactId>
+			<version>1.8.9</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>svn-javahl-api</artifactId>
+					<groupId>org.apache.subversion</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.trilead</groupId>
+			<artifactId>trilead-ssh2</artifactId>
+			<version>1.0.0-build220</version>
+		</dependency>
+		<!-- SVNKit END -->
 
-    <!-- Sring START -->
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-commons</artifactId>
-      <version>1.11.1.RELEASE</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <!-- Sring END -->
+		<!-- JDBC Driver START -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.37</version>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.192</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4-1206-jdbc42</version>
+		</dependency>
+		<!-- JDBC Driver END -->
 
-    <dependency>
-      <groupId>net.sourceforge.jexcelapi</groupId>
-      <artifactId>jxl</artifactId>
-      <version>2.6.12</version>
-    </dependency>
+		<!-- Sring START -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+			<version>1.11.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- Sring END -->
 
-    <!-- AKKA -->
-    <dependency>
-      <groupId>com.typesafe.akka</groupId>
-      <artifactId>akka-actor_2.11</artifactId>
-      <version>2.4.2</version>
-    </dependency>
+		<dependency>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>2.6.12</version>
+		</dependency>
 
-    <dependency>
-      <groupId>org.jdom</groupId>
-      <artifactId>jdom2</artifactId>
-      <version>2.0.6</version>
-    </dependency>
+		<!-- AKKA -->
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-actor_2.11</artifactId>
+			<version>2.4.2</version>
+		</dependency>
 
-  </dependencies>
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom2</artifactId>
+			<version>2.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>jaxen</groupId>
+			<artifactId>jaxen</artifactId>
+			<version>1.1.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.htmlparser</groupId>
+			<artifactId>htmlparser</artifactId>
+			<version>2.1</version>
+		</dependency>
+
+	</dependencies>
 
 </project>

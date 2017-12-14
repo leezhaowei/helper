@@ -1,0 +1,127 @@
+@startuml
+title Game Play - Ticket Ready Game Play
+skinparam sequence {
+    ArrowColor black
+    MessageAlign center
+}
+skinparam note{
+    FontColor deepskyblue
+    BackgroundColor white
+    BorderColor black
+}
+actor Browser
+participant "Game lobby"
+participant "SKB PF"
+participant "SKB eInstant"
+
+participant "Game Layer"
+
+Browser -> "Game lobby" : Launch game
+activate "Game lobby"
+"Game lobby" -> "SKB PF" : initialize
+deactivate "Game lobby"
+
+
+"SKB eInstant" --> "SKB PF" : <color:deepskyblue> send loading complete
+"SKB PF" -> "SKB eInstant" : System.Init: return client config
+"SKB PF" -> "SKB eInstant" : Game.Init: return resp
+
+note left
+Currency, Game Logic,
+Paytable Response
+end note
+
+
+activate "SKB eInstant"
+"SKB eInstant" --> "SKB PF" : <color: deepskyblue> Game.InitDone
+note right
+Error when phase 1
+&& normal
+end note
+"SKB eInstant" -> "Game Layer" : game init
+deactivate "SKB eInstant"
+activate "Game Layer"
+
+"SKB PF" -> "SKB eInstant" : <i>onBeforeShowStage</i>
+"SKB eInstant" --> "SKB PF" : <color:deepskyblue> call next state
+
+"SKB PF" -> "SKB eInstant" : <i>onStartGameInitial</i>
+note left of "SKB eInstant"
+Nothing to do when at
+this state
+end note
+
+"Game Layer" --> "SKB eInstant" : <color:deepskyblue>jLottery gamePreInited
+deactivate "Game Layer"
+activate "SKB eInstant"
+"SKB eInstant" -> "Game Layer" : game startAssetLoading
+deactivate "SKB eInstant"
+activate "Game Layer"
+"Game Layer" --> "SKB eInstant" : <color:deepskyblue> jLottery assetsLoadedAndGameReady
+deactivate "Game Layer"
+
+activate "SKB eInstant"
+alt wagerType = "BUY" || normal play
+"SKB eInstant" --> "SKB PF" : <color:deepskyblue> call next state
+end alt
+
+deactivate "SKB eInstant"
+"SKB PF" -> "SKB eInstant" : <i>onBeforeRequest</i>
+"SKB eInstant" --> "SKB PF" : <color:deepskyblue>call next state
+"SKB PF" -> "SKB eInstant" : <i>onMakeRequest</i>
+"SKB eInstant" --> "SKB PF" : <color:deepskyblue>Game.PlayData
+note right
+Send buy ticket
+request
+end note
+"SKB eInstant" --> "SKB PF" : <color:deepskyblue>call next state
+alt request failed
+"SKB PF" -> "SKB eInstant" :<i>onAbortNextStage</i>
+"SKB eInstant" --> "SKB PF" : <color:deepskyblue>call next state
+"SKB PF" -> "SKB eInstant" :<i>onResetNextStage</i>
+note right
+Handle two cases: 
+1. Exception when BUY then 
+reset game state to ready to buy
+2. Exception when REVEAL then 
+close game
+end note
+alt 1st play call failed
+"SKB eInstant" -> "Game Layer" : reset game
+note right
+Game screen will 
+show buy mode
+end note
+else 2nd play call failed
+"SKB eInstant" --> "SKB PF" : <color:deepskyblue>call game close
+end alt
+end alt
+
+"SKB PF" -> "SKB eInstant" : <i>onResolveStage</i>
+note left
+When TRY mode,
+OutcomeDetail.Stage ===
+NextStage === "Wager"
+end note
+"SKB eInstant" -> "Game Layer" : game startUserInteraction
+activate "Game Layer"
+"Game Layer" -> "SKB eInstant" : <color:deepskyblue>jLottery ticketResultHasBeenSeen
+deactivate "Game Layer"
+activate "SKB eInstant"
+"SKB eInstant" --> "SKB PF" : <color:deepskyblue>call next state
+"SKB eInstant" -> "Game Layer" : game enterResultScreenState
+deactivate "SKB eInstant"
+activate "Game Layer"
+"SKB PF" -> "SKB eInstant" :<i>onExitStage</i>
+"SKB eInstant" --> "SKB PF" : <color:deepskyblue>call next state
+"SKB PF" -> "SKB eInstant" :<i>onEnterNextStage</i>
+"SKB eInstant" --> "SKB PF" : <color:deepskyblue>call next state
+
+"Game Layer" --> "SKB eInstant" : <color:deepskyblue>jLottery playerWantsToExit
+deactivate "Game Layer"
+activate "SKB eInstant"
+"SKB eInstant" --> "SKB PF" : <color:deepskyblue>Game Close
+deactivate "SKB eInstant"
+"SKB PF" -> "SKB eInstant" :<i>onEndGame</i>
+"SKB eInstant" --> "SKB PF" : <color:deepskyblue>call next state
+@enduml

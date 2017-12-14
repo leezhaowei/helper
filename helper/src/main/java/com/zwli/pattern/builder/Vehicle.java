@@ -1,4 +1,4 @@
-package com.zwli.builder;
+package com.zwli.pattern.builder;
 
 public class Vehicle {
     private final String brand;
