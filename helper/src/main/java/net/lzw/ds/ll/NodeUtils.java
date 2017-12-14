@@ -56,9 +56,7 @@ public class NodeUtils {
 		while (fast != null && slow != null && fast.next != null) {
 			slow = slow.next;
 			fast = fast.next.next;
-			if (slow == fast) {
-				return true;
-			}
+			if (slow == fast) { return true; }
 		}
 		return false;
 	}
@@ -85,15 +83,9 @@ public class NodeUtils {
 	}
 
 	public static Node sortedMerge(Node heada, Node headb) {
-		if (heada == null && headb == null) {
-			return null;
-		}
-		if (heada == null) {
-			return headb;
-		}
-		if (headb == null) {
-			return heada;
-		}
+		if (heada == null && headb == null) { return null; }
+		if (heada == null) { return headb; }
+		if (headb == null) { return heada; }
 
 		Node current = null;
 		Node merged = null;
@@ -152,15 +144,9 @@ public class NodeUtils {
 	}
 
 	public static Node merge(Node heada, Node headb) {
-		if (heada == null && headb == null) {
-			return null;
-		}
-		if (heada == null) {
-			return headb;
-		}
-		if (headb == null) {
-			return heada;
-		}
+		if (heada == null && headb == null) { return null; }
+		if (heada == null) { return headb; }
+		if (headb == null) { return heada; }
 		Node node = null;
 		if (heada.data <= headb.data) {
 			node = heada;
@@ -214,15 +200,11 @@ public class NodeUtils {
 	}
 
 	public static int intersectPoint(Node heada, Node headb) {
-		if (heada == null || headb == null) {
-			throw new IllegalArgumentException();
-		}
+		if (heada == null || headb == null) { throw new IllegalArgumentException(); }
 		Node current = headb;
 		while (heada != null) {
 			while (current != null) {
-				if (heada.data == current.data) {
-					return current.data;
-				}
+				if (heada.data == current.data) { return current.data; }
 				current = current.next;
 			}
 			heada = heada.next;
@@ -261,9 +243,7 @@ public class NodeUtils {
 	}
 
 	public static Node moveLastToFront(Node head) {
-		if (head == null || head.next == null) {
-			return head;
-		}
+		if (head == null || head.next == null) { return head; }
 		log(head);
 		Node previous = null;
 		Node last = head;
@@ -286,9 +266,7 @@ public class NodeUtils {
 	private static Intersect llist3 = new Intersect();
 
 	public static void getIntersection(Node heada, Node headb) {
-		if (heada == null || headb == null) {
-			return;
-		}
+		if (heada == null || headb == null) { return; }
 		Node nodea = heada;
 		Node nodeb = null;
 		Set<Integer> set = new TreeSet<>();
@@ -353,9 +331,7 @@ public class NodeUtils {
 	}
 
 	public static Node deleteNth(Node head, int position) {
-		if (head == null) {
-			return null;
-		}
+		if (head == null) { return null; }
 		if (position == 0) {
 			head = head.next;
 			return head;
@@ -376,9 +352,7 @@ public class NodeUtils {
 	}
 
 	public static void reversePrint(Node head) {
-		if (head == null) {
-			return;
-		}
+		if (head == null) { return; }
 		Node previous = null;
 		Node current = head;
 		Node forward = null;
@@ -397,19 +371,13 @@ public class NodeUtils {
 	}
 
 	public static int compareLists(Node heada, Node headb) {
-		if (heada == null && headb == null) {
-			return 1;
-		}
+		if (heada == null && headb == null) { return 1; }
 		while (heada != null && headb != null) {
-			if (heada.data != headb.data) {
-				return 0;
-			}
+			if (heada.data != headb.data) { return 0; }
 			heada = heada.next;
 			headb = headb.next;
 		}
-		if (heada == null && headb == null) {
-			return 1;
-		}
+		if (heada == null && headb == null) { return 1; }
 		return 0;
 	}
 
@@ -427,9 +395,7 @@ public class NodeUtils {
 		int index = 0;
 		current = previous;
 		while (current != null) {
-			if (index == n) {
-				return current.data;
-			}
+			if (index == n) { return current.data; }
 			index++;
 			current = current.next;
 		}
@@ -441,9 +407,7 @@ public class NodeUtils {
 		while (heada != null) {
 			current = headb;
 			while (current != null) {
-				if (heada == current) {
-					return current.data;
-				}
+				if (heada == current) { return current.data; }
 				current = current.next;
 			}
 			heada = heada.next;
@@ -451,7 +415,7 @@ public class NodeUtils {
 		return -1;
 	}
 
-	public static Node sortedInsertDoublyLists(Node head, int data) {
+	public static Node sortedInsertDoublyList(Node head, int data) {
 		Node node = new Node();
 		node.data = data;
 		if (head == null) {
@@ -478,6 +442,38 @@ public class NodeUtils {
 		return head;
 	}
 
+	public static Node reverseDoublyList(Node head) {
+		if (head == null) { return null; }
+		if (head.next == null) { return head; }
+		Node current = head;
+		Node tmp = null;
+		while (current != null) {
+			if (current.prev == null) {
+				tmp = current.next;
+				current.prev = tmp;
+				current.next = null;
+				tmp = current.prev.prev;
+				current.prev.prev = current.prev.next;
+				current.prev.prev = tmp;
+				current = current.prev;
+			} else if (current.prev != null && current.next != null) {
+				tmp = current.next;
+				current.next = current.prev;
+				current.prev = tmp;
+				tmp = current.prev.prev;
+				current.prev.prev = current.prev.next;
+				current.prev.prev = tmp;
+				current = current.prev;
+			} else if (current.prev != null && current.next == null) {
+				current.next = current.prev;
+				current.prev = null;
+				break;
+			}
+		}
+
+		return head;
+	}
+
 	public static void main(String[] args) {
 		long start = System.currentTimeMillis();
 		// testMerge();
@@ -494,10 +490,18 @@ public class NodeUtils {
 		// testMergeLists();
 		// testGetNodeFromTail();
 		// testFindMergeNode();
-		testSortedInsertDoublyLists();
+		// testSortedInsertDoublyLists();
+		testReverseDoublyList();
 
 		long end = System.currentTimeMillis() - start;
 		System.out.println("\nTime: " + end);
+	}
+
+	static void testReverseDoublyList() {
+		Node head = NodeGenerator.generateDoublyNode("1 2 3");
+		log(head);
+		head = reverseDoublyList(head);
+		log(head);
 	}
 
 	static void testSortedInsertDoublyLists() {
@@ -505,7 +509,7 @@ public class NodeUtils {
 		log(head);
 		head = null;
 		int data = 2;
-		head = sortedInsertDoublyLists(head, data);
+		head = sortedInsertDoublyList(head, data);
 		log(head);
 	}
 
