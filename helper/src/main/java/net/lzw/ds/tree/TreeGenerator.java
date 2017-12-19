@@ -22,7 +22,7 @@ public class TreeGenerator {
 			Node parent;
 			while (true) {
 				parent = current;
-				if (current.data > data) {
+				if (current.value > data) {
 					current = current.left;
 					if (current == null) {
 						parent.left = node;

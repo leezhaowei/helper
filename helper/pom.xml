@@ -241,11 +241,11 @@
 		</dependency>
 
 		<!-- AKKA -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.typesafe.akka</groupId>
 			<artifactId>akka-actor_2.11</artifactId>
 			<version>2.4.2</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.jdom</groupId>

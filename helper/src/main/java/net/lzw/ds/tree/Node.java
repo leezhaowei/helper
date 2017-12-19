@@ -1,19 +1,19 @@
 package net.lzw.ds.tree;
 
 public class Node {
-	int data;
+	int value;
+	char data;
+	int freq;
 	Node left;
 	Node right;
 
-	//	public Node() {
-	//	}
 	public Node(int data) {
-		this.data = data;
+		this.value = data;
 	}
 
 	@Override
 	public String toString() {
-		return "[" + data + ", L=" + left + ", R=" + right + "]";
+		return "[" + value + ", L=" + left + ", R=" + right + "]";
 	}
 
 }

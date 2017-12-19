@@ -2,13 +2,13 @@ package com.zwli.datastructure.tree.huffuman;
 
 public class Node {
 
-    Node left;
+	Node left;
 
-    Node right;
+	Node right;
 
-    int freq;
+	int freq;
 
-    String data;
+	String data;
 
-    String code;
+	String code;
 }
