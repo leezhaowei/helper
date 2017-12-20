@@ -1,37 +1,46 @@
 package net.lzw.ds.tree;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class TreeUtils {
 
 	public static void preOrder(Node root) {
-		if (root == null) { return; }
+		if (root == null) {
+			return;
+		}
 		System.out.print(root.value + " ");
 		preOrder(root.left);
 		preOrder(root.right);
 	}
 
 	public static void postOrder(Node root) {
-		if (root == null) { return; }
+		if (root == null) {
+			return;
+		}
 		postOrder(root.left);
 		postOrder(root.right);
 		System.out.print(root.value + " ");
 	}
 
 	public static void inOrder(Node root) {
-		if (root == null) { return; }
+		if (root == null) {
+			return;
+		}
 		inOrder(root.left);
 		System.out.print(root.value + " ");
 		inOrder(root.right);
 	}
 
 	public static int height(Node root) {
-		if (root == null) { return 0; }
+		if (root == null) {
+			return 0;
+		}
 		int heightLeft = 0;
 		Node current = root;
 		while (current != null) {
@@ -81,7 +90,9 @@ public class TreeUtils {
 	}
 
 	public static void levleOrder(Node current, List<LinkedList<Node>> lists, int level) {
-		if (current == null) { return; }
+		if (current == null) {
+			return;
+		}
 		LinkedList<Node> list = null;
 		if (lists.size() == level) {
 			list = new LinkedList<>();
@@ -96,7 +107,9 @@ public class TreeUtils {
 
 	public static Node insert(Node root, int value) {
 		Node node = new Node(value);
-		if (root == null) { return node; }
+		if (root == null) {
+			return node;
+		}
 
 		Node current = root;
 		Node parent = null;
@@ -144,11 +157,64 @@ public class TreeUtils {
 	}
 
 	public static Node lca(Node root, int v1, int v2) {
-		Set<Integer> set1 = new HashSet<>();
-		Set<Integer> set2 = new HashSet<>();
-		Node current = root;
+
+		TreeMap<Integer, Node> map1 = new TreeMap<>();
+		TreeMap<Integer, Node> map2 = new TreeMap<>();
+
+		boolean found1 = find(root, map1, v1);
+		boolean found2 = find(root, map2, v2);
+
+		if (found1 && found2) {
+			System.out.println(map1);
+			System.out.println(map2);
+			if (map1.containsKey(Integer.valueOf(v2))) {
+				return map1.get(Integer.valueOf(v2));
+			} else if (map2.containsKey(Integer.valueOf(v1))) {
+				return map2.get(Integer.valueOf(v1));
+			}
+
+			if (map1.size() > map2.size()) {
+				if (map2.size() == 0) {
+					return map1.lastEntry().getValue();
+				}
+				return map2.firstEntry().getValue();
+			} else {
+				if (map1.size() == 0) {
+					return map2.lastEntry().getValue();
+				}
+				return map1.firstEntry().getValue();
+			}
+		}
 
 		return null;
+	}
+
+	static boolean find(Node root, Map<Integer, Node> map, int value) {
+		if (root == null) {
+			return false;
+		}
+		if (root.value == value) {
+			return true;
+		}
+		if (find(root.left, map, value) || find(root.right, map, value)) {
+			map.put(Integer.valueOf(root.value), root);
+			return true;
+		}
+		return false;
+	}
+
+	static boolean find(Node root, LinkedList<Node> list, int value) {
+		if (root == null) {
+			return false;
+		}
+		if (root.value == value) {
+			return true;
+		}
+		if (find(root.left, list, value) || find(root.right, list, value)) {
+			list.add(root);
+			return true;
+		}
+		return false;
 	}
 
 	public static void main(String[] args) {
@@ -158,10 +224,25 @@ public class TreeUtils {
 		// testHeight();
 		// testTopView();
 		// testLevelOrder();
-		testHuffmanDecode();
+		// testHuffmanDecode();
+		testLca();
 
 		long end = System.currentTimeMillis() - start;
 		System.out.println("\n\nTime: " + end);
+	}
+
+	static void testLca() {
+		Node root = new Node(1);
+		root.left = new Node(2);
+		root.left.left = new Node(4);
+		root.left.left.right = new Node(6);
+		root.left.right = new Node(5);
+		root.right = new Node(3);
+
+		root = TreeGenerator.generateTree("8 4 9 1 2 3 6 5");
+
+		Node node = lca(root, 5, 9);
+		System.out.println(node);
 	}
 
 	static void testHuffmanDecode() {

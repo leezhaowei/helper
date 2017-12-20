@@ -13,7 +13,8 @@ public class Node {
 
 	@Override
 	public String toString() {
-		return "[" + value + ", L=" + left + ", R=" + right + "]";
+		// return "[" + value + ", L=" + left + ", R=" + right + "]";
+		return value + "";
 	}
 
 }
