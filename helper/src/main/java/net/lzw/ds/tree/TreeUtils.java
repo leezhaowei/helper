@@ -14,7 +14,7 @@ public class TreeUtils {
 		if (root == null) {
 			return;
 		}
-		System.out.print(root.value + " ");
+		System.out.print(root.data + " ");
 		preOrder(root.left);
 		preOrder(root.right);
 	}
@@ -25,7 +25,7 @@ public class TreeUtils {
 		}
 		postOrder(root.left);
 		postOrder(root.right);
-		System.out.print(root.value + " ");
+		System.out.print(root.data + " ");
 	}
 
 	public static void inOrder(Node root) {
@@ -33,7 +33,7 @@ public class TreeUtils {
 			return;
 		}
 		inOrder(root.left);
-		System.out.print(root.value + " ");
+		System.out.print(root.data + " ");
 		inOrder(root.right);
 	}
 
@@ -62,14 +62,14 @@ public class TreeUtils {
 		Set<Integer> set = new TreeSet<>();
 		Node current = root.left;
 		while (current != null) {
-			System.out.print(current.value + " ");
-			set.add(current.value);
+			System.out.print(current.data + " ");
+			set.add(current.data);
 			current = current.left;
 		}
 		current = root;
 		while (current != null) {
-			System.out.print(current.value + " ");
-			set.add(current.value);
+			System.out.print(current.data + " ");
+			set.add(current.data);
 			current = current.right;
 		}
 		System.out.println();
@@ -84,7 +84,7 @@ public class TreeUtils {
 
 		for (LinkedList<Node> linkedList : lists) {
 			for (Node node : linkedList) {
-				System.out.print(node.value + " ");
+				System.out.print(node.data + " ");
 			}
 		}
 	}
@@ -115,7 +115,7 @@ public class TreeUtils {
 		Node parent = null;
 		while (true) {
 			parent = current;
-			if (current.value > value) {
+			if (current.data > value) {
 				current = current.left;
 				if (current == null) {
 					parent.left = node;
@@ -140,15 +140,15 @@ public class TreeUtils {
 			// System.out.print(idx);
 			if (idx == 0) {
 				current = current.left;
-				if (current.data != '\0') {
-					System.out.print(current.data);
+				if (current.value != '\0') {
+					System.out.print(current.value);
 					current = root;
 					continue;
 				}
 			} else if (idx == 1) {
 				current = current.right;
-				if (current.data != '\0') {
-					System.out.print(current.data);
+				if (current.value != '\0') {
+					System.out.print(current.value);
 					current = root;
 					continue;
 				}
@@ -157,7 +157,6 @@ public class TreeUtils {
 	}
 
 	public static Node lca(Node root, int v1, int v2) {
-
 		TreeMap<Integer, Node> map1 = new TreeMap<>();
 		TreeMap<Integer, Node> map2 = new TreeMap<>();
 
@@ -165,8 +164,6 @@ public class TreeUtils {
 		boolean found2 = find(root, map2, v2);
 
 		if (found1 && found2) {
-			System.out.println(map1);
-			System.out.println(map2);
 			if (map1.containsKey(Integer.valueOf(v2))) {
 				return map1.get(Integer.valueOf(v2));
 			} else if (map2.containsKey(Integer.valueOf(v1))) {
@@ -185,36 +182,50 @@ public class TreeUtils {
 				return map1.firstEntry().getValue();
 			}
 		}
-
 		return null;
 	}
 
-	static boolean find(Node root, Map<Integer, Node> map, int value) {
-		if (root == null) {
+	static boolean find(Node node, Map<Integer, Node> map, int value) {
+		if (node == null) {
 			return false;
 		}
-		if (root.value == value) {
+		if (node.data == value) {
 			return true;
 		}
-		if (find(root.left, map, value) || find(root.right, map, value)) {
-			map.put(Integer.valueOf(root.value), root);
+		if (find(node.left, map, value) || find(node.right, map, value)) {
+			map.put(Integer.valueOf(node.data), node);
 			return true;
 		}
 		return false;
 	}
 
-	static boolean find(Node root, LinkedList<Node> list, int value) {
-		if (root == null) {
-			return false;
-		}
-		if (root.value == value) {
-			return true;
-		}
-		if (find(root.left, list, value) || find(root.right, list, value)) {
-			list.add(root);
+	public static boolean checkBST(Node root) {
+		if (checkLeftBST(root, root.left) && checkRightBST(root, root.right)) {
 			return true;
 		}
 		return false;
+	}
+
+	static boolean checkLeftBST(Node root, Node node) {
+		if (node == null) {
+			return true;
+		}
+		if (root.data <= node.data) {
+			return false;
+		}
+		return checkLeftBST(root, node.left) && checkLeftBST(root, node.right) && checkLeftBST(node, node.left)
+		        && checkRightBST(node, node.right);
+	}
+
+	static boolean checkRightBST(Node root, Node node) {
+		if (node == null) {
+			return true;
+		}
+		if (root.data >= node.data) {
+			return false;
+		}
+		return checkRightBST(root, node.left) && checkRightBST(root, node.right) && checkLeftBST(node, node.left)
+		        && checkRightBST(node, node.right);
 	}
 
 	public static void main(String[] args) {
@@ -225,10 +236,42 @@ public class TreeUtils {
 		// testTopView();
 		// testLevelOrder();
 		// testHuffmanDecode();
-		testLca();
+		// testLca();
+		testCheckBST();
 
 		long end = System.currentTimeMillis() - start;
 		System.out.println("\n\nTime: " + end);
+	}
+
+	static void testCheckBST() {
+		Node root = new Node(3);
+		root.left = new Node(5);
+		root.left.left = new Node(1);
+		root.left.right = new Node(4);
+		root.right = new Node(2);
+		root.right.left = new Node(6);
+
+		// root = new Node(2);
+		// root.left = new Node(1);
+		// root.right = new Node(4);
+		// root.right.left = new Node(2);
+		// root.right.right = new Node(5);
+		// // root.right.left.left = new Node(7);
+		// root.right.left.right = new Node(7);
+		// root.right.right.right = new Node(6);
+
+		root = new Node(2);
+		root.left = new Node(2);
+		root.right = new Node(5);
+		root.left.left = null;// new Node(1);
+		root.left.right = new Node(1);
+
+		root.right.left = new Node(4);
+		root.right.right = new Node(6);
+		root.right.right.left = new Node(7);
+
+		boolean is = checkBST(root);
+		System.out.println(is);
 	}
 
 	static void testLca() {
@@ -247,15 +290,15 @@ public class TreeUtils {
 
 	static void testHuffmanDecode() {
 		Node root = new Node(5);
-		root.data = '\0';
+		root.value = '\0';
 		root.left = new Node(2);
-		root.left.data = '\0';
+		root.left.value = '\0';
 		root.left.left = new Node(1);
-		root.left.left.data = 'B';
+		root.left.left.value = 'B';
 		root.left.right = new Node(1);
-		root.left.right.data = 'C';
+		root.left.right.value = 'C';
 		root.right = new Node(3);
-		root.right.data = 'A';
+		root.right.value = 'A';
 
 		String s = "1001011";
 		huffmanDecode(s, root);
