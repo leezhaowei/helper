@@ -1,4 +1,4 @@
-package net.lzw.ds.arr;
+package net.lzw.ds.hackerrank.arr;
 
 import java.util.ArrayList;
 import java.util.HashMap;

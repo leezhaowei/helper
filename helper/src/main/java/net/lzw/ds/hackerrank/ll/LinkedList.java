@@ -1,4 +1,4 @@
-package net.lzw.ds.ll;
+package net.lzw.ds.hackerrank.ll;
 
 public class LinkedList {
 

@@ -1,4 +1,4 @@
-package net.lzw.ds.tree;
+package net.lzw.ds.hackerrank.tree;
 
 import java.util.Random;
 

@@ -1,10 +1,10 @@
-package net.lzw.ds.ll;
+package net.lzw.ds.hackerrank.ll;
 
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import net.lzw.ds.ll.NodeGenerator.NodeType;
+import net.lzw.ds.hackerrank.ll.NodeGenerator.NodeType;
 
 public class NodeUtils {
 

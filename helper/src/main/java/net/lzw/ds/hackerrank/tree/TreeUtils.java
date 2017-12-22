@@ -1,4 +1,4 @@
-package net.lzw.ds.tree;
+package net.lzw.ds.hackerrank.tree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -213,8 +213,7 @@ public class TreeUtils {
 		if (root.data <= node.data) {
 			return false;
 		}
-		return checkLeftBST(root, node.left) && checkLeftBST(root, node.right) && checkLeftBST(node, node.left)
-		        && checkRightBST(node, node.right);
+		return checkLeftBST(root, node.left) && checkLeftBST(root, node.right) && checkLeftBST(node, node.left) && checkRightBST(node, node.right);
 	}
 
 	static boolean checkRightBST(Node root, Node node) {
@@ -224,8 +223,7 @@ public class TreeUtils {
 		if (root.data >= node.data) {
 			return false;
 		}
-		return checkRightBST(root, node.left) && checkRightBST(root, node.right) && checkLeftBST(node, node.left)
-		        && checkRightBST(node, node.right);
+		return checkRightBST(root, node.left) && checkRightBST(root, node.right) && checkLeftBST(node, node.left) && checkRightBST(node, node.right);
 	}
 
 	public static void main(String[] args) {
@@ -307,14 +305,14 @@ public class TreeUtils {
 	static void testLevelOrder() {
 		Node root = TreeGenerator.generateTree("1 2 5 3 4 6");
 		root = TreeGenerator.generateTree(
-		        "47 2 40 20 38 30 14 28 10 16 19 44 39 27 7 9 31 12 43 21 5 41 34 49 13 33 3 4 25 22 29 15 32 35 6 24 23 26 1 11 42 36 37 17 18 8 45 48 50 46");
+				"47 2 40 20 38 30 14 28 10 16 19 44 39 27 7 9 31 12 43 21 5 41 34 49 13 33 3 4 25 22 29 15 32 35 6 24 23 26 1 11 42 36 37 17 18 8 45 48 50 46");
 		levelOrder(root);
 	}
 
 	static void testTopView() {
 		Node root = TreeGenerator.generateTree("1 2 5 3 4 6");
 		root = TreeGenerator.generateTree(
-		        "47 2 40 20 38 30 14 28 10 16 19 44 39 27 7 9 31 12 43 21 5 41 34 49 13 33 3 4 25 22 29 15 32 35 6 24 23 26 1 11 42 36 37 17 18 8 45 48 50 46");
+				"47 2 40 20 38 30 14 28 10 16 19 44 39 27 7 9 31 12 43 21 5 41 34 49 13 33 3 4 25 22 29 15 32 35 6 24 23 26 1 11 42 36 37 17 18 8 45 48 50 46");
 		topView(root);
 	}
 
