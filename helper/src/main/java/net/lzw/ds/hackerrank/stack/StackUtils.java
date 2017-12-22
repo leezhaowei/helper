@@ -14,7 +14,7 @@ public class StackUtils {
 		}
 		Scanner in = new Scanner(System.in);
 		int n = in.nextInt();
-		Stack<Item> stack = new Stack<Item>();
+		Stack<Item> stack = new Stack<>();
 		for (int i = 0; i < n; i++) {
 			int type = in.nextInt();
 			if (type == 1) {
@@ -106,10 +106,65 @@ public class StackUtils {
 		System.out.println(s3.peek().intValue());
 	}
 
+	public static void gameOfTwoStack() {
+		Scanner in = new Scanner(System.in);
+		int g = in.nextInt();
+		for (int a0 = 0; a0 < g; a0++) {
+			int n = in.nextInt();
+			int m = in.nextInt();
+			int x = in.nextInt();
+			int[] a = new int[n];
+			for (int a_i = 0; a_i < n; a_i++) {
+				a[a_i] = in.nextInt();
+			}
+			int[] b = new int[m];
+			for (int b_i = 0; b_i < m; b_i++) {
+				b[b_i] = in.nextInt();
+			}
+			gameOfTwoStack(n, m, x, a, b);
+		}
+		in.close();
+	}
+
+	public static void gameOfTwoStack(int n, int m, int x, int[] a, int[] b) {
+		int sum = 0, count = 0, i = 0, j = 0;
+		while (i < n && sum + a[i] <= x) { // considering only first stack and calculating count
+			sum += a[i];
+			i++;
+		}
+		count = i;
+		while (j < m && i >= 0) { // now adding one element of second stack at a time and subtracting the top element of first stack and
+		                          // calculating the count
+			sum += b[j];
+			j++;
+			while (sum > x && i > 0) {
+				i--;
+				sum -= a[i];
+			}
+			if (sum <= x && i + j > count) {
+				count = i + j;
+			}
+		}
+		System.out.println(count);
+	}
+
 	public static void main(String[] args) {
 		// testMaxElement();
 		// testIsBalanced();
-		testEqualStacks();
+		// testEqualStacks();
+		testGameOfTwoStack();
+	}
+
+	static void testGameOfTwoStack() {
+		String s1 = "4 2 4 6 1";
+		String s2 = "2 1 8 5";
+
+		int[] a = ArrayGenerator.generateArr(s1);
+		int[] b = ArrayGenerator.generateArr(s2);
+
+		int n = 5, m = 4, x = 10;
+
+		gameOfTwoStack(n, m, x, a, b);
 	}
 
 	static void testEqualStacks() {
