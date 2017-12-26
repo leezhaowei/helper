@@ -63,7 +63,7 @@ public class NodeUtils {
 		return false;
 	}
 
-	public static void printNode(Node head) {
+	static void printNode(Node head) {
 		if (head == null) {
 			System.out.println("Empty node.");
 			return;
@@ -104,42 +104,42 @@ public class NodeUtils {
 					merged = heada;
 				} else {
 					current.next = heada;
-					System.out.println("LESS 1");
-					print(heada, headb, current, merged);
+					// System.out.println("LESS 1");
+					// print(heada, headb, current, merged);
 					current = current.next;
 				}
 				heada = heada.next;
-				System.out.println("LESS 2");
-				print(heada, headb, current, merged);
+				// System.out.println("LESS 2");
+				// print(heada, headb, current, merged);
 			} else {
 				if (current == null) {
 					current = headb;
 					merged = headb;
 				} else {
 					current.next = headb;
-					System.out.println("GREATER 1");
-					print(heada, headb, current, merged);
+					// System.out.println("GREATER 1");
+					// print(heada, headb, current, merged);
 					current = current.next;
 				}
 				headb = headb.next;
-				System.out.println("GREATER 2");
-				print(heada, headb, current, merged);
+				// System.out.println("GREATER 2");
+				// print(heada, headb, current, merged);
 			}
 		}
-		System.out.println("Out of loop...");
-		print(heada, headb, current, merged);
+		// System.out.println("Out of loop...");
+		// print(heada, headb, current, merged);
 		if (heada != null) {
 			current.next = heada;
 		}
-		print(heada, headb, current, merged);
+		// print(heada, headb, current, merged);
 		if (headb != null) {
 			current.next = headb;
 		}
-		print(heada, headb, current, merged);
+		// print(heada, headb, current, merged);
 		return merged;
 	}
 
-	private static void print(Node heada, Node headb, Node current, Node merged) {
+	static void print(Node heada, Node headb, Node current, Node merged) {
 		System.out.print("heada   = ");
 		printNode(heada);
 		System.out.print("headb   = ");
@@ -197,11 +197,11 @@ public class NodeUtils {
 	}
 
 	public static boolean isPalindrome(Node head) {
-		printNode(head);
+		// printNode(head);
 		Node current = getMiddle(head);
-		printNode(current);
+		// printNode(current);
 		current = reverse(current);
-		printNode(current);
+		// printNode(current);
 		boolean result = true;
 		while (head != null && current != null) {
 			if (head.data != current.data) {
@@ -264,7 +264,7 @@ public class NodeUtils {
 		if (head == null || head.next == null) {
 			return head;
 		}
-		log(head);
+		// log(head);
 		Node previous = null;
 		Node last = head;
 		while (last.next != null) {
@@ -274,7 +274,6 @@ public class NodeUtils {
 		previous.next = null;
 		last.next = head;
 		head = last;
-
 		return head;
 	}
 

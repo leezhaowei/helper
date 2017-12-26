@@ -134,7 +134,7 @@ public class StackUtils {
 		}
 		count = i;
 		while (j < m && i >= 0) { // now adding one element of second stack at a time and subtracting the top element of first stack and
-		                          // calculating the count
+			// calculating the count
 			sum += b[j];
 			j++;
 			while (sum > x && i > 0) {
