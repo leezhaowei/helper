@@ -10,30 +10,30 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 /**
- * Sort or order a HashMap or TreeSet or any map item by value. Write a comparator which compares by value, not by key.
- * Entry class might helps you here.
+ * Sort or order a HashMap or TreeSet or any map item by value. Write a comparator which compares by value, not by key. Entry class might
+ * helps you here.
  */
 public class OrderByValue {
 
-    public static void main(String a[]) {
-        Map<String, Integer> map = new HashMap<String, Integer>();
-        map.put("java", 20);
-        map.put("C++", 45);
-        map.put("Java2Novice", 2);
-        map.put("Unix", 67);
-        map.put("MAC", 26);
-        map.put("Why this kolavari", 93);
-        Set<Entry<String, Integer>> set = map.entrySet();
-        List<Entry<String, Integer>> list = new ArrayList<Entry<String, Integer>>(set);
-        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+	public static void main(String a[]) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("java", 20);
+		map.put("C++", 45);
+		map.put("Java2Novice", 2);
+		map.put("Unix", 67);
+		map.put("MAC", 26);
+		map.put("Why this kolavari", 93);
+		Set<Entry<String, Integer>> set = map.entrySet();
+		List<Entry<String, Integer>> list = new ArrayList<>(set);
+		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
 
-            @Override
-            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-                return (o2.getValue()).compareTo(o1.getValue());
-            }
-        });
-        for (Map.Entry<String, Integer> entry : list) {
-            System.out.println(entry.getKey() + " ==== " + entry.getValue());
-        }
-    }
+			@Override
+			public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+				return (o2.getValue()).compareTo(o1.getValue());
+			}
+		});
+		for (Map.Entry<String, Integer> entry : list) {
+			System.out.println(entry.getKey() + " ==== " + entry.getValue());
+		}
+	}
 }
